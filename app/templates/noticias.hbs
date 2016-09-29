@@ -5,6 +5,12 @@
 	    <h4 class="header">{{model.subtitle}}</h4>
 	  </div>
 	</div>
+	{{!-- {{#each model as |noticia|}}
+		{{noticia.title}}
+		 {{#each noticia.tags as |value|}}
+        	<span>{{link-to value.title "tag" value.slug 1}}</span>
+      	{{/each}}
+	{{/each}} --}}
 	{{noticias-list model=model page=page origem="noticias"}}
 </div>
 {{outlet}}

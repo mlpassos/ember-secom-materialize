@@ -4,7 +4,7 @@ export function substr([value], namedArgs) {
   // if (typeof value != 'undefined') {
   //   console.log('aqui: ' + value);
   let str = value;
-  console.log('str:', str);
+  // console.log('str:', str);
   // } else {
   //   let str = "Ocorreu algum problema, por favor, reinicie o aplicativo.";
   // }
