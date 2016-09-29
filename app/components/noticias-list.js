@@ -19,7 +19,6 @@ export default Ember.Component.extend({
 		    $grid.imagesLoaded().progress( function() {
 		      $grid.isotope('layout');
 		    });  
-		    console.log('inseriu elemento');
 		}	
 	// }
 });

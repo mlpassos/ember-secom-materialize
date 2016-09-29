@@ -1,1 +1,22 @@
+<div class="container">
+	<div class="row">
+	  <div class="col s12 m12">
+	    <h1 class="header">{{props.title}}</h1>
+	    {{props.subtitle}}
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col l12 m12 s12">
+			<ul class="list-inline tags-list">
+				{{#each model as |tag|}}
+				  <li>
+					  {{#link-to "tag" tag.slug 1}}
+					  	<span style="font-size:{{tagcloud tag.post_count}}px;">{{tag.title}}</span>
+					  {{/link-to}}
+				  </li>
+				{{/each}}
+			</ul>	
+		</div>
+	</div>
+</div>
 {{outlet}}
