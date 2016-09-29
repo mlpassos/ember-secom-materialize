@@ -1,0 +1,25 @@
+{{#md-navbar name='SECOM.APP' class='indigo' homeRoute='home'}}
+  <!-- A workaround to get the "active" class
+    to apply to the active <li> automatically -->
+  {{#link-to 'home' tagName='li'}}
+    {{link-to 'Home'}}
+  {{/link-to}}
+  {{#link-to 'noticias' tagName='li'}}
+    {{link-to 'Notícias'}}
+  {{/link-to}}
+  {{#link-to 'tags' tagName='li'}}
+    {{link-to 'Tags'}}
+  {{/link-to}}
+  {{#link-to 'downloads' tagName='li'}}
+    {{link-to 'Downloads'}}
+  {{/link-to}}
+  {{#link-to 'contato' tagName='li'}}
+    {{link-to 'Contato'}}
+  {{/link-to}}
+  {{#link-to 'sobre' tagName='li'}}
+    {{link-to 'Sobre'}}
+  {{/link-to}}
+  {{#link-to 'search' tagName='li'}}
+    <a href=""><i class="mdi-action-search"></i></a>
+  {{/link-to}}
+{{/md-navbar}}
