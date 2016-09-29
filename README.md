@@ -1,7 +1,9 @@
-# Embeter-materialize
+# Ember Trial Application for SECOM in Brazil
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Application that reads from a WordPress site via JSON API plugin, showing the news, tag cloud,
+download files and contact information with a Google Map.
+
+After tests and trials it should turn into a Cordova application with the help of ember-cli-cordova. An ember-electron trial app is planned for the future, too.
 
 ## Prerequisites
 

@@ -1,0 +1,33 @@
+{{yield}}
+<ul class="pagination">
+    {{#link-to origem prev tagName="li"}}
+      <a href="" aria-label="Previous">
+      	<i aria-hidden="true" class="mdi-action-chevron_left"></i>
+      </a>
+    {{/link-to}}
+    {{#each res as |item|}}
+      {{!-- <li>{{link-to item "noticias" item}}</li> --}}
+      {{#link-to origem item tagName="li" class="waves-effect"}}<a href="">{{item}}</a>{{/link-to}}
+    {{/each}}
+    {{#link-to origem prev tagName="li"}}
+      <a href="" aria-label="Next">
+      	<i aria-hidden="true" class="mdi-action-chevron_right"></i>
+      </a>
+    {{/link-to}}
+</ul>
+{{!-- 
+    <li class="disabled">
+    	<a href="#!">
+    		<i class="material-icons">chevron_left</i>
+    	</a>
+    </li>
+    <li class="active"><a href="#!">1</a></li>
+    <li class="waves-effect"><a href="#!">2</a></li>
+    <li class="waves-effect"><a href="#!">3</a></li>
+    <li class="waves-effect"><a href="#!">4</a></li>
+    <li class="waves-effect"><a href="#!">5</a></li>
+    <li class="waves-effect">
+    	<a href="#!">
+    		<i class="material-icons">chevron_right</i>
+    	</a>
+	</li> --}}
