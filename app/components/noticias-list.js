@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	// actions: {
+		routing: Ember.inject.service(),
 		init() {
 			this._super(...arguments);
 			console.log('Iniciando componente...');
@@ -19,6 +20,11 @@ export default Ember.Component.extend({
 		    $grid.imagesLoaded().progress( function() {
 		      $grid.isotope('layout');
 		    });  
-		}	
-	// }
+		},
+		actions: {
+			lerMais(slug) {
+				console.log(slug);
+				this.get('routing').transitionTo('noticia', slug);
+			}
+		}
 });

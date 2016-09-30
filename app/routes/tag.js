@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 		// this.set('pages', ( params.pages == "1") ? false : params.pages);
 		this.set('page', params.pageid);
 		this.set('slug', params.slug);
-		params.count = 10;
+		params.count = 12;
 		return this.store.query('post', {
 			tagpost: true,
 			slug: params.slug,

@@ -5,6 +5,7 @@ export default Ember.Route.extend({
 	model(params) {
 		let id = params.slug;
 		this.set('slug', id);
+		console.log('estamos aqui!');
 		return this.store.findRecord('post', id);	
 	}
 });

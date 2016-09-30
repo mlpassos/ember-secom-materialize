@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 	model(params) {
 		console.log('page: ', params.page);
 		this.set('page', params.page);
-		params.count = 10;
+		params.count = 12;
 		return this.store.query('post',{page: params.page, count: params.count}).then(post => {
 			let meta = post.get('meta');
 			// console.log('aqui aqui');

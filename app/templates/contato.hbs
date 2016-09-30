@@ -1,1 +1,14 @@
+<div class="container">
+	<div class="row">
+	  <div class="col s12 m12">
+	    <h1 class="header">{{props.title}}</h1>
+	    {{props.subtitle}}
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col l12 m12 s12">
+			{{g-maps name="my-map" lat=lat lng=lng zoom=zoom markers=markers class="img-responsive"}}
+		</div>
+	</div>
+</div>
 {{outlet}}

@@ -1,17 +1,17 @@
 {{yield}}
-<ul class="pagination">
+<ul class="pagination text-center">
     {{#link-to origem prev tagName="li"}}
       <a href="" aria-label="Previous">
-      	<i aria-hidden="true" class="mdi-action-chevron_left"></i>
+      	<i aria-hidden="true" class="mdi-navigation-chevron-left"></i>
       </a>
     {{/link-to}}
     {{#each res as |item|}}
       {{!-- <li>{{link-to item "noticias" item}}</li> --}}
       {{#link-to origem item tagName="li" class="waves-effect"}}<a href="">{{item}}</a>{{/link-to}}
     {{/each}}
-    {{#link-to origem prev tagName="li"}}
+    {{#link-to origem next tagName="li"}}
       <a href="" aria-label="Next">
-      	<i aria-hidden="true" class="mdi-action-chevron_right"></i>
+      	<i aria-hidden="true" class="mdi-navigation-chevron-right"></i>
       </a>
     {{/link-to}}
 </ul>

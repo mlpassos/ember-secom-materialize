@@ -19,11 +19,11 @@ Router.map(function() {
   this.route('sobre');
   this.route('downloads');
   this.route('search');
-  this.route('noticia');
   this.route('tags', {});
   this.route('tag', {path: 'tag/:slug/:pageid'}, function() {
     //
   });
+  this.route('loading');
 });
 
 export default Router;

@@ -2,33 +2,63 @@
 <div class="row isogrid">
   <div class="grid-sizer"></div>
 {{#each model as |noticia|}}
-  <div class="col l4 m4 s6 isoitem">
+  <div class="col l3 m4 s12 isoitem">
     {{#md-card title=noticia.title
-	    titleClass="orange-text"
-	    image=noticia.thumbnail
-	    }}
+    image=noticia.thumbnail
+    activator=true}}
 
-	    {{#md-card-content}}
-	        {{#if noticia.excerpt}}
-	          <small class="text-left">{{{substr noticia.excerpt size=12}}}</small>
-	        {{/if}}
-	    {{/md-card-content}}
+    {{#md-card-content}}
+        {{!-- {{#link-to "cards"}}This is a Link{{/link-to}} --}}
+        <!-- A colored button with an icon -->
+		{{!-- {{md-btn text='Ler mais'
+			icon='mdi-action-check-circle'
+			action='lerMais'
+			buttonType="flat" 
+			class='indigo white-text btn-ler-mais'}}
+		<br> --}}
+        {{!-- {{#each noticia.tags as |value|}}
+	        <span>{{link-to value.title "tag" value.slug 1}}</span>
+	    {{/each}} --}}
 
-	    {{#md-card-action}}
-	        {{#each noticia.tags as |value|}}
-		        <span>{{link-to value.title "tag" value.slug 1}}</span>
-		    {{/each}}
-	    {{/md-card-action}}
-	{{/md-card}}
+	    {{md-btn text='Ler mais' action="lerMais" actionArg=noticia.slug
+			buttonType="flat" 
+			class='indigo white-text btn-ler-mais'}}
+    {{/md-card-content}}
+
+    {{#md-card-reveal}}
+        {{#if noticia.excerpt}}
+          <small class="text-left">{{{noticia.excerpt}}}</small>
+        {{/if}}
+    {{/md-card-reveal}}
+
+{{/md-card}}
   </div>
 {{/each}}
 </div>
 {{!-- {{check-pagination }} --}}
 {{#if page}}
-<div class="row">
+<div class="row footer-paginate">
   <div class="col l12 m12 s12">
     {{!-- {{md-pagination min=1 max=model.meta.pages current=page range=7}} --}}
     {{noticias-pages origem=origem current=page total=model.meta.pages}} 
   </div>
 </div>
 {{/if}}
+
+{{!-- {{#md-card title=noticia.title
+    titleClass="orange-text"
+    image=noticia.thumbnail
+    }}
+
+    {{#md-card-content}}
+        {{#if noticia.excerpt}}
+          <small class="text-left">{{{substr noticia.excerpt size=12}}}</small>
+        {{/if}}
+    {{/md-card-content}}
+
+    {{#md-card-action}}
+        {{#each noticia.tags as |value|}}
+	        <span>{{link-to value.title "tag" value.slug 1}}</span>
+	    {{/each}}
+    {{/md-card-action}}
+{{/md-card}} --}}

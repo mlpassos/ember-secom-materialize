@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-	  <div class="col s12 m12">
+	  <div class="col l12 m12 s12">
 	    <h1 class="header">{{props.title}}</h1>
 	    {{props.subtitle}}
 	  </div>
@@ -11,6 +11,10 @@
         	<span>{{link-to value.title "tag" value.slug 1}}</span>
       	{{/each}}
 	{{/each}} --}}
-	{{noticias-list model=model page=page origem="noticias"}}
+	<div class="row">
+	  <div class="col l12 m12 s12">
+	    {{noticias-list model=model page=page origem="noticias"}}
+	  </div>
+	</div>
 </div>
 {{outlet}}
