@@ -17,6 +17,9 @@ export default DS.RESTAdapter.extend({
 			case 'tag':
 				return `${this.get('host')}/get_tag_posts/?slug=${id}`;
 				break;
+			case 'page':
+				return `${this.get('host')}/get_page/`;
+				break;				
 			default:
 				return this._super(...arguments);
 		}

@@ -1,28 +1,18 @@
-{{#md-navbar name='SECOM.APP' class='indigo' homeRoute='home'}}
+{{#md-navbar name='e-pautas' class='indigo' homeRoute='home'}}
   <!-- A workaround to get the "active" class
     to apply to the active <li> automatically -->
   {{#link-to 'home' tagName='li'}}
-    {{link-to 'Home'}}
+    {{!-- {{link-to 'Home'}} --}}
+    <a href=""><i class="mdi-action-home"></i></a>
   {{/link-to}}
-  {{!-- {{#link-to 'home' tagName='li'}}
-    <a href=""><i class="mdi-action-home">Home</i></a>
-  {{/link-to}} --}}
-  {{#link-to 'noticias' 1 tagName='li'}}
-    {{link-to 'Notícias'}}
+  {{#link-to 'login' tagName='li'}}
+    {{!-- {{link-to 'Login'}} --}}
+    <a href=""><i class="mdi-action-account-circle"></i></a>
   {{/link-to}}
-  {{#link-to 'tags' tagName='li'}}
+  {{!-- {{#link-to 'tags' tagName='li'}}
     {{link-to 'Tags'}}
-  {{/link-to}}
-  {{#link-to 'downloads' tagName='li'}}
-    {{link-to 'Downloads'}}
-  {{/link-to}}
-  {{#link-to 'contato' tagName='li'}}
-    {{link-to 'Contato'}}
-  {{/link-to}}
-  {{#link-to 'sobre' tagName='li'}}
-    {{link-to 'Sobre'}}
   {{/link-to}}
   {{#link-to 'search' tagName='li'}}
     <a href=""><i class="mdi-action-search"></i></a>
-  {{/link-to}}
+  {{/link-to}} --}}
 {{/md-navbar}}
