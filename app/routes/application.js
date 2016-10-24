@@ -25,10 +25,10 @@ export default TransitionToListenerRoute.extend({
 				            // tags: {slug: 'comunicacao', title:'titulo', description:'desc', post_count:10}
 				        });
 				        userRecord.save().then(function() {
-				        	alert('Usuário cadastrado com sucesso');
+				        	console.log('Usuário cadastrado com sucesso');
 				        });
 				    } else {
-						alert('Opa, usuário já cadastrado');
+						console.log('Opa, usuário já cadastrado');
 				    }
 				});
 	        });

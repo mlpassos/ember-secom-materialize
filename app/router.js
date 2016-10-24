@@ -29,6 +29,7 @@ Router.map(function() {
   this.route('perfil');
   this.route('pauta');
   this.route('pautas');
+  this.route('cadastro');
 });
 
 export default Router;
