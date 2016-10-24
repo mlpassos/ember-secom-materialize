@@ -26,6 +26,9 @@ Router.map(function() {
   this.route('loading');
   this.route('login');
   this.route('logout');
+  this.route('perfil');
+  this.route('pauta');
+  this.route('pautas');
 });
 
 export default Router;

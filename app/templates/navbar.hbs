@@ -2,17 +2,26 @@
   <!-- A workaround to get the "active" class
     to apply to the active <li> automatically -->
   {{#link-to 'home' tagName='li'}}
-    {{!-- {{link-to 'Home'}} --}}
-    <a href=""><i class="mdi-action-home"></i></a>
+    {{link-to 'Home'}}
+    {{!-- <a href="">
+      {{fa-icon "home"}}
+    </a> --}}
   {{/link-to}}
-  {{#link-to 'login' tagName='li'}}
-    {{!-- {{link-to 'Login'}} --}}
-    <a href=""><i class="mdi-action-account-circle"></i></a>
-  {{/link-to}}
-  {{!-- {{#link-to 'tags' tagName='li'}}
-    {{link-to 'Tags'}}
-  {{/link-to}}
-  {{#link-to 'search' tagName='li'}}
-    <a href=""><i class="mdi-action-search"></i></a>
-  {{/link-to}} --}}
+  {{#if session.isAuthenticated}}
+      {{#link-to 'perfil' tagName='li'}}
+        {{!-- {{link-to 'Perfil'}} --}}
+        <a href="#">
+          <img src={{session.currentUser.photoURL}} class="img-perfil" alt="...">
+        </a>
+      {{/link-to}}
+      {{#link-to 'pautas' tagName='li'}}
+        {{link-to 'Pautas'}}
+      {{/link-to}}
+      {{#link-to 'noticias' 1 tagName='li'}}
+        {{link-to 'Noticias'}}
+      {{/link-to}}
+      <li><a href="#" {{action "logout"}}>Logout</a></li>
+  {{else}}
+      <li><a href="#" {{action "login"}}>Login</a></li>
+  {{/if}}
 {{/md-navbar}}

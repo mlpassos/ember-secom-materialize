@@ -1,0 +1,14 @@
+{{yield}}
+<div class="row">
+	<div class="col s12 m12">
+		{{md-switches
+	    selection=checkboxSelections
+	    content=tags
+	    optionValuePath='id'
+	    optionLabelPath='title'}}
+	</div>
+	{{!-- <div class="col s12 m12">
+		selections: {{checkboxSelections}}
+		<a href="#" {{action "getPrefs" checkboxSelections}}>Prefs</a>
+	</div> --}}
+</div>

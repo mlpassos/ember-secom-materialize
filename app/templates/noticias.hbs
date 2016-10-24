@@ -13,7 +13,11 @@
 	{{/each}} --}}
 	<div class="row">
 	  <div class="col l12 m12 s12">
-	    {{noticias-list model=model page=page origem="noticias"}}
+	  	{{#if session.isAuthenticated}}
+	  		{{noticias-list model=model page=page origem="noticias"}}
+	    {{else}}
+	    	Você precisa estar logado para ver as notícias
+	    {{/if}}
 	  </div>
 	</div>
 </div>
