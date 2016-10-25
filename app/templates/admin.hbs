@@ -1,0 +1,13 @@
+{{outlet}}
+
+<div class="container">
+  <div class="row">
+    <div class="col s12 m12">
+      {{#if session.isAuthenticated}}
+      	<p>conteúdo admin</p>
+      {{else}}
+        <h4 class="header">Acesso negado</h4>
+      {{/if}}  
+    </div>    
+  </div>
+</div>

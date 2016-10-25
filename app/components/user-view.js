@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	click() {
-		this.sendAction('on-action');
+	actions: {
+		gravarUsuario() {
+			this.sendAction('on-action');
+		}	
 	}
 });

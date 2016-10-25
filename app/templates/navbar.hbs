@@ -7,8 +7,14 @@
       {{fa-icon "home"}}
     </a> --}}
   {{/link-to}}
+  {{!-- {{log 'navbar' session.currentUser.isAdmin}} --}}
   {{#if session.isAuthenticated}}
-      {{#link-to 'perfil' tagName='li'}}
+      {{#if session.currentUser.isAdmin}}
+        {{#link-to 'admin' tagName='li'}}
+          {{link-to 'Admin'}}
+        {{/link-to}}
+      {{/if}}
+      {{#link-to 'usuario.perfil' session.currentUser.uid tagName='li'}}
         {{!-- {{link-to 'Perfil'}} --}}
         <a href="#">
           <img src={{session.currentUser.photoURL}} class="img-perfil" alt="...">

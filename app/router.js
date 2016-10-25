@@ -26,10 +26,15 @@ Router.map(function() {
   this.route('loading');
   this.route('login');
   this.route('logout');
-  this.route('perfil');
+
   this.route('pauta');
   this.route('pautas');
   this.route('cadastro');
+  this.route('usuarios');
+  this.route('usuario', {path: 'usuario/:uid'}, function() {
+    this.route('perfil');    
+  });
+  this.route('admin');
 });
 
 export default Router;

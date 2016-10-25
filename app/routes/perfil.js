@@ -28,12 +28,14 @@ export default Ember.Route.extend({
 		gravarUsuario() {
 			// alert('cheguei');
 			let uid = this.get('session.currentUser.uid');//user.get('uid');
-			console.log(uid);
 			// let displayName = user.get('displayName');
 			// let email = user.get('email');
-			this.get('store').query('user', {orderBy: 'uid', equalTo: uid }).then( (user) =>{
-				// user.set('displayName', displayName);
-			 //  	user.set('email', email);
+			// console.log(this.get('model.user'));
+			this.get('store').query('user', {orderBy: 'uid', equalTo: uid }).then( function(user) {
+				// console.log(user.get('hasDirtyAttributes'));
+				// console.log(user.changedAttributes());
+			// 	// user.set('displayName', displayName);
+			//  //  	user.set('email', email);
 			  	user.save().then(function() {
 			  		alert('Dados do usuário atualizados');
 			  	});

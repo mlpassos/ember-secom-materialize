@@ -6,6 +6,7 @@ export default DS.Model.extend({
 	uid: attr('string'),
 	displayName: attr('string'),
 	email: attr('string'),
-	photoURL: attr('string')
+	photoURL: attr('string'),
+	funcao: DS.belongsTo('funcao')
 	// tags: DS.hasMany('tag')
 });
