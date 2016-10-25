@@ -25,9 +25,8 @@ export default Ember.Route.extend({
 				  _this.set('user', user);
 				  return user;
 				}),
-			    props: this.get('props')
-			    // ,
-			    // funcao: this.store.findAll('funcao')
+			    props: this.get('props'),
+			    funcao: this.store.findAll('funcao')
 			    // ,
 			    // tags: this.store.findAll('tag')
 			});
@@ -43,6 +42,12 @@ export default Ember.Route.extend({
 			let uid = this.get('session.currentUser.uid');
 			let user = this.get('user');
 			if (user.get('hasDirtyAttributes')) {
+				//       _this.get('store').findRecord('funcao', 6).then(function(funcao) {
+						//   userRecord.set('funcao', funcao);
+						//   userRecord.save().then(function() {
+				  //         	console.log('Usuário cadastrado com sucesso');
+				  //         });
+						// });
 				user.save().then(function() {
 					alert('Dados do usuário atualizados');
 				});	
