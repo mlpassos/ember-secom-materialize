@@ -4,7 +4,10 @@ const {get} = Ember;
  
 export default TransitionToListenerRoute.extend({
 	// isAdmin: false,
+
+	// profilecheck: Ember.inject.service('profilecheck'),
     beforeModel(){
+		// console.log(this.get('profilecheck.admins'));
 	    return this.get('session').fetch().catch(function(){});
 	},
 	model(){
@@ -12,6 +15,7 @@ export default TransitionToListenerRoute.extend({
 	},
 	actions:{
 	    login(){
+
 	    	let _this = this;
 	        get(this,'session').open('firebase', { provider: 'google'}).then(function(data) {
 	            console.log(data);

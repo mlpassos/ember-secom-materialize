@@ -1,17 +1,14 @@
-{{#md-navbar name='e-pautas' class='indigo' homeRoute='home'}}
-  <!-- A workaround to get the "active" class
+{{#md-navbar name='e-pautas' session=session class='indigo' homeRoute='home'}}
+  <!-- A workaround to get the "active" clasas
     to apply to the active <li> automatically -->
   {{#link-to 'home' tagName='li'}}
     {{link-to 'Home'}}
-    {{!-- <a href="">
-      {{fa-icon "home"}}
-    </a> --}}
   {{/link-to}}
-  {{!-- {{log 'navbar' session.currentUser.isAdmin}} --}}
+  {{log 'isAdmin' session.currentUser.isAdmin}}
   {{#if session.isAuthenticated}}
       {{#if session.currentUser.isAdmin}}
-        {{#link-to 'admin' tagName='li'}}
-          {{link-to 'Admin'}}
+        {{#link-to 'usuarios' tagName='li'}}
+          {{link-to 'Usuários'}}
         {{/link-to}}
       {{/if}}
       {{#link-to 'usuario.perfil' session.currentUser.uid tagName='li'}}
@@ -22,9 +19,6 @@
       {{/link-to}}
       {{#link-to 'pautas' tagName='li'}}
         {{link-to 'Pautas'}}
-      {{/link-to}}
-      {{#link-to 'noticias' 1 tagName='li'}}
-        {{link-to 'Notícias'}}
       {{/link-to}}
       <li><a href="#" {{action "logout"}}>Logout</a></li>
   {{else}}
