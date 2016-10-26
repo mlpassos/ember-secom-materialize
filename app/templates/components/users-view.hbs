@@ -1,0 +1,27 @@
+{{yield}}
+<div class="row isogrid">
+  <div class="grid-sizer"></div>
+{{#each model as |user|}}
+  <div class="col l3 m4 s12 isoitem">
+    {{#md-card title=user.displayName
+    image=user.photoURL
+    activator=true}}
+    {{#md-card-content}}
+	    {{md-btn text='Perfil' action="goPerfil" actionArg=user.uid
+			buttonType="flat" 
+			class='indigo white-text btn-ler-mais'}}
+    {{/md-card-content}}
+    {{#md-card-reveal}}
+    	<small class="text-left">Resumo sobre o usuário...</small>
+    {{/md-card-reveal}}
+{{/md-card}}
+  </div>
+{{/each}}
+</div>
+{{!-- {{#if page}}
+<div class="row footer-paginate">
+  <div class="col l12 m12 s12">
+    {{noticias-pages origem=origem current=page total=model.meta.pages}} 
+  </div>
+</div>
+{{/if}} --}}

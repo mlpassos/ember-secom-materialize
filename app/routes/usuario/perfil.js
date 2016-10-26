@@ -33,14 +33,21 @@ export default Ember.Route.extend({
 		} else {
 			return this.get('props');
 		}
-		
-		
-		
 	},
 	actions: {
 		gravarUsuario() {
 			let uid = this.get('session.currentUser.uid');
 			let user = this.get('user');
+			// this.get('store').findRecord('funcao', 6).then(function(funcao) {
+			// 	user.set('funcao', funcao);
+			// 	user.save().then(function() {
+			// 		console.log('funcao atualizada');
+			// 	});
+			// });
+			// let funcao = user.get('funcao').then(function(funcao) {
+			// 	console.log('funcao', funcao);
+			// 	return funcao;
+			// });
 			if (user.get('hasDirtyAttributes')) {
 				//       _this.get('store').findRecord('funcao', 6).then(function(funcao) {
 						//   userRecord.set('funcao', funcao);

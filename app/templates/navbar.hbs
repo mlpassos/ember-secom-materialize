@@ -1,22 +1,21 @@
 {{#md-navbar name='e-pautas' session=session class='indigo' homeRoute='home'}}
-  <!-- A workaround to get the "active" clasas
-    to apply to the active <li> automatically -->
   {{#link-to 'home' tagName='li'}}
     {{link-to 'Home'}}
   {{/link-to}}
-  {{log 'isAdmin' session.currentUser.isAdmin}}
   {{#if session.isAuthenticated}}
       {{#if session.currentUser.isAdmin}}
+        {{!-- ADMIN: Usuários, Pautas, Logout --}}
         {{#link-to 'usuarios' tagName='li'}}
           {{link-to 'Usuários'}}
         {{/link-to}}
+      {{else}}
+        {{!-- USUÁRIO: Perfil, Pautas, Logout --}}
+        {{#link-to 'usuario.perfil' session.currentUser.uid tagName='li'}}
+          <a href="#">
+            <img src={{session.currentUser.photoURL}} class="img-perfil" alt="...">
+          </a>
+        {{/link-to}}
       {{/if}}
-      {{#link-to 'usuario.perfil' session.currentUser.uid tagName='li'}}
-        {{!-- {{link-to 'Perfil'}} --}}
-        <a href="#">
-          <img src={{session.currentUser.photoURL}} class="img-perfil" alt="...">
-        </a>
-      {{/link-to}}
       {{#link-to 'pautas' tagName='li'}}
         {{link-to 'Pautas'}}
       {{/link-to}}
