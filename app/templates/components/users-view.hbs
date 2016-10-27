@@ -1,7 +1,7 @@
 {{yield}}
 <div class="row isogrid">
   <div class="grid-sizer"></div>
-{{#each model as |user|}}
+{{#each users as |user|}}
   <div class="col l3 m4 s12 isoitem">
     {{#md-card title=user.displayName
     image=user.photoURL

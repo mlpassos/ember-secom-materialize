@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col s12 m12">
       {{#if session.isAuthenticated}}
-      	{{user-view user=model.user on-action="gravarUsuario"}}
+      	{{user-view user=model.user funcao=model.funcao on-change="funcaoChange" on-action="gravarUsuario"}}
         {{!-- <hr> --}}
         {{!-- {{preferencias-view user=model.user tags=model.tags checkboxSelections=checkboxSelections}} --}}
       {{else}}

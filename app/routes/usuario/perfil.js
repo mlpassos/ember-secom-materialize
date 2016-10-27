@@ -6,6 +6,7 @@ export default Ember.Route.extend({
 	// 	id: 1,
 	// 	label: 'teste'
 	// }],
+	funcaoEscolhida: '',
 	user: '',
 	props: {
 		title: 'Perfil',
@@ -22,7 +23,20 @@ export default Ember.Route.extend({
 		        user: this.store.query('user', {orderBy: 'uid', equalTo: uid}).then(function(users) {
 				  return users.get('firstObject');
 				}).then(function(user) {
+					// verificar se tem função
+
+					// user.get('funcao').then(function(funcao) {
+					// 	console.log('funcaoId', funcao);
+					// 	return funcao;
+					// 	// if (funcao) {
+					// 	// 	return funcao.id;
+					// 	// } else {
+					// 	// 	return null;
+					// 	// }
+					// });
+					// console.log('funcaoId', funcaoId);
 				  _this.set('user', user);
+				  // return user.get('funcao')
 				  return user;
 				}),
 			    props: this.get('props'),
@@ -37,16 +51,38 @@ export default Ember.Route.extend({
 	actions: {
 		gravarUsuario() {
 			let uid = this.get('session.currentUser.uid');
+			let isNew = this.get('session.currentUser.isNew');
 			let user = this.get('user');
+			console.log('isNew', isNew);
+			// let funcao = user.get('funcao').then(function(funcao) {
+			// 	console.log('e', funcao.title);	
+			// });
+			console.log('escolhida', this.get('funcaoEscolhida'));
+			
+			// let userFuncao = user.get('funcao');
+			// console.log('u', userFuncao);
+			// user.get('funcao').then(function(funcao) {
+			// 	// se usuário já tem função cadastrada
+			// 	if (funcao) {
+			// 		// pegar função
+			// 		console.log('tem função', funcao.id);
+			// 	} else {
+			// 		// sem funcao ainda, cadastrar pro usuário
+			// 		// let funcaoEscolhida = this.get('funcaoEscolhida');
+			// 		console.log('escolhida', funcao);
+			// 		user.set('funcao', funcao);
+			// 		user.save().then(function() {
+			// 			console.log('funcao cadastrada no usuário');
+			// 		});
+			// 	}
+			// 	// return funcao;
+			// });
+
 			// this.get('store').findRecord('funcao', 6).then(function(funcao) {
 			// 	user.set('funcao', funcao);
 			// 	user.save().then(function() {
 			// 		console.log('funcao atualizada');
 			// 	});
-			// });
-			// let funcao = user.get('funcao').then(function(funcao) {
-			// 	console.log('funcao', funcao);
-			// 	return funcao;
 			// });
 			if (user.get('hasDirtyAttributes')) {
 				//       _this.get('store').findRecord('funcao', 6).then(function(funcao) {
