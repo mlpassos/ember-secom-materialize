@@ -31,29 +31,52 @@ export default ToriiFirebaseAdapter.extend({
 	        	return user;
 	        });
 	    } else {
+	    	// user.isNew = false;
 	    	// já cadastrado, pega o primeiro registro
 	    	return users.get('firstObject');
 	    }
 	}).then(function(user) {
-		if (user.get('isNew')) {
+		
+		// if (user.get('isNew') === false) {
+		// 	if (user.isNew) {
+		// 		console.log('in', user.isNew);
+		// 	}
+		// 	user.isAdmin = false;
+		// 	user.isNew = false;
+		// 	return {
+		//     	currentUser: user
+		//     };
+		// }
+		console.log('isNew torii', user.isNew);
+		if (user.isNew) {
+			console.log('puta merda');
 			// ok, nao precisa da funcao ainda
 			user.isAdmin = false;
+			user.isNew = true;
 			return {
 		    	currentUser: user
 		    };
 		} else {
 			// se nao for novo, já tem funcao, pegar
-			user.isNew = false;
+			// if (user.get('funcao')) {
+			// 	user.isNew = false;
+			// } else {
+			// 	user.isNew = true;
+			// }
+			console.log('HA');
 			return user.get('funcao').then(function(funcao) {
 				if (funcao) {
-					console.log('aqui', funcao.id);
+					user.isNew = false;
+					console.log('nao é novo e tem funcao: ' + funcao.id);
 					if (parseInt(funcao.id) == 6) {
 				  		user.isAdmin = true;
 				  	} else {
 				  		user.isAdmin = false;
 				  	}	
 				} else {
+					console.log('é novo');
 					user.isAdmin = false;
+					user.isNew = true;
 				}
 				return {
 			    	currentUser: user

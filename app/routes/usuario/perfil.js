@@ -16,6 +16,9 @@ export default Ember.Route.extend({
 	model() {
 		// check for uid
 		let uid = this.get('session.currentUser.uid');
+		let usuario = this.get('session.currentUser');
+		let isNews = usuario.get('isNew');
+		let isNew = this.get('session.currentUser.isNew');
 		let _this = this;
 		console.log('aqui: ', uid);
 		if (uid) {
@@ -24,20 +27,30 @@ export default Ember.Route.extend({
 				  return users.get('firstObject');
 				}).then(function(user) {
 					// verificar se tem função
-
-					// user.get('funcao').then(function(funcao) {
-					// 	console.log('funcaoId', funcao);
-					// 	return funcao;
-					// 	// if (funcao) {
-					// 	// 	return funcao.id;
-					// 	// } else {
-					// 	// 	return null;
-					// 	// }
-					// });
-					// console.log('funcaoId', funcaoId);
-				  _this.set('user', user);
+					console.log('get.isNew', isNews);
+					console.log('session.isNew', isNew);
+					console.log('here', typeof isNew);
+					// _this.set('user', user);
+					// return user;
+					if (isNew) {
+						_this.set('user', user);
+						return user;
+					}
+					if (typeof isNew == 'undefined') {
+						_this.set('user', user);
+						return user;
+					} 
+					if (isNew === false) {
+						console.log('nulo', user.get('funcao'));
+						return user.get('funcao').then(function(funcao) {
+							console.log('user funcaoId', funcao.id);
+							user.funcaoid = funcao.id;
+							_this.set('user', user);
+							return user;
+						});	
+					}
 				  // return user.get('funcao')
-				  return user;
+				  // return user;
 				}),
 			    props: this.get('props'),
 			    funcao: this.store.findAll('funcao')
@@ -49,34 +62,29 @@ export default Ember.Route.extend({
 		}
 	},
 	actions: {
-		gravarUsuario() {
+		gravarUsuario(funcao) {
 			let uid = this.get('session.currentUser.uid');
 			let isNew = this.get('session.currentUser.isNew');
 			let user = this.get('user');
+			let funcaoId = parseInt(funcao);
 			console.log('isNew', isNew);
-			// let funcao = user.get('funcao').then(function(funcao) {
-			// 	console.log('e', funcao.title);	
-			// });
-			console.log('escolhida', this.get('funcaoEscolhida'));
+
+			console.log('função escolhida', funcaoId);
+			if (user.funcaoid) {
+				console.log('função du usuário', user.funcaoid);
+			} else {
+				console.log('função do usuário - sem funcao ainda;')
+			}
+			// grava função escolhida caso seja diferente da atual
+			if (funcaoId !== parseInt(user.funcaoid)) {
+				this.store.findRecord('funcao', funcaoId).then(function(funcao) {
+					user.set('funcao', funcao);
+					user.save().then(function() {
+						console.log('função do usuárioa atualizada');
+					});
+				});	
+			}
 			
-			// let userFuncao = user.get('funcao');
-			// console.log('u', userFuncao);
-			// user.get('funcao').then(function(funcao) {
-			// 	// se usuário já tem função cadastrada
-			// 	if (funcao) {
-			// 		// pegar função
-			// 		console.log('tem função', funcao.id);
-			// 	} else {
-			// 		// sem funcao ainda, cadastrar pro usuário
-			// 		// let funcaoEscolhida = this.get('funcaoEscolhida');
-			// 		console.log('escolhida', funcao);
-			// 		user.set('funcao', funcao);
-			// 		user.save().then(function() {
-			// 			console.log('funcao cadastrada no usuário');
-			// 		});
-			// 	}
-			// 	// return funcao;
-			// });
 
 			// this.get('store').findRecord('funcao', 6).then(function(funcao) {
 			// 	user.set('funcao', funcao);
@@ -111,6 +119,8 @@ export default Ember.Route.extend({
 	setupController(controller) {
 		this._super(...arguments);
 		controller.set('user', this.get('user'));
+		// let funcaoEscolhida = controller.get('funcaoEscolhida');
+		// console.log(funcaoEscolhida);
 		// controller.set('checkboxChoices', this.get('checkboxChoices'));
 		// controller.set('checkboxSelections', this.get('checkboxSelections'));
 	}

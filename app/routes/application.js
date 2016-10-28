@@ -13,8 +13,8 @@ export default TransitionToListenerRoute.extend({
 	            console.log(data);
 	            let user = data.currentUser;
 	            let uid = user.get('uid');
-	            let isAdmin = user.get('isAdmin');
-	            let isNew = user.get('isNew');isNew
+	            let isAdmin = user.isAdmin;
+	            let isNew = user.isNew;
 	            console.log('app: isAdmin', isAdmin);
 	            console.log('app: isNew', isNew);
 
