@@ -18,15 +18,6 @@ export default TransitionToListenerRoute.extend({
 	            console.log('app: isAdmin', isAdmin);
 	            console.log('app: isNew', isNew);
 
-	            // let funcao = _this.get('store').createRecord('funcao', {
-	            // 	id: 1,
-	            // 	title: 'Estagiário',
-	            // 	slug: 'estagiario'
-	            // });
-	            // funcao.save().then(function() {
-	            // 	console.log('funcao criada');
-	            // });
-
 	            if (isNew) {
 	            	// se usuário novo, manda pra completar o cadastro/perfil
 	            	_this.router.transitionTo('usuario.perfil', uid);
@@ -44,6 +35,7 @@ export default TransitionToListenerRoute.extend({
 	    },
 	    logout(){
 	        get(this,'session').close();
+	        this.router.transitionTo('home');
 	    }
 	}
 })

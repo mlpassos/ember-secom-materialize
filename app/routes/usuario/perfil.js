@@ -6,7 +6,7 @@ export default Ember.Route.extend({
 	// 	id: 1,
 	// 	label: 'teste'
 	// }],
-	funcaoEscolhida: '',
+	// funcaoEscolhida: '',
 	user: '',
 	props: {
 		title: 'Perfil',
@@ -17,37 +17,38 @@ export default Ember.Route.extend({
 		// check for uid
 		let uid = this.get('session.currentUser.uid');
 		let usuario = this.get('session.currentUser');
-		let isNews = usuario.get('isNew');
-		let isNew = this.get('session.currentUser.isNew');
+		// let isNews = usuario.get('isNew');
+		let isNew = usuario.isNew;
 		let _this = this;
-		console.log('aqui: ', uid);
 		if (uid) {
 			return Ember.RSVP.hash({
 		        user: this.store.query('user', {orderBy: 'uid', equalTo: uid}).then(function(users) {
 				  return users.get('firstObject');
 				}).then(function(user) {
-					// verificar se tem função
-					console.log('get.isNew', isNews);
-					console.log('session.isNew', isNew);
-					console.log('here', typeof isNew);
-					// _this.set('user', user);
-					// return user;
+					console.log('PERFIL isNew', isNew);
 					if (isNew) {
 						_this.set('user', user);
 						return user;
-					}
-					if (typeof isNew == 'undefined') {
-						_this.set('user', user);
-						return user;
-					} 
-					if (isNew === false) {
-						console.log('nulo', user.get('funcao'));
-						return user.get('funcao').then(function(funcao) {
-							console.log('user funcaoId', funcao.id);
-							user.funcaoid = funcao.id;
+					} else {
+						console.log('USUARIO TEM FUNCAO?', usuario.funcaoid);
+						console.log('USUARIO TEM FUNCAO?', user.funcaoid);
+						if (user.funcaoid) {
+							console.log('user.funcaoid', user.funcaoid);
 							_this.set('user', user);
 							return user;
-						});	
+						} else {
+							return user.get('funcao').then(function(funcao) {
+								console.log('f', funcao);
+								if (funcao) {
+									console.log('SIM, USUARIO TEM FUNCAO, É ', funcao.id);
+									user.funcaoid = funcao.id;	
+								} else {
+									console.log('NAO, USUARIO NAO TEM FUNCAO');	
+								}
+								_this.set('user', user);
+								return user;
+							});
+						}
 					}
 				  // return user.get('funcao')
 				  // return user;
@@ -64,34 +65,36 @@ export default Ember.Route.extend({
 	actions: {
 		gravarUsuario(funcao) {
 			let uid = this.get('session.currentUser.uid');
-			let isNew = this.get('session.currentUser.isNew');
 			let user = this.get('user');
-			let funcaoId = parseInt(funcao);
-			console.log('isNew', isNew);
+			let funcaoIdEscolhida = parseInt(funcao);
+			let usuario = this.get('session.currentUser');
+			let isNew = usuario.isNew;
+			let _this = this;
 
-			console.log('função escolhida', funcaoId);
-			if (user.funcaoid) {
-				console.log('função du usuário', user.funcaoid);
+			console.log('função escolhida', funcaoIdEscolhida);
+			if (funcaoIdEscolhida) {
+				if (user.funcaoid) {
+					console.log('USUARIO COM FUNCAO ATUAL ', user.funcaoid);
+				} else {
+					user.funcaoid = 0;
+					console.log('USUARIO SEM FUNCAO ATUAL ', user.funcaoid);
+				}
+				// grava função escolhida caso seja diferente da atual
+				if (funcaoIdEscolhida !== parseInt(user.funcaoid)) {
+					this.store.findRecord('funcao', funcaoIdEscolhida).then(function(funcao) {
+						user.set('funcao', funcao);
+						user.save().then(function() {
+							console.log('função do usuário atualizada');
+							user.isNew = false;
+							_this.set('user.funcaoid', funcaoIdEscolhida);
+							user.funcaoid = funcaoIdEscolhida;
+						});
+					});	
+				}	
 			} else {
-				console.log('função do usuário - sem funcao ainda;')
-			}
-			// grava função escolhida caso seja diferente da atual
-			if (funcaoId !== parseInt(user.funcaoid)) {
-				this.store.findRecord('funcao', funcaoId).then(function(funcao) {
-					user.set('funcao', funcao);
-					user.save().then(function() {
-						console.log('função do usuárioa atualizada');
-					});
-				});	
+				console.log('nao escolheu funcao');
 			}
 			
-
-			// this.get('store').findRecord('funcao', 6).then(function(funcao) {
-			// 	user.set('funcao', funcao);
-			// 	user.save().then(function() {
-			// 		console.log('funcao atualizada');
-			// 	});
-			// });
 			if (user.get('hasDirtyAttributes')) {
 				//       _this.get('store').findRecord('funcao', 6).then(function(funcao) {
 						//   userRecord.set('funcao', funcao);
@@ -103,7 +106,7 @@ export default Ember.Route.extend({
 					alert('Dados do usuário atualizados');
 				});	
 			} else {
-				alert('sem novidades');
+				console.log('sem novidades no usuário');
 			}
 			// this.get('store').query('user', {orderBy: 'uid', equalTo: uid }).then( function(user) {
 			// 	// console.log(user.get('hasDirtyAttributes'));

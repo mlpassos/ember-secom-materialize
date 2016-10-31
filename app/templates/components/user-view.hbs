@@ -20,13 +20,25 @@
 {{#each model.funcao as |item|}}
 	{{item.title}}<br>
 {{/each}}
+<br>
 <div class="row">
-  {{md-select content=model.funcao  
-    value=funcaoEscolhida  
-    label="Função" 
-    prompt="Escolher..." 
-    optionLabelPath="content.title" 
-    optionValuePath="content.id" class="col s12"}}
+{{#if model.user.funcaoid}}
+		 Usuário já tem função, é a {{model.user.funcaoid}}
+		 {{md-select content=model.funcao  
+		    value=model.user.funcaoid   
+		    label="Função" 
+		    prompt="Escolher..." 
+		    optionLabelPath="content.title" 
+		    optionValuePath="content.id" class="col s12"}}
+	{{else}}
+		 {{md-select content=model.funcao  
+	    value=funcaoEscolhida  
+	    label="Função" 
+	    prompt="Escolher..." 
+	    optionLabelPath="content.title" 
+	    optionValuePath="content.id" class="col s12"}}
+{{/if}}
+  
 </div>
 <div class="row">
 	<div class="col s12 m12">

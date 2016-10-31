@@ -22,60 +22,38 @@ export default ToriiFirebaseAdapter.extend({
 	        return userRecord.save().then(function(user) {
 	        	// adiciona usuário sem funcão
 	        	user.isNew = true;
-	        	// 
-	        	// this.get('store').findRecord('funcao', 6).then(function(funcao) {
-				// 		 userRecord.set('funcao', funcao);
-				// 		 userRecord.save().then(function() {
-				// 	     	console.log('Usuário cadastrado com sucesso');
-				// 	     });
 	        	return user;
 	        });
 	    } else {
-	    	// user.isNew = false;
+	    	console.log("USUARIO SEM FUNCAO, SETA isNew = false");
+	    	users.get('firstObject').isNew = false;
 	    	// já cadastrado, pega o primeiro registro
 	    	return users.get('firstObject');
 	    }
 	}).then(function(user) {
-		
-		// if (user.get('isNew') === false) {
-		// 	if (user.isNew) {
-		// 		console.log('in', user.isNew);
-		// 	}
-		// 	user.isAdmin = false;
-		// 	user.isNew = false;
-		// 	return {
-		//     	currentUser: user
-		//     };
-		// }
 		console.log('isNew torii', user.isNew);
 		if (user.isNew) {
-			console.log('puta merda');
-			// ok, nao precisa da funcao ainda
+			console.log('USUÁRIO NOVO');
 			user.isAdmin = false;
 			user.isNew = true;
 			return {
 		    	currentUser: user
 		    };
 		} else {
-			// se nao for novo, já tem funcao, pegar
-			// if (user.get('funcao')) {
-			// 	user.isNew = false;
-			// } else {
-			// 	user.isNew = true;
-			// }
-			console.log('HA');
 			return user.get('funcao').then(function(funcao) {
+				console.log('open isNew', user.isNew);
 				if (funcao) {
-					user.isNew = false;
-					console.log('nao é novo e tem funcao: ' + funcao.id);
+					console.log('USUÁRIO NÃO É NOVO E SUA FUNÇÃO É ' + funcao.id);
+					user.funcaoid = funcao.id;
 					if (parseInt(funcao.id) == 6) {
 				  		user.isAdmin = true;
 				  	} else {
 				  		user.isAdmin = false;
 				  	}	
 				} else {
-					console.log('é novo');
+					console.log('USUÁRIO NAO É NOVO MAS AINDA TA SEM FUNCAO');
 					user.isAdmin = false;
+					// SETA TRUE POIS NAO TEM FUNCAO AINDA
 					user.isNew = true;
 				}
 				return {
