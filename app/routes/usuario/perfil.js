@@ -17,6 +17,7 @@ export default Ember.Route.extend({
 		// check for uid
 		let uid = this.get('session.currentUser.uid');
 		let usuario = this.get('session.currentUser');
+		let fid = usuario.funcaoid;
 		// let isNews = usuario.get('isNew');
 		let isNew = usuario.isNew;
 		let _this = this;
@@ -26,37 +27,34 @@ export default Ember.Route.extend({
 				  return users.get('firstObject');
 				}).then(function(user) {
 					console.log('PERFIL isNew', isNew);
-					if (isNew) {
+					console.log('USUARIO TEM FUNCAO?', user.funcaoid);
+					// if (isNew) {
 						_this.set('user', user);
 						return user;
-					} else {
-						console.log('USUARIO TEM FUNCAO?', usuario.funcaoid);
-						console.log('USUARIO TEM FUNCAO?', user.funcaoid);
-						if (user.funcaoid) {
-							console.log('user.funcaoid', user.funcaoid);
-							_this.set('user', user);
-							return user;
-						} else {
-							return user.get('funcao').then(function(funcao) {
-								console.log('f', funcao);
-								if (funcao) {
-									console.log('SIM, USUARIO TEM FUNCAO, É ', funcao.id);
-									user.funcaoid = funcao.id;	
-								} else {
-									console.log('NAO, USUARIO NAO TEM FUNCAO');	
-								}
-								_this.set('user', user);
-								return user;
-							});
-						}
-					}
-				  // return user.get('funcao')
-				  // return user;
+					// } else {
+						// console.log('USUARIO TEM FUNCAO?', usuario.funcaoid);
+						// console.log('USUARIO TEM FUNCAO?', user.funcaoid);
+						// if (user.funcaoid) {
+						// 	console.log('user.funcaoid', user.funcaoid);
+						// 	_this.set('user', user);
+						// 	return user;
+						// } else {
+						// 	return user.get('funcao').then(function(funcao) {
+						// 		console.log('f', funcao);
+						// 		if (funcao) {
+						// 			console.log('SIM, USUARIO TEM FUNCAO, É ', funcao.id);
+						// 			user.funcaoid = funcao.id;	
+						// 		} else {
+						// 			console.log('NAO, USUARIO NAO TEM FUNCAO');	
+						// 		}
+						// 		_this.set('user', user);
+						// 		return user;
+						// 	});
+						// }
+					// }
 				}),
 			    props: this.get('props'),
 			    funcao: this.store.findAll('funcao')
-			    // ,
-			    // tags: this.store.findAll('tag')
 			});
 		} else {
 			return this.get('props');
@@ -64,59 +62,74 @@ export default Ember.Route.extend({
 	},
 	actions: {
 		gravarUsuario(funcao) {
-			let uid = this.get('session.currentUser.uid');
 			let user = this.get('user');
 			let funcaoIdEscolhida = parseInt(funcao);
-			let usuario = this.get('session.currentUser');
-			let isNew = usuario.isNew;
+			let fid = this.get('session.currentUser.funcaoid');
 			let _this = this;
 
-			console.log('função escolhida', funcaoIdEscolhida);
-			if (funcaoIdEscolhida) {
-				if (user.funcaoid) {
-					console.log('USUARIO COM FUNCAO ATUAL ', user.funcaoid);
-				} else {
-					user.funcaoid = 0;
-					console.log('USUARIO SEM FUNCAO ATUAL ', user.funcaoid);
-				}
+			// console.log('funcaoIdEscolhida', funcaoIdEscolhida);
+			// console.log('user.funcaoid', user.funcaoid);
+			// console.log('usuario.funcaoid', usuario.funcaoid);
+			
+			// atualiza funcao 
+			console.log('id da escolhida', fid);
+			if (fid) {
 				// grava função escolhida caso seja diferente da atual
-				if (funcaoIdEscolhida !== parseInt(user.funcaoid)) {
+				// if (funcaoIdEscolhida !== parseInt(user.funcaoid)) {
+					// console.log('atualiza?????', funcaoIdEscolhida);
+					// this.store.findRecord('funcao', funcaoIdEscolhida).then(function(funcao) {
+					// 	user.set('funcao', funcao);
+					// 	user.save().then(function() {
+					// 		console.log('função do usuário atualizada');
+					// 		user.isNew = false;
+					// 		_this.set('user.funcaoid', funcaoIdEscolhida);
+					// 		fid = funcaoIdEscolhida;
+					// 	});
+					// });	
+				// } else {
+					// console.log('já gravou a funcao, nao atualiza');
+					// fid = funcaoIdEscolhida;
+				// }	
+				console.log('fid da escolhida', funcaoIdEscolhida);
+			} else {
+				// console.log('nao escolheu funcao');
+				console.log('id da escolhida', funcaoIdEscolhida);
+				if (funcaoIdEscolhida) {
 					this.store.findRecord('funcao', funcaoIdEscolhida).then(function(funcao) {
 						user.set('funcao', funcao);
 						user.save().then(function() {
 							console.log('função do usuário atualizada');
 							user.isNew = false;
 							_this.set('user.funcaoid', funcaoIdEscolhida);
-							user.funcaoid = funcaoIdEscolhida;
+							fid = funcaoIdEscolhida;
 						});
-					});	
-				}	
-			} else {
-				console.log('nao escolheu funcao');
+					});
+				}
 			}
 			
+			// atualiza campos normais
+			
 			if (user.get('hasDirtyAttributes')) {
-				//       _this.get('store').findRecord('funcao', 6).then(function(funcao) {
-						//   userRecord.set('funcao', funcao);
-						//   userRecord.save().then(function() {
-				  //         	console.log('Usuário cadastrado com sucesso');
-				  //         });
-						// });
-				user.save().then(function() {
-					alert('Dados do usuário atualizados');
-				});	
+				console.log('fid', fid);
+				if (fid) {
+					this.store.findRecord('funcao', fid).then(function(funcao) {
+						user.set('funcao', funcao);
+						user.save().then(function() {
+							console.log('função do usuário atualizada II');
+							user.isNew = false;
+							_this.set('user.funcaoid', funcaoIdEscolhida);
+							fid = funcaoIdEscolhida;
+						});
+					});	
+				} else {
+					user.save().then(function() {
+						console.log('dados atualizados');
+					});
+				}
+				
 			} else {
 				console.log('sem novidades no usuário');
 			}
-			// this.get('store').query('user', {orderBy: 'uid', equalTo: uid }).then( function(user) {
-			// 	// console.log(user.get('hasDirtyAttributes'));
-			// 	// console.log(user.changedAttributes());
-			// // 	// user.set('displayName', displayName);
-			// //  //  	user.set('email', email);
-			//   	user.save().then(function() {
-			//   		alert('Dados do usuário atualizados');
-			//   	});
-			// });
 		}
 	},
 	setupController(controller) {

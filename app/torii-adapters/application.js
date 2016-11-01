@@ -55,6 +55,7 @@ export default ToriiFirebaseAdapter.extend({
 					user.isAdmin = false;
 					// SETA TRUE POIS NAO TEM FUNCAO AINDA
 					user.isNew = true;
+					user.funcaoid = 0;
 				}
 				return {
 			    	currentUser: user

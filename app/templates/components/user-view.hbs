@@ -17,33 +17,40 @@
 </div> --}}
 {{!-- {{log 'aha' model.user.funcaoid}} --}}
 {{!-- {{log 'esc' funcaoEscolhida}} --}}
-{{#each model.funcao as |item|}}
+{{!-- {{#each model.funcao as |item|}}
 	{{item.title}}<br>
-{{/each}}
+{{/each}} --}}
 <br>
+{{!-- ATUAL: {{model.user.funcaoid}} <br>
+ESCOLHIDA: {{funcaoEscolhida}} --}}
+{{log 'session.funcaoid' session.currentUser.funcaoid}}
 <div class="row">
-{{#if model.user.funcaoid}}
-		 Usuário já tem função, é a {{model.user.funcaoid}}
-		 {{md-select content=model.funcao  
-		    value=model.user.funcaoid   
-		    label="Função" 
-		    prompt="Escolher..." 
-		    optionLabelPath="content.title" 
-		    optionValuePath="content.id" class="col s12"}}
-	{{else}}
-		 {{md-select content=model.funcao  
-	    value=funcaoEscolhida  
-	    label="Função" 
-	    prompt="Escolher..." 
-	    optionLabelPath="content.title" 
-	    optionValuePath="content.id" class="col s12"}}
+{{#if session.currentUser.funcaoid}}
+	{{!-- {{md-select content=model.funcao  
+	   value=session.currentUser.funcaoid   
+	   label="Função" 
+	   prompt="Escolher..." 
+	   optionLabelPath="content.title" 
+	   optionValuePath="content.id" class="col s12"}} --}}
+{{else}}
+	{{md-select content=model.funcao  
+	  value=funcaoEscolhida  
+	  label="Função" 
+	  prompt="Escolher..." 
+	  optionLabelPath="content.title" 
+	  optionValuePath="content.id" class="col s12"}}
 {{/if}}
-  
 </div>
 <div class="row">
 	<div class="col s12 m12">
+	{{#if session.currentUser.funcaoid}}
 		{{md-btn-submit icon='mdi-content-send'
-	    iconPosition='right' action="gravarUsuario" on-action="gravarUsuario" actionArg=funcaoEscolhida  
+	    iconPosition='right' action="gravarUsuario" on-action="gravarUsuario" actionArg=session.currentUser.funcaoid    
 	    text='Gravar'}}
+	{{else}}
+		{{md-btn-submit icon='mdi-content-send'
+	    iconPosition='right' action="gravarUsuario" on-action="gravarUsuario" actionArg=funcaoEscolhida   
+	    text='Gravar'}}
+	{{/if}}
 	</div>
 </div>
