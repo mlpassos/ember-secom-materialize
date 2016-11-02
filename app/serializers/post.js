@@ -26,7 +26,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
 				let count = parseInt(payload.count);
 				let pages = parseInt(payload.pages);
 				let meta = {
-					'count_total': (typeof payload.count_total == 'undefined') ? count*pages : payload.count_total,
+					'count_total': (typeof payload.count_total === 'undefined') ? count*pages : payload.count_total,
 					'count': count,
 					// 'page': payload.page,
 					'pages': pages

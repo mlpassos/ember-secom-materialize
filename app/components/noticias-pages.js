@@ -8,11 +8,11 @@ export default Ember.Component.extend({
 		this._super(...arguments);
 		let current = parseInt(this.get('current'));
 		let total = parseInt(this.get('total'));
-		let res = new Array();
+		let res = [];
 		let prev = parseInt(current - 1);
 		let next = parseInt(current + 1);
-		this.set('prev', ( prev == 0 ) ? total : prev );
-		this.set('next', ( next == total + 1 ) ? 1 : next );
+		this.set('prev', ( prev === 0 ) ? total : prev );
+		this.set('next', ( next === total + 1 ) ? 1 : next );
 		for (var i = 1; i <= total; i++) {
 			res.push(i);
 			// this.$('ul.pagination')

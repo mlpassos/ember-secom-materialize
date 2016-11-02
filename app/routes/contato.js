@@ -21,14 +21,14 @@ export default Ember.Route.extend({
 	          lng: -48.4570937, // Required
 	          icon: 'http://maps.google.com/mapfiles/ms/icons/red.png',
 	          label: '',
-	          opacity: .8,
+	          opacity: 0.8,
 	          optimized: true,
 	          // place: new google.maps.MarkerPlace(),
-	          position: new google.maps.LatLng(), //['-1.4255971','-48.4570937']),
+	          // position: new google.maps.LatLng(), //['-1.4255971','-48.4570937']),
 	          // shape: new google.maps.MarkerShape(),
-	          click: function(event, marker) {
-	          	// alert('cliked');
-	          },
+	          // click: function(event, marker) {
+	          // 	// alert('cliked');
+	          // },
 	          infoWindow: {
 	         //    content: '<div class="text-left">'+
 				      // '<h4>Secretaria de Comunicação do Estado do Pará</h4>'+
@@ -40,17 +40,17 @@ export default Ember.Route.extend({
 				content: '<div>Secretaria de Comunicação do Estado do Pará</div>',
 	            visible: false
 	        	},
-	          rightclick: function(event, marker) {},
-	          dblclick: function(event, marker) {},
-	          mouseover: function(event, marker) {},
-	          mouseout: function(event, marker) {},
-	          mouseup: function(event, marker) {},
-	          mousedown: function(event, marker) {},
-	          drag: function(event, marker) {},
-	          dragstart: function(event, marker) {},
-	          dragend: function(event, marker) {},
-	          anchorPoint: new google.maps.Point(),
-	          animation: google.maps.Animation.DROP,
+	          // rightclick: function(event, marker) {},
+	          // dblclick: function(event, marker) {},
+	          // mouseover: function(event, marker) {},
+	          // mouseout: function(event, marker) {},
+	          // mouseup: function(event, marker) {},
+	          // mousedown: function(event, marker) {},
+	          // drag: function(event, marker) {},
+	          // dragstart: function(event, marker) {},
+	          // dragend: function(event, marker) {},
+	          // anchorPoint: new google.maps.Point(),
+	          // animation: google.maps.Animation.DROP,
 	          clickable: true,
 	          crossOnDrag: true,
 	          cursor: 'pointer',

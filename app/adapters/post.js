@@ -2,15 +2,15 @@ import DS from 'ember-data';
 
 export default DS.RESTAdapter.extend({
 	host: 'http://www.secom.pa.gov.br/site/api',
-	urlForFindAll(modelName) {
+	urlForFindAll() {
 		console.log('post.findAll');
 		return `${this.get('host')}/get_recent_posts/?count=-1`;
 	},
-	urlForFindRecord(id, modelName) {
+	urlForFindRecord(id) {
 		console.log('post.findRecord');
 		return `${this.get('host')}/get_post/?slug=${id}`;
 	},
-	urlForQuery(query, modelName) {
+	urlForQuery(query) {
 		console.log('post.query');
 		console.log(query);
 		if (query.tagpost) {

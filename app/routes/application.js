@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import TransitionToListenerRoute from 'ember-cli-routing-service/routes/transition-to-listener';
 
 const {get} = Ember;
@@ -7,7 +8,7 @@ export default TransitionToListenerRoute.extend({
 		return this.get('session').fetch().catch(function(){});
 	},
 	actions:{
-	    login(router){
+	    login(){
 	    	let _this = this;
 	        get(this,'session').open('firebase', { provider: 'google'}).then(function(data) {
 	            console.log(data);
@@ -38,4 +39,4 @@ export default TransitionToListenerRoute.extend({
 	        this.router.transitionTo('home');
 	    }
 	}
-})
+});

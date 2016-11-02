@@ -6,7 +6,6 @@ export default DS.RESTAdapter.extend({
 		switch(modelName) {
 			case 'tag':
 				return `${this.get('host')}/get_tag_index/`;
-				break;
 			default:
 				return this._super(...arguments);
 		}
@@ -16,10 +15,8 @@ export default DS.RESTAdapter.extend({
 		switch(modelName) {
 			case 'tag':
 				return `${this.get('host')}/get_tag_posts/?slug=${id}`;
-				break;
 			case 'page':
 				return `${this.get('host')}/get_page/`;
-				break;				
 			default:
 				return this._super(...arguments);
 		}

@@ -17,7 +17,7 @@ export default Ember.Route.extend({
 		// check for uid
 		let uid = this.get('session.currentUser.uid');
 		let usuario = this.get('session.currentUser');
-		let fid = usuario.funcaoid;
+		// let fid = usuario.funcaoid;
 		// let isNews = usuario.get('isNew');
 		let isNew = usuario.isNew;
 		let _this = this;

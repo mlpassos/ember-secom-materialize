@@ -45,7 +45,7 @@ export default ToriiFirebaseAdapter.extend({
 				if (funcao) {
 					console.log('USUÁRIO NÃO É NOVO E SUA FUNÇÃO É ' + funcao.id);
 					user.funcaoid = funcao.id;
-					if (parseInt(funcao.id) == 6) {
+					if (parseInt(funcao.id) === 6) {
 				  		user.isAdmin = true;
 				  	} else {
 				  		user.isAdmin = false;
