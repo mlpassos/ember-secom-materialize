@@ -16,6 +16,8 @@ export default TransitionToListenerRoute.extend({
 	            let uid = user.get('uid');
 	            let isAdmin = user.isAdmin;
 	            let isNew = user.isNew;
+	            let userName = user.get('displayName');
+	            console.log('NOME DO USUÁRIO', userName);
 	            console.log('app: isAdmin', isAdmin);
 	            console.log('app: isNew', isNew);
 

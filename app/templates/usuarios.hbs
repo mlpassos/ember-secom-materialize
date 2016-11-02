@@ -17,7 +17,7 @@
     <div class="col s12 m12">
       {{#if session.isAuthenticated}}
       	{{#if session.currentUser.isAdmin}}
-          {{users-view users=model}}
+          {{users-view users=model on-action="goPerfil"}}
         {{else}}
           <h1 class="header">Acesso negado</h1>
           {{!-- <h4 class="header"></h4> --}}

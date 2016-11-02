@@ -1,0 +1,20 @@
+{{yield}}
+<div class="row isogrid">
+  <div class="grid-sizer"></div>
+{{#each model.pauta as |pauta|}}
+  <div class="col l3 m4 s12 isoitem">
+    {{#md-card title=pauta.retranca
+    image='http://placehold.it/200x200' 
+    activator=true}}
+    {{#md-card-content}}
+	    {{md-btn text='Perfil' on-action="goPauta" action="goPauta" actionArg=pauta.id
+			buttonType="flat" 
+			class='indigo white-text btn-ler-mais'}}
+    {{/md-card-content}}
+    {{#md-card-reveal}}
+    	<small class="text-left">Resumo sobre a pauta...</small>
+    {{/md-card-reveal}}
+{{/md-card}}
+  </div>
+{{/each}}
+</div>

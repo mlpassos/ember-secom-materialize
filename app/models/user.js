@@ -7,6 +7,8 @@ export default DS.Model.extend({
 	displayName: attr('string'),
 	email: attr('string'),
 	photoURL: attr('string'),
-	funcao: DS.belongsTo('funcao')
+	funcao: DS.belongsTo('funcao')//,
+	// pautas: DS.hasMany('pauta')
+	// producao: DS.hasMany('pauta')
 	// tags: DS.hasMany('tag')
 });

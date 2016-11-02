@@ -9,10 +9,16 @@ export default ToriiFirebaseAdapter.extend({
     	displayName = authorization.displayName,
     	photoURL = authorization.photoURL,
         store  = this.get('store');
-    console.log('torii', uid);
-    return store.query('user', {uid: uid}).then(function(users){
+    console.log('torii: uid', uid);
+    console.log('torii: displayName', displayName);
+    console.log('torii: email', email);
+    return store.query('user', {orderBy: 'uid', equalTo: uid }).then(function(users){
     	// cadastra usuário
+    	// debugger;
+    	console.log('qtde usuários', users.get('length'));
+    	// console.log('nome usuario', users.get('firstObject').get('displayName'))
     	if(users.get('length') === 0){
+    		console.log('USUARIO SEM CADASTRO, CADASTRANDO...');
 	    	let userRecord = store.createRecord('user', {
 	          	uid: uid,
 	          	email: email,

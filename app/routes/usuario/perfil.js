@@ -15,8 +15,10 @@ export default Ember.Route.extend({
 	},
 	model() {
 		// check for uid
-		let uid = this.get('session.currentUser.uid');
+		// let uid = this.get('session.currentUser.uid');
+		let uid = this.modelFor('usuario').uid;
 		let usuario = this.get('session.currentUser');
+		console.log('perfil de', uid);
 		// let fid = usuario.funcaoid;
 		// let isNews = usuario.get('isNew');
 		let isNew = usuario.isNew;
@@ -64,7 +66,8 @@ export default Ember.Route.extend({
 		gravarUsuario(funcao) {
 			let user = this.get('user');
 			let funcaoIdEscolhida = parseInt(funcao);
-			let fid = this.get('session.currentUser.funcaoid');
+			// let fidSession = this.get('session.currentUser.funcaoid');
+			let fid = user.funcaoid;
 			let _this = this;
 
 			// console.log('funcaoIdEscolhida', funcaoIdEscolhida);
@@ -72,7 +75,8 @@ export default Ember.Route.extend({
 			// console.log('usuario.funcaoid', usuario.funcaoid);
 			
 			// atualiza funcao 
-			console.log('id da escolhida', fid);
+			// console.log('fidSession', fidSession);
+			console.log('fidObj', fid);
 			if (fid) {
 				// grava função escolhida caso seja diferente da atual
 				// if (funcaoIdEscolhida !== parseInt(user.funcaoid)) {

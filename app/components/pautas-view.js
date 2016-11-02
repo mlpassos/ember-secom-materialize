@@ -2,9 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	actions: {
-		goPerfil(uid) {
-			console.log('goPerfil', uid);
-			this.sendAction('on-action', uid);
+		goPauta(id) {
+			console.log('goPauta', id);
+			this.sendAction('on-action', id);
 		}
 	}
 });

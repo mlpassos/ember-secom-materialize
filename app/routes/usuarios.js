@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import TransitionToListenerRoute from 'ember-cli-routing-service/routes/transition-to-listener';
 
-export default Ember.Route.extend({
+export default TransitionToListenerRoute.extend({
 	// basicTabsContent: [ 
 	// 	{id: 'tab1', title: 'First', content: 'Conteúdo first...'},
  //        {id: 'tab2', title: 'Second', content: 'Conteúdo second...'},
@@ -14,17 +15,11 @@ export default Ember.Route.extend({
  //    }
     model() {
         return this.store.findAll('user');
-        // return this.store.findAll('user').then(function(users) {
-        //     console.log(users.get('displayName'));
-        //     return users.map(function(user) {
-        //         user = {
-        //             displayName: user.get('displayName'),
-        //             uid: user.get('uid'),
-        //             email: user.get('email')
-        //         }
-        //         console.log(user);
-        //         return user;
-        //     });
-        // });
+    },
+    actions: {
+        goPerfil(uid) {
+            // alert(uid);
+            this.router.transitionTo('usuario.perfil', uid);
+        }
     }
 });

@@ -5,6 +5,11 @@
   {{#if session.isAuthenticated}}
       {{#if session.currentUser.isAdmin}}
         {{!-- ADMIN: Usuários, Pautas, Logout --}}
+        {{#link-to 'usuario.perfil' session.currentUser.uid tagName='li'}}
+          <a href="#">
+            <img src={{session.currentUser.photoURL}} class="img-perfil" alt="...">
+          </a>
+        {{/link-to}}
         {{#link-to 'usuarios' tagName='li'}}
           {{link-to 'Usuários'}}
         {{/link-to}}
