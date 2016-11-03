@@ -2,16 +2,9 @@
   <div class="row">
     <div class="col s12 m12">
       {{#if session.isAuthenticated}}
-      	{{#if session.currentUser.isAdmin}}
-          {{pautas-view model=model session=session on-action="goPauta"}}
-        {{else}}
-          <h1 class="header">Acesso negado</h1>
-          {{!-- <h4 class="header"></h4> --}}
-          Você não tem permissão para acessar essa área
-        {{/if}}
+          {{pautas-view model=model session=session lat=lat lng=lng zoom=zoom on-action="goPauta"}}
       {{else}}
           <h1 class="header">Acesso negado</h1>
-          {{!-- <h4 class="header"></h4> --}}
           Você não tem permissão para acessar essa área
       {{/if}}  
     </div>    
