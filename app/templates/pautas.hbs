@@ -2,7 +2,17 @@
   <div class="row">
     <div class="col s12 m12">
       {{#if session.isAuthenticated}}
-          {{pautas-view model=model session=session lat=lat lng=lng zoom=zoom on-action="goPauta"}}
+        {{#if session.currentUser.isAdmin}}
+          <div class="row">
+            <div class="col l12 m12 s12">
+              {{md-btn text='Pauta'
+                icon='mdi-action-note-add'
+                action='addPauta'
+                class='deep-purple darken-3 pull-right'}}
+            </div>
+          </div>
+        {{/if}}
+          {{pautas-view model=model session=session on-action="goPauta"}}
       {{else}}
           <h1 class="header">Acesso negado</h1>
           Você não tem permissão para acessar essa área

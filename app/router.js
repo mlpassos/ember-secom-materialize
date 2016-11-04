@@ -27,7 +27,11 @@ Router.map(function() {
   this.route('login');
   this.route('logout');
 
-  this.route('pauta');
+  this.route('pauta', {path: 'pauta/:slug'}, function() {
+    this.route('adicionar');
+    this.route('alterar');
+    this.route('excluir');
+  });
   this.route('pautas');
   this.route('cadastro');
   this.route('usuarios');

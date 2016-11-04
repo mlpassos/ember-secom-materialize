@@ -22,9 +22,9 @@ export default Ember.Component.extend({
 			// 	console.log(slug);
 			// 	this.get('routing').transitionTo('noticia', slug);
 			// },
-			goPauta(id) {
-				console.log('goPauta', id);
-				this.sendAction('on-action', id);
+			goPauta(slug) {
+				console.log('goPauta', slug);
+				this.sendAction('on-action', slug);
 			}
 		}
 });

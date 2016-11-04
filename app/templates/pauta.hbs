@@ -1,1 +1,15 @@
-{{outlet}}
+{{!-- <div class="container">
+  <div class="row">
+    <div class="col s12 m12"> --}}
+      {{#if session.isAuthenticated}}
+          {{!-- {{pauta-view pauta=model.pauta users=model.user session=session on-action="savePauta"}} --}}
+          {{outlet}}
+      {{else}}
+          <h1 class="header">Acesso negado</h1>
+          Você não tem permissão para acessar essa área
+      {{/if}}  
+{{!--     </div>    
+  </div>
+</div> --}}
+
+{{!-- {{pauta-view pauta=model.pauta users=model.user session=session on-action="savePauta"}} --}}
