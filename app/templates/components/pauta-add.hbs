@@ -4,59 +4,85 @@
 		  	<img src="http://placehold.it/1200x400" alt="local da pauta" class="img-responsive">
 		  </div>
 	</div>
+	Ex: {{dataExemplo}}
 	<div class="row">
-		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=pauta.dataHora label='Data' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=pauta.local label='Data' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=dataHora label='Data' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=local label='Data' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=contato label='Contato' type="text" class="col s12 m12" validate=true}}
 	</div>
 	<div class="row">
 	  {{md-textarea label='Encaminhamento'
-	    value=pauta.encaminhamento class="col s12"}}
+	    value=encaminhamento class="col s12"}}
 	</div>
 	<div class="row">
 	  {{md-textarea label='Informações'
-	    value=pauta.informacoes class="col s12"}}
+	    value=informacoes class="col s12"}}
 	</div>
 	<div class="row">
 	  {{md-textarea label='Sugestões'
-	    value=pauta.sugestoes class="col s12"}}
+	    value=sugestoes class="col s12"}}
 	</div>
 
 
 	{{!-- ESCOLHER USUÁRIOS PARA EQUIPE --}}
-
+	{{#each users as |user|}}
+		{{user.displayName}}<br>
+	{{/each}}
 	<div class="row">
-		<div class="col s12 l12 m12">
-			<label>Equipe</label>
-		</div>
-		{{md-select content=users  
-		  value=users.id  
-		  label="Usuários" 
+		{{md-select content=user  
+		  value=usuarioEscolhidoEquipe 
+		  label="Equipe" 
 		  prompt="Escolher..." 
 		  optionLabelPath="content.displayName" 
-		  optionValuePath="content.id" class="col s12"}}
+		  optionValuePath="content.id" class="col s12 l12 m12"}}
+		<div class="col l12 s12 m12">
+			Equipe atual:
+			<br>
+			equipe: {{equipe}}
+			{{log 'e-keep' equipe}}
+			<ul class="list-inline list-unstyled">
+				{{#each equipe as |user|}}
+					<li>
+						{{!-- <img src="{{user.photoURL}}" alt="imagem do usuário da equipe" class="card-user-image"> --}}
+						{{user}}
+					</li>
+				{{/each}}	
+			</ul>
+		</div>
+		<div class="col l12 s12 m12">
+		  {{md-btn icon='mdi-content-add'
+			action="addUserToEquipe" on-user-to-equipe="addUserToEquipe" buttonType='floating'
+			class='' actionArg=usuarioEscolhidoEquipe}}
+		</div>
 	</div>
 
 	{{!-- ESCOLHER USUÁRIOS PARA PRODUÇÃO --}}
 
 	<div class="row">
-		<div class="col s12 l12 m12">
-			<label>Produção</label>
-		</div>
-		{{md-select content=users  
-		  value=users.id  
-		  label="Usuários" 
+		{{md-select content=user  
+		  value=usuarioEscolhidoProducao
+		  label="Produção" 
 		  prompt="Escolher..." 
 		  optionLabelPath="content.displayName" 
-		  optionValuePath="content.id" class="col s12"}}
+		  optionValuePath="content.id" class="col s12 l12 m12"}}
+		<div class="col l12 s12 m12">
+			Produção atual:
+		</div>
+		<div class="col l12 s12 m12">
+		  {{md-btn icon='mdi-content-add'
+			action="addUserToProducao" on-user-to-producao="addUserToProducao" actionArg=usuarioEscolhidoProducao buttonType='floating'
+			class=''}}
+		</div>
 	</div>
+
+	<hr>
 
 	<div class="row">
 		<div class="col s12 m12">
 			{{md-btn-submit icon='mdi-content-send'
-		    iconPosition='right' action="addPauta" on-action="addPauta" actionArg=pauta     
+		    iconPosition='right' action="addPauta" on-action="addPauta"      
 		    text='Gravar'}}
 		</div>
 	</div>

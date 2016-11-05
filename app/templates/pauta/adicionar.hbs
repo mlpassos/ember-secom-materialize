@@ -1,2 +1,6 @@
-add
-{{pauta-add users=model.user session=session on-action="addPauta"}}
+{{pauta-add 
+	user=model 
+	session=session 
+	on-user-to-equipe="addUserToEquipe" 
+	on-user-to-producao="addUserToProducao"  
+	on-action="addPauta"}}

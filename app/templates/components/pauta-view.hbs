@@ -1,4 +1,5 @@
 <div class="container">
+	{{!-- LOCAL FORMADO POR LAT E LNG COM MAPA --}}
 	<div class="row">
 		  <div class="col s12 m12 l12">
 		  	<img src="http://placehold.it/1200x400" alt="local da pauta" class="img-responsive">
@@ -11,6 +12,7 @@
 		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}
 	</div>
+	{{!-- CONTEÚDOS LONGOS --}}
 	<div class="row">
 	  {{md-textarea label='Encaminhamento'
 	    value=pauta.encaminhamento class="col s12"}}
@@ -23,6 +25,8 @@
 	  {{md-textarea label='Sugestões'
 	    value=pauta.sugestoes class="col s12"}}
 	</div>
+
+	{{!-- EQUIPE --}}
 	<div class="row">
 		<div class="col s12 l12 m12">
 			<label>Equipe</label>
@@ -37,9 +41,6 @@
 			</ul>
 		</div>
 	</div>
-	{{!-- {{#each users as |user|}}
-		{{user.displayName}}<br>
-	{{/each}} --}}
 
 	{{!-- ESCOLHER USUÁRIOS PARA EQUIPE --}}
 
@@ -51,6 +52,8 @@
 		  optionLabelPath="content.displayName" 
 		  optionValuePath="content.id" class="col s12"}}
 	</div>
+
+	{{!-- PRODUÇÃO --}}
 	<div class="row">
 		<div class="col s12 l12 m12">
 			<label>Produção</label>
