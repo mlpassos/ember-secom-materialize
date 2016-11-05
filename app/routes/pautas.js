@@ -34,6 +34,7 @@ export default Ember.Route.extend({
 	actions: {
 		goPauta(slug) {
 			// alert(id);
+			console.log('goPauta slug', slug);
 			this.router.transitionTo('pauta', slug);
 		},
 		addPauta() {

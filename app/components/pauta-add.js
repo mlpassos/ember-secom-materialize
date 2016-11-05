@@ -23,9 +23,9 @@ export default Ember.Component.extend({
 				entrevistado: this.get('entrevistado'),
 				contato: this.get('contato'),
 				encaminhamento: this.get('encaminhamento'),
-				contato: this.get('contato'),
-				informacoes: this.get('informacoes')
-			}
+				informacoes: this.get('informacoes'),
+				sugestoes: this.get('sugestoes')
+			};
 			console.log('addPauta', pauta.retranca);
 			this.sendAction('on-action', pauta);
 		},

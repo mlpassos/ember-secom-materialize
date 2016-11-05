@@ -27,8 +27,8 @@
 
 
 	{{!-- ESCOLHER USUÁRIOS PARA EQUIPE --}}
-	{{#each users as |user|}}
-		{{user.displayName}}<br>
+	{{#each equipe as |user|}}
+		{{user.id}}<br>
 	{{/each}}
 	<div class="row">
 		{{md-select content=user  
@@ -46,7 +46,7 @@
 				{{#each equipe as |user|}}
 					<li>
 						{{!-- <img src="{{user.photoURL}}" alt="imagem do usuário da equipe" class="card-user-image"> --}}
-						{{user}}
+						{{user.id}}
 					</li>
 				{{/each}}	
 			</ul>
