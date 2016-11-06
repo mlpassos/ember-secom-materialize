@@ -2,11 +2,8 @@ import Ember from 'ember';
 import cleanURL from '../utils/cleanurl';  
 
 export default Ember.Component.extend({
-	// setupController(controller) {
-	// 	this._super(...arguments);
-	// 	controller.set('pauta', this.get('pauta'));
-	// },
 	// equipe: [],
+	// producao: [],
 	init() {
 		this._super(...arguments);
 		console.log('Iniciando componente PAUTA-ADD...');
@@ -32,17 +29,34 @@ export default Ember.Component.extend({
 		addUserToEquipe(user) {
 			console.log('addUserToEquipe', user);
 			this.sendAction('on-user-to-equipe', user);
+			
+			// console.log('adding user to equipe: ', user);
+			// let obj = {
+			// 	id: user
+			// };
+			// // console.log('obj', typeof obj);
 			// let equipe = this.get('equipe');
-			// equipe.push(user);
+			// equipe.push(obj);
+			// console.log(equipe);
+
 		},
 		addUserToProducao(user) {
 			console.log('addUserToProducao', user);
 			this.sendAction('on-user-to-producao', user);
+			// console.log('adding user to producao: ', user);
+			// let obj = {
+			// 	id: user
+			// };
+			// // console.log('obj', typeof obj);
+			// let producao = this.get('producao');
+			// producao.push(obj);
+			// console.log(producao);
 		}
 	}
 	// ,
 	// setupController(controller) {
 	// 	this._super(...arguments);
 	// 	controller.set('equipe', this.get('equipe'));
+	// 	controller.set('producao', this.get('producao'));
 	// }
 });

@@ -25,6 +25,10 @@ export default Ember.Component.extend({
 			goPauta(slug) {
 				console.log('goPauta', slug);
 				this.sendAction('on-action', slug);
+			},
+			editPauta(slug) {
+				console.log('editPauta', slug);
+				this.sendAction('on-edit', slug);
 			}
 		}
 });

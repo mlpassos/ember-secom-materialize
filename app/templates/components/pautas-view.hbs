@@ -24,9 +24,15 @@
         {{/each}}
       </ul>
       <br>
-	    {{md-btn text='Ver pauta' on-action="goPauta" action="goPauta" actionArg=pauta.slug 
-			buttonType="flat" 
-			class='indigo white-text btn-ler-mais'}}
+      {{#if session.currentUser.isAdmin}}
+        {{md-btn text='Abrir pauta' on-action="editPauta" action="editPauta" actionArg=pauta.slug 
+          buttonType="flat" 
+          class='indigo white-text btn-ler-mais'}}
+      {{else}}
+  	    {{md-btn text='Ver pauta' on-action="goPauta" action="goPauta" actionArg=pauta.slug 
+  			buttonType="flat" 
+  			class='indigo white-text btn-ler-mais'}}
+      {{/if}}
     {{/md-card-content}}
     {{#md-card-reveal}}
       <p>

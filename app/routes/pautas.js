@@ -41,6 +41,7 @@ export default Ember.Route.extend({
 			this.router.transitionTo('pauta.adicionar', 'novo');
 		},
 		editPauta(slug) {
+			console.log('editPauta slug', slug);
 			this.router.transitionTo('pauta.alterar', slug);	
 		}
 	}
