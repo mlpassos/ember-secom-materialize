@@ -11,6 +11,7 @@
       <br>
       <p>
         {{substr pauta.encaminhamento size=12}}
+        {{!-- {{pauta.encaminhamento}} --}}
       </p>
       <br>
       <p>
@@ -25,14 +26,15 @@
       </ul>
       <br>
       {{#if session.currentUser.isAdmin}}
-        {{md-btn text='Abrir pauta' on-action="editPauta" action="editPauta" actionArg=pauta.slug 
+        {{md-btn text='Abrir pauta' on-edit="editPauta" action="editPauta" actionArg=pauta.slug 
           buttonType="flat" 
           class='indigo white-text btn-ler-mais'}}
       {{else}}
-  	    {{md-btn text='Ver pauta' on-action="goPauta" action="goPauta" actionArg=pauta.slug 
+  	    {{md-btn text='Ver pauta' on-ver="verPauta" action="verPauta" actionArg=pauta.slug 
   			buttonType="flat" 
   			class='indigo white-text btn-ler-mais'}}
       {{/if}}
+      {{link-to "excluir" "pauta.excluir" pauta.slug}}
     {{/md-card-content}}
     {{#md-card-reveal}}
       <p>

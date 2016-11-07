@@ -12,7 +12,7 @@
             </div>
           </div>
         {{/if}}
-          {{pautas-view model=model session=session on-action="goPauta" on-edit="editPauta"}}
+          {{pautas-view model=model session=session on-ver="verPauta" on-edit="editPauta" on-del="delPauta"}}
       {{else}}
           <h1 class="header">Acesso negado</h1>
           Você não tem permissão para acessar essa área

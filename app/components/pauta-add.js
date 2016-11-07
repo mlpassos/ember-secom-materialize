@@ -4,10 +4,10 @@ import cleanURL from '../utils/cleanurl';
 export default Ember.Component.extend({
 	// equipe: [],
 	// producao: [],
+	// equipepauta: Ember.inject.service(),
 	init() {
 		this._super(...arguments);
 		console.log('Iniciando componente PAUTA-ADD...');
-		console.log(new Date());
 	},
 	actions: {
 		addPauta() {
@@ -56,7 +56,7 @@ export default Ember.Component.extend({
 	// ,
 	// setupController(controller) {
 	// 	this._super(...arguments);
-	// 	controller.set('equipe', this.get('equipe'));
-	// 	controller.set('producao', this.get('producao'));
+	// 	controller.set('equipepauta', this.get('equipepauta.items'));
+	// 	// controller.set('producao', this.get('producao'));
 	// }
 });

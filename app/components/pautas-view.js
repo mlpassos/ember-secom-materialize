@@ -18,17 +18,17 @@ export default Ember.Component.extend({
 		    });  
 		},
 		actions: {
-			// lerMais(slug) {
-			// 	console.log(slug);
-			// 	this.get('routing').transitionTo('noticia', slug);
-			// },
-			goPauta(slug) {
-				console.log('goPauta', slug);
-				this.sendAction('on-action', slug);
+			verPauta(slug) {
+				console.log('verPauta', slug);
+				this.sendAction('on-ver', slug);
 			},
 			editPauta(slug) {
 				console.log('editPauta', slug);
 				this.sendAction('on-edit', slug);
+			},
+			delPauta(slug) {
+				console.log('delPauta', slug);
+				this.sendAction('on-del', slug);
 			}
 		}
 });

@@ -32,17 +32,21 @@ export default Ember.Route.extend({
 		// pauta.set('equipe', )
 	},
 	actions: {
-		goPauta(slug) {
-			// alert(id);
-			console.log('goPauta slug', slug);
+		verPauta(slug) {
+			console.log('VER PAUTA slug', slug);
 			this.router.transitionTo('pauta', slug);
 		},
 		addPauta() {
+			console.log('ADICIONAR NOVA PAUTA');
 			this.router.transitionTo('pauta.adicionar', 'novo');
 		},
 		editPauta(slug) {
-			console.log('editPauta slug', slug);
+			console.log('ALTERAR PAUTA slug', slug);
 			this.router.transitionTo('pauta.alterar', slug);	
+		},
+		delPauta(slug) {
+			console.log('EXCLUIR PAUTA slug', slug);
+			this.router.transitionTo('pauta.excluir', slug);	
 		}
 	}
 });

@@ -8,7 +8,7 @@
 	<div class="row">
 		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=pauta.dataHora label='Data' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=pauta.local label='Data' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=pauta.local label='Local' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}
 	</div>
@@ -44,14 +44,14 @@
 
 	{{!-- ESCOLHER USUÁRIOS PARA EQUIPE --}}
 
-	<div class="row">
+	{{!-- <div class="row">
 		{{md-select content=users  
 		  value=users.id  
 		  label="Usuários" 
 		  prompt="Escolher..." 
 		  optionLabelPath="content.displayName" 
 		  optionValuePath="content.id" class="col s12"}}
-	</div>
+	</div> --}}
 
 	{{!-- PRODUÇÃO --}}
 	<div class="row">
@@ -71,7 +71,7 @@
 
 	{{!-- ESCOLHER USUÁRIOS PARA PRODUÇÃO --}}
 
-	<div class="row">
+	{{!-- <div class="row">
 		{{md-select content=users  
 		  value=users.id  
 		  label="Usuários" 
@@ -85,5 +85,5 @@
 		    iconPosition='right' action="savePauta" on-action="savePauta" actionArg=pauta     
 		    text='Gravar'}}
 		</div>
-	</div>
+	</div> --}}
 </div>
