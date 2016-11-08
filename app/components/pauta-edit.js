@@ -9,6 +9,9 @@ export default Ember.Component.extend({
 		editPauta(pauta) {
 			console.log('editPauta', pauta);
 			this.sendAction('on-edit', pauta);
-		}
+		},
+		addPauta() {
+			this.sendAction('on-add');
+		},
 	}
 });

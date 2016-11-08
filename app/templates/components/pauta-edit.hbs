@@ -1,5 +1,15 @@
 <div class="container">
 	{{!-- LOCAL FORMADO POR LAT E LNG COM MAPA --}}
+	{{!-- {{#if session.currentUser.isAdmin}} --}}
+    <div class="row">
+      <div class="col l12 m12 s12">
+        {{md-btn text='Pauta'
+          icon='mdi-action-note-add'
+          action='addPauta'
+          class='deep-purple darken-3 pull-right'}}
+      </div>
+    </div>
+    {{!-- {{/if}} --}}
 	<div class="row">
 		  <div class="col s12 m12 l12">
 		  	<img src="http://placehold.it/1200x400" alt="local da pauta" class="img-responsive">

@@ -20,6 +20,9 @@ export default Ember.Route.extend({
 					console.log('pauta atualizada');
 				});
 			}
+		},
+		addPauta() {
+			this.router.transitionTo('pauta.adicionar', 'novo');		
 		}
 		// ,
 		// addPauta(pauta) {
