@@ -1,11 +1,16 @@
 <div class="container">
 	<div class="row">
 		  <div class="col s12 m12 l12">
-		  	<img src="http://placehold.it/1200x400" alt="local da pauta" class="img-responsive">
+		  	{{g-maps name="my-map" lat=lat lng=lng zoom=zoom markers=markers class="img-responsive"}}
 		  </div>
 	</div>
 	<div class="row">
 		{{md-input value=retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
+
+		<div class="col s12 m12 l12">
+			{{g-autocomplete value=local on-select=(action 'didUpdatePlace')}}
+		</div>
+
 		{{!-- COLOCAR LABEL DATE --}}
 		<div class="col s12 m12 l12">
 			<label for="dataHora">Data</label>
@@ -17,11 +22,11 @@
 		{{md-input value=entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=contato label='Contato' type="text" class="col s12 m12" validate=true}}
 	</div>
-	<div class="row">
+	{{!-- <div class="row">
 		<div class="col s12 m12 l12">
 			{{g-autocomplete value=local on-select=(action 'didUpdatePlace')}}
 		</div>
-	</div>
+	</div> --}}
 	<div class="row">
 	  {{md-textarea label='Encaminhamento'
 	    value=encaminhamento class="col s12"}}

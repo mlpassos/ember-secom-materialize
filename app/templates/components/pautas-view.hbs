@@ -25,6 +25,9 @@
         {{/each}}
       </ul>
       <br>
+      {{#if pauta.lat}}
+        {{g-maps name="my-map" lat=pauta.lat lng=pauta.lng zoom=14 class="img-responsive"}}
+      {{/if}}
       {{#if session.currentUser.isAdmin}}
         {{md-btn text='Abrir pauta' on-edit="editPauta" action="editPauta" actionArg=pauta.slug 
           buttonType="flat" 
@@ -47,7 +50,6 @@
         <hr>
         {{pauta.local}}
       </p>
-      {{!-- <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center={{lat}},{{lng}}&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C{{lat}},{{lng}}&key=AIzaSyAcqXF6nzd3bfoM7LvN9Y4NloaHI-leLq0" al='mapa do local da pauta'> --}}
       <p>
         Informações:
         <hr>

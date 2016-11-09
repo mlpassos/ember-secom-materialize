@@ -57,11 +57,11 @@ export default Ember.Route.extend({
 						pautaRecord.get('equipe').addObject(user);
 						return pautaRecord.save().then(function() {
 							let currentdate = new Date(); 
-							let datetime = "Last Sync: " + currentdate.getDate() + "/"
+							let datetime = "Last Sync: " + currentdate.getDate() + "/" 
 							                + (currentdate.getMonth()+1)  + "/" 
-							                + currentdate.getFullYear() + " @ "  
-							                + currentdate.getHours() + ":"  
-							                + currentdate.getMinutes() + ":" 
+							                + currentdate.getFullYear() + " @ " 
+							                + currentdate.getHours() + ":" 
+							                + currentdate.getMinutes() + ":"  
 							                + currentdate.getSeconds();
 							console.log(datetime);
 							console.log('pauta adicionada para equipe: ' + user.get('displayName'));

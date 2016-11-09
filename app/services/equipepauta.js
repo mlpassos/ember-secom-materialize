@@ -19,7 +19,7 @@ export default Ember.Service.extend({
 			let dif = true;
 			if (_this.get(where).length > 0) {
 				_this.get(where).map(function(element) {
-					if (element.id == item.id) {
+					if (element.id === item.id) {
 						dif = false;
 						console.log('FOUND', element.id);
 						console.log('FIND', item.id);
