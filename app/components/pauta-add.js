@@ -5,6 +5,19 @@ export default Ember.Component.extend({
 	// equipe: [],
 	// producao: [],
 	// equipepauta: Ember.inject.service(),
+	_getPhotoUrl : function(place) {
+		if (place.photos) {
+			return place.photos.map(function(item) {
+				console.log(item);
+				return item.getUrl({
+					maxWidth: 100,
+					maxHeight: 100
+				});
+			})[0];			
+		} else {
+			return "http://placehold.it/100x100";
+		}
+	},
 	lat: -1.4524,
 	lng: -48.4887233,
 	place: '',
@@ -18,7 +31,7 @@ export default Ember.Component.extend({
 	  label: '',
 	  opacity: 0.8,
 	  optimized: true,
-	  // place: new google.maps.MarkerPlace(),
+	  //place: '',//new google.maps.MarkerPlace(),
 	  // position: new google.maps.LatLng(), //['-1.4255971','-48.4570937']),
 	  // shape: new google.maps.MarkerShape(),
 	  // click: function(event, marker) {
@@ -32,7 +45,7 @@ export default Ember.Component.extend({
 		      // ' novas mídias, relações públicas, pesquisa de opinião, democratização do acesso à informação' +
 		      // ' e à comunicação, publicidade, propaganda e marketing.</small>' +
 		      // '</div>',
-		content: '<div>Secretaria de Comunicação do Estado do Pará</div>',
+		content: '',
 	    visible: false
 	   },
 	  // rightclick: function(event, marker) {},
@@ -60,27 +73,40 @@ export default Ember.Component.extend({
 		console.log('Iniciando componente PAUTA-ADD...');
 	},
 	actions: {
+		myZoomChanged(zoom) {
+			console.log(zoom);
+		},
 		didUpdatePlace(obj) {
-			// console.log('place', obj);
-			let _this = this;
+			this.set('place', obj.place);
 			this.set('lat', obj.lat);
 			this.set('lng', obj.lng);
-			this.set('place', obj.place);
-			
-			let markers = this.get('markers');
-			// let marker = markers.get('firstObject');
-			let update = markers.map(function(item) {
+			let getPhotoUrl = this.get('_getPhotoUrl');
+			let phone = (obj.place.formatted_phone_number) ? obj.place.formatted_phone_number : 'Sem telefone';
+			let website = (obj.place.website) ? "<a target='_blank' href='" + obj.place.website + "'>" + obj.place.website + "</a>" : 'sem website';
+			let markers = this.get('markers').map(function(item) {
 				console.log(item.id);
 				item.lat = obj.lat;
 				item.lng = obj.lng;
-				item.place = obj.place;
+				item.infoWindow.content = '<div>' 
+					+ '<h6>' + obj.place.name + '</h6>'
+					+ '<hr>' 
+					+ '<div style="float:left;">'
+					+ '<img style="margin-right:5px;margin-bottom:5px;" src="' + getPhotoUrl(obj.place) + '" alt="foto do local">'
+					+ '</div>'
+					+ '<div style="float:right;margin-top:-15px;">'
+					+ '<p>'	+ obj.place.adr_address
+					+ '<br>'
+					+ phone
+					+ '<br>'
+					+ website + '</p>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>';
+				// item.place = obj.place;
 				return item;
-			});
-			this.set('markers', update);
-			// this.set(marker.get('lat'), obj.lat);
-			// this.set(marker.get('lng'), obj.lng);
+			});;
+			this.set('markers', markers);
 			console.log(markers);
-			
 		},
 		addPauta() {
 			// console.log(cleanURL(this.get('retranca')));
@@ -89,7 +115,7 @@ export default Ember.Component.extend({
 				retranca: this.get('retranca'),
 				slug: cleanURL(this.get('retranca')),
 				dataHora: this.get('dataHora'),
-				local: this.get('local'),
+				local: this.get('place.name'),
 				lat: this.get('lat'),
 				lng: this.get('lng'),
 				entrevistado: this.get('entrevistado'),
@@ -105,16 +131,6 @@ export default Ember.Component.extend({
 		addUserToEquipe(user) {
 			console.log('addUserToEquipe', user);
 			this.sendAction('on-user-to-equipe', user);
-			
-			// console.log('adding user to equipe: ', user);
-			// let obj = {
-			// 	id: user
-			// };
-			// // console.log('obj', typeof obj);
-			// let equipe = this.get('equipe');
-			// equipe.push(obj);
-			// console.log(equipe);
-
 		},
 		removeUserFromEquipe(user) {
 			console.log('removeUserFromEquipe', user);
@@ -123,14 +139,6 @@ export default Ember.Component.extend({
 		addUserToProducao(user) {
 			console.log('addUserToProducao', user);
 			this.sendAction('on-user-to-producao', user);
-			// console.log('adding user to producao: ', user);
-			// let obj = {
-			// 	id: user
-			// };
-			// // console.log('obj', typeof obj);
-			// let producao = this.get('producao');
-			// producao.push(obj);
-			// console.log(producao);
 		},
 		removeUserFromProducao(user) {
 			console.log('removeUserFromProducao', user);

@@ -1,8 +1,9 @@
 <div class="container">
 	{{!-- LOCAL FORMADO POR LAT E LNG COM MAPA --}}
 	<div class="row">
+		{{log 'marker' pauta.marker}}
 		  <div class="col s12 m12 l12">
-		  	<img src="http://placehold.it/1200x400" alt="local da pauta" class="img-responsive">
+		  	{{g-maps name="my-map" lat=pauta.lat lng=pauta.lng zoom=14 markers=pauta.marker  class="img-responsive"}}
 		  </div>
 	</div>
 	<div class="row">
