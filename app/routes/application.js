@@ -5,7 +5,10 @@ const {get} = Ember;
  
 export default TransitionToListenerRoute.extend({
     beforeModel(){
-		return this.get('session').fetch().catch(function(){});
+    	let _this = this;
+		return this.get('session').fetch().catch(function(){
+			_this.router.transitionTo('home');
+		});
 	},
 	actions:{
 	    login(){

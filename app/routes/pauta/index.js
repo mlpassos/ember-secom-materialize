@@ -1,13 +1,22 @@
 import Ember from 'ember';
+import dateUtil from '../../utils/format-date';
 
 export default Ember.Route.extend({
+	// format: dateUtil,
 	model() {
+		let _this = this;
 		let slug = Ember.get(this.modelFor('pauta'), 'slug');
 		console.log('este slug é ', slug);
 		return Ember.RSVP.hash({
 	        pauta: this.store.query('pauta', {orderBy: 'slug', equalTo: slug }).then(function(pautas) {
 	        	console.log('len pautas', pautas.get('length'));
 				let pauta = pautas.get('firstObject');
+				
+				// date
+				// let dateUtil = _this.get('format');
+				// console.log('formatada', dateUtil(pauta.dataHora));
+				pauta.set('dataFormatada', dateUtil(pauta.get('dataHora')));
+				
 				pauta.marker = Ember.A([{
 				  id: 'pautalocal', 
 				  lat: pauta.get('lat'),

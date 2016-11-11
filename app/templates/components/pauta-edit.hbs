@@ -17,7 +17,11 @@
 	</div>
 	<div class="row">
 		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=pauta.dataHora label='Data' type="text" class="col s12 m12" validate=true}}
+		
+		{{!-- {{md-input value=pauta.dataHora label='Data' type="text" class="col s12 m12" validate=true}} --}}
+		
+		{{md-input-date label='Data' value=pauta.dataHora class="col s12 m12"}}
+
 		{{md-input value=pauta.local label='Data' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}

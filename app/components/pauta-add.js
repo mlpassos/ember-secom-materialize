@@ -87,34 +87,40 @@ export default Ember.Component.extend({
 				console.log(item.id);
 				item.lat = obj.lat;
 				item.lng = obj.lng;
-				item.infoWindow.content = '<div>' 
-					+ '<h6>' + obj.place.name + '</h6>'
-					+ '<hr>' 
-					+ '<div style="float:left;">'
-					+ '<img style="margin-right:5px;margin-bottom:5px;" src="' + getPhotoUrl(obj.place) + '" alt="foto do local">'
-					+ '</div>'
-					+ '<div style="float:right;margin-top:-15px;">'
-					+ '<p>'	+ obj.place.adr_address
-					+ '<br>'
-					+ phone
-					+ '<br>'
-					+ website + '</p>'
-					+ '</div>'
-					+ '</div>'
-					+ '</div>';
+				item.infoWindow.content = '<div>' +
+					'<h6>' + obj.place.name + '</h6>' +
+					'<hr>' +
+					'<div style="float:left;">' +
+					'<img style="margin-right:5px;margin-bottom:5px;" src="' + getPhotoUrl(obj.place) + '" alt="foto do local">' +
+					'</div>' +
+					'<div style="float:right;margin-top:-15px;">' +
+					'<p>'	+ obj.place.adr_address +
+					'<br>' +
+					phone +
+					'<br>' +
+					website + '</p>' +
+				    '</div>' +
+					'</div>' +
+					'</div>';
 				// item.place = obj.place;
 				return item;
-			});;
+			});
 			this.set('markers', markers);
 			console.log(markers);
 		},
 		addPauta() {
 			// console.log(cleanURL(this.get('retranca')));
 			console.log('ID USER CRIADOR: ' + this.get('session.currentUser.id'));
+			let data = new Date(this.get('dataHora'));
+			// let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+			// let dataFormatada = data.toLocaleDateString('pt-BR', options);
+			// let dataFormatada = ("0" + data.getDate()).substr(-2) + "/" 
+   //  			+ ("0" + (data.getMonth() + 1)).substr(-2) + "/" + data.getFullYear();
+			// console.log(dataFormatada);
 			let pauta = {
 				retranca: this.get('retranca'),
 				slug: cleanURL(this.get('retranca')),
-				dataHora: this.get('dataHora'),
+				dataHora: data,
 				local: this.get('place.name'),
 				lat: this.get('lat'),
 				lng: this.get('lng'),

@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import dateUtil from '../../utils/format-date';
+import cleanURL from '../../utils/cleanurl';
 
 export default Ember.Route.extend({
 	model() {
@@ -7,18 +9,38 @@ export default Ember.Route.extend({
 		return Ember.RSVP.hash({
 	        pauta: this.store.query('pauta', {orderBy: 'slug', equalTo: slug }).then(function(pautas) {
 	        	console.log('len pautas', pautas.get('length'));
-				return pautas.get('firstObject');
+	        	// console.log('dataPauta', pautas.get('firstObject').get('dataHora'));
+				let pauta = pautas.get('firstObject');
+				let dth = dateUtil(pauta.get('dataHora'));
+				console.log('dth', dth);
+				pauta.set('dataHora', dth);
+				return pauta;
 			}),
 		    user: this.store.findAll('user')
 		});
 	},
 	actions: {
 		editPauta(pauta) {
-			console.log('SAVING PAUTA', pauta.get('retranca'));
+			let _this = this;
+			console.log('SAVING PAUTA', pauta.get('hasDirtyAttributes'));
+			// let a= pauta.get('hasDirtyAttributes')
 			if (pauta.get('hasDirtyAttributes')) {
+				// checar quem mudou e salvar apenas estes
+				let dt = new Date(pauta.get('dataHora'));
+				let slug = cleanURL(pauta.get('retranca'));
+				let oldSlug = pauta.get('slug');
+				console.log('brslug', slug);
+				pauta.set('dataHora', dt);
+				pauta.set('slug', slug);
 				pauta.save().then(function() {
 					console.log('pauta atualizada');
+					if (slug !== oldSlug) {
+						console.log('redir...');
+						_this.router.transitionTo('pauta.alterar', slug);		
+					}
 				});
+			} else {
+				console.log('sem novidades');
 			}
 		},
 		addPauta() {

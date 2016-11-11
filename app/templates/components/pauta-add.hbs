@@ -11,11 +11,7 @@
 			{{g-autocomplete value=local on-select=(action 'didUpdatePlace')}}
 		</div>
 
-		{{!-- COLOCAR LABEL DATE --}}
-		<div class="col s12 m12 l12">
-			<label for="dataHora">Data</label>
-		</div>
-		{{md-input value=dataHora type="date" class="col s12 m12" validate=true}}
+		{{md-input-date label='Data' value=dataHora class="col s12 m12"}}
 		
 		{{!-- {{md-input value=local label='Local' type="text" class="col s12 m12" validate=true}} --}}
 		
