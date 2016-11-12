@@ -4,8 +4,12 @@
 {{#each model as |pauta|}}
   <div class="col l3 m4 s12 isoitem">
   {{!-- {{g-maps name="my-map" lat=lat lng=lng zoom=zoom  class="img-responsive"}}  --}}
+    {{!-- {{#if pauta.lat}}
+      {{log 'markers' pauta.marker}}
+      {{g-maps name="my-map" lat=pauta.lat lng=pauta.lng markers=pauta.marker zoom=14 class="img-responsive"}}
+    {{/if}} --}}
     {{#md-card title=pauta.retranca
-    image='http://placehold.it/200x200'
+    image=(pauta-minimap pauta.lat pauta.lng)
     activator=true}}
     {{#md-card-content}}
       <br>
@@ -25,9 +29,6 @@
         {{/each}}
       </ul>
       <br>
-      {{#if pauta.lat}}
-        {{g-maps name="my-map" lat=pauta.lat lng=pauta.lng zoom=14 class="img-responsive"}}
-      {{/if}}
       {{#if session.currentUser.isAdmin}}
         {{md-btn text='Abrir pauta' on-edit="editPauta" action="editPauta" actionArg=pauta.slug 
           buttonType="flat" 

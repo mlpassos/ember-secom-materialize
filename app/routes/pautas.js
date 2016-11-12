@@ -2,7 +2,33 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 	model() {
-		return this.store.findAll('pauta');
+		return this.store.findAll('pauta').then(function(pautas) {
+			return pautas.map(function(item) {
+				let marker = Ember.A([{
+				  id: 'pautalocal-'+item.get('slug'), 
+				  lat: item.get('lat'),
+				  lng: item.get('lng'),
+				  icon: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+				  label: '',
+				  opacity: 0.8,
+				  optimized: true,
+				  infoWindow: {
+					content: '<div>' + item.get('local') + '</div>',
+				    visible: false
+				  },
+				  animation: google.maps.Animation.DROP,
+				  clickable: true,
+				  crossOnDrag: true,
+				  cursor: 'pointer',
+				  draggable: false,
+				  title: 'string',
+				  visible: true,
+				  zIndex: 999
+				}]);
+				item.set('marker', marker);
+				return item;
+			});
+		});
 	},
 	afterModel() {
 		// console.log('afterModel');

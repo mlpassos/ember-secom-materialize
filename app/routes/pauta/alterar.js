@@ -14,14 +14,49 @@ export default Ember.Route.extend({
 				let dth = dateUtil(pauta.get('dataHora'));
 				console.log('dth', dth);
 				pauta.set('dataHora', dth);
+
+				pauta.marker = Ember.A([{
+				  id: 'pautalocal', 
+				  lat: pauta.get('lat'),
+				  lng: pauta.get('lng'),
+				  icon: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+				  label: '',
+				  opacity: 0.8,
+				  optimized: true,
+				  infoWindow: {
+					content: '<div>' + pauta.get('local') + '</div>',
+				    visible: false
+				  },
+				  animation: google.maps.Animation.DROP,
+				  clickable: true,
+				  crossOnDrag: true,
+				  cursor: 'pointer',
+				  draggable: false,
+				  title: 'string',
+				  visible: true,
+				  zIndex: 999
+				}]);
+
 				return pauta;
 			}),
 		    user: this.store.findAll('user')
 		});
 	},
+	// pauta: '',
+	// setupController(controller) {
+	// 	this._super(...arguments);
+	// 	this.set('pauta', controller.get('pauta'));
+	// },
+	// deactivate() {
+	// 	console.log('LIMPANDO PAUTA');
+	// 	let pauta = this.get('pauta');
+	// 	console.log('clean', pauta);
+	// 	pauta.empty();
+	// },
 	actions: {
 		editPauta(pauta) {
 			let _this = this;
+			console.log('pauta', pauta.get('local'));
 			console.log('SAVING PAUTA', pauta.get('hasDirtyAttributes'));
 			// let a= pauta.get('hasDirtyAttributes')
 			if (pauta.get('hasDirtyAttributes')) {

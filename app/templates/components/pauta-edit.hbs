@@ -12,17 +12,20 @@
     {{!-- {{/if}} --}}
 	<div class="row">
 		  <div class="col s12 m12 l12">
-		  	<img src="http://placehold.it/1200x400" alt="local da pauta" class="img-responsive">
+		  	{{g-maps name="my-map" lat=pauta.lat lng=pauta.lng zoom=14 markers=pauta.marker  class="img-responsive"}}
 		  </div>
 	</div>
 	<div class="row">
 		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
 		
-		{{!-- {{md-input value=pauta.dataHora label='Data' type="text" class="col s12 m12" validate=true}} --}}
+		<div class="col s12 m12 l12">
+			<label for="local">Local</label>
+			{{g-autocomplete value=pauta.local on-select=(action 'didUpdatePlace')}}
+		</div>
 		
 		{{md-input-date label='Data' value=pauta.dataHora class="col s12 m12"}}
 
-		{{md-input value=pauta.local label='Data' type="text" class="col s12 m12" validate=true}}
+		{{!-- {{md-input value=pauta.local label='Local' type="text" class="col s12 m12" validate=true}} --}}
 		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
 		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}
 	</div>
