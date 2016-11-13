@@ -16,7 +16,7 @@ export default Ember.Route.extend({
 					content: '<div>' + item.get('local') + '</div>',
 				    visible: false
 				  },
-				  animation: google.maps.Animation.DROP,
+				  animation: window.google.maps.Animation.DROP,
 				  clickable: true,
 				  crossOnDrag: true,
 				  cursor: 'pointer',

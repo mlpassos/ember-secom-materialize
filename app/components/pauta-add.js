@@ -58,7 +58,7 @@ export default Ember.Component.extend({
 	  // dragstart: function(event, marker) {},
 	  // dragend: function(event, marker) {},
 	  // anchorPoint: new google.maps.Point(),
-	  animation: google.maps.Animation.DROP,
+	  animation: window.google.maps.Animation.DROP,
 	  clickable: true,
 	  crossOnDrag: true,
 	  cursor: 'pointer',

@@ -6,6 +6,7 @@ export default Ember.Route.extend({
 	model() {
 		let slug = Ember.get(this.modelFor('pauta'), 'slug');
 		console.log('alterar esta pauta ', slug);
+		console.log('isSaved', this.get('isSaved'));
 		return Ember.RSVP.hash({
 	        pauta: this.store.query('pauta', {orderBy: 'slug', equalTo: slug }).then(function(pautas) {
 	        	console.log('len pautas', pautas.get('length'));
@@ -15,7 +16,7 @@ export default Ember.Route.extend({
 				console.log('dth', dth);
 				pauta.set('dataHora', dth);
 
-				pauta.marker = Ember.A([{
+				let marker = Ember.A([{
 				  id: 'pautalocal', 
 				  lat: pauta.get('lat'),
 				  lng: pauta.get('lng'),
@@ -27,7 +28,7 @@ export default Ember.Route.extend({
 					content: '<div>' + pauta.get('local') + '</div>',
 				    visible: false
 				  },
-				  animation: google.maps.Animation.DROP,
+				  animation: window.google.maps.Animation.DROP,
 				  clickable: true,
 				  crossOnDrag: true,
 				  cursor: 'pointer',
@@ -36,23 +37,36 @@ export default Ember.Route.extend({
 				  visible: true,
 				  zIndex: 999
 				}]);
+				pauta.set('marker', marker);
 
 				return pauta;
 			}),
 		    user: this.store.findAll('user')
 		});
 	},
-	// pauta: '',
-	// setupController(controller) {
-	// 	this._super(...arguments);
-	// 	this.set('pauta', controller.get('pauta'));
-	// },
-	// deactivate() {
-	// 	console.log('LIMPANDO PAUTA');
-	// 	let pauta = this.get('pauta');
-	// 	console.log('clean', pauta);
-	// 	pauta.empty();
-	// },
+	isSaved: false,
+	pauta: '',
+	setupController(controller) {
+		this._super(...arguments);
+		this.set('pauta', controller.get('model.pauta'));
+	},
+	deactivate() {
+		console.log('LIMPANDO PAUTA');
+		let pauta = this.get('pauta');
+		console.log('clean', pauta);
+		if (this.get('isSaved')) {
+			// se gravou, tem algo novo?
+			let changed = Object.keys(pauta.changedAttributes()).length;
+			console.log('changed', changed);
+			if (changed) {
+				// se tem algo novo, limpa que nao ta salvo
+				pauta.rollbackAttributes();	
+			}
+		} else {
+			pauta.rollbackAttributes();
+		}
+		this.set('isSaved', false);
+	},
 	actions: {
 		editPauta(pauta) {
 			let _this = this;
@@ -69,10 +83,14 @@ export default Ember.Route.extend({
 				pauta.set('slug', slug);
 				pauta.save().then(function() {
 					console.log('pauta atualizada');
+					_this.set('isSaved', true);
 					if (slug !== oldSlug) {
 						console.log('redir...');
 						_this.router.transitionTo('pauta.alterar', slug);		
 					}
+				}).catch(function() {
+					// error
+					alert('Erro ao gravar');
 				});
 			} else {
 				console.log('sem novidades');

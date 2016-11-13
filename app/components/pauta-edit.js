@@ -30,7 +30,7 @@ export default Ember.Component.extend({
 		content: '',
 	    visible: false
 	  },
-	  animation: google.maps.Animation.DROP,
+	  animation: window.google.maps.Animation.DROP,
 	  clickable: true,
 	  crossOnDrag: true,
 	  cursor: 'pointer',

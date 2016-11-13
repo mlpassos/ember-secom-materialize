@@ -4,7 +4,7 @@ import dateUtil from '../../utils/format-date';
 export default Ember.Route.extend({
 	// format: dateUtil,
 	model() {
-		let _this = this;
+		// let _this = this;
 		let slug = Ember.get(this.modelFor('pauta'), 'slug');
 		console.log('este slug é ', slug);
 		return Ember.RSVP.hash({
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
 					content: '<div>' + pauta.get('local') + '</div>',
 				    visible: false
 				  },
-				  animation: google.maps.Animation.DROP,
+				  animation: window.google.maps.Animation.DROP,
 				  clickable: true,
 				  crossOnDrag: true,
 				  cursor: 'pointer',
