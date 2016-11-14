@@ -1,6 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+	// modelChanged: Ember.observer('modelLen', function() {
+	//     // deal with the change
+	//     alert('MODEL MUDOU');
+	// }),
+	// model: '',
+	// // setupController(controller) {
+	// // 	this._super(...arguments);
+	// // 	controller.set('model', this.get('model'))
+	// // },
+	// modelLen: Ember.computed('model', function() {
+	// 	return this.get('model').length;
+	// }),
 	model() {
 		console.log('MODEL HAHA');
 		return this.store.findAll('pauta').then(function(pautas) {
@@ -29,8 +41,17 @@ export default Ember.Route.extend({
 				item.set('marker', marker);
 				return item;
 			});
-		}, { reload: true });
+		});
+
 	},
+	// afterModel(model) {
+	// 	this.set('model', model);
+	// 	console.log('this.model', model);
+	// 	console.log('modelLen', this.get('modelLen'));
+	// 	// model.addObserver(function() {
+	// 	// 	console.log('MUDOU MUDOU');
+	// 	// });
+	// },
 	actions: {
 		verPauta(slug) {
 			console.log('VER PAUTA slug', slug);
@@ -46,21 +67,7 @@ export default Ember.Route.extend({
 		},
 		delPauta(pauta) {
 			console.log('EXCLUIR PAUTA slug', pauta.get('slug'));
-			pauta.refresh();
-			// this.router.transitionTo('pautas');
-			// pauta.deleteRecord();
-			// let model = this.modelFor(this.routeName);
-			// // model.reload();
-			// console.log('model', model);
-		    // if (pauta.get('isDeleted')) {
-		    // 	console.log('SAIU DA STORE');
-		    // 	pauta.save().then(function() {
-		    // 		console.log('FOI EXCLUIDO');
-		    // 		_this.get('model').refresh();
-		    // 		// _this.router.transitionTo('pautas');		
-		    // 	});
-		    // }
-			// this.router.transitionTo('pauta.excluir', pauta.slug);	
+			this.router.transitionTo('pauta.excluir', pauta.slug);	
 		}
 	}
 });

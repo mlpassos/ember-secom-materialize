@@ -31,6 +31,7 @@ Router.map(function() {
     this.route('adicionar');
     this.route('alterar');
     this.route('excluir');
+    this.route('loading');
   });
   this.route('pautas');
   this.route('cadastro');
