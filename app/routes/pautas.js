@@ -3,16 +3,12 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 	// modelChanged: Ember.observer('modelLen', function() {
 	//     // deal with the change
-	//     alert('MODEL MUDOU');
+	//     console.log('MODEL MUDOU');
 	// }),
 	// model: '',
-	// // setupController(controller) {
-	// // 	this._super(...arguments);
-	// // 	controller.set('model', this.get('model'))
-	// // },
-	// modelLen: Ember.computed('model', function() {
-	// 	return this.get('model').length;
-	// }),
+	modelLen: Ember.computed('model', function() {
+		return this.modelFor(this.routeName).length;
+	}),
 	model() {
 		console.log('MODEL HAHA');
 		return this.store.findAll('pauta').then(function(pautas) {
@@ -42,16 +38,15 @@ export default Ember.Route.extend({
 				return item;
 			});
 		});
-
 	},
-	// afterModel(model) {
-	// 	this.set('model', model);
-	// 	console.log('this.model', model);
-	// 	console.log('modelLen', this.get('modelLen'));
-	// 	// model.addObserver(function() {
-	// 	// 	console.log('MUDOU MUDOU');
-	// 	// });
-	// },
+	afterModel(model) {
+		// this.set('model', model);
+		// console.log('this.model', model);
+		console.log('modelLen', this.get('modelLen'));
+		// model.addObserver(function() {
+		// 	console.log('MUDOU MUDOU');
+		// });
+	},
 	actions: {
 		verPauta(slug) {
 			console.log('VER PAUTA slug', slug);
@@ -65,9 +60,9 @@ export default Ember.Route.extend({
 			console.log('ALTERAR PAUTA slug', slug);
 			this.router.transitionTo('pauta.alterar', slug);	
 		},
-		delPauta(pauta) {
-			console.log('EXCLUIR PAUTA slug', pauta.get('slug'));
-			this.router.transitionTo('pauta.excluir', pauta.slug);	
+		delPauta(slug) {
+			console.log('EXCLUIR PAUTA slug', slug);
+			this.router.transitionTo('pauta.excluir', slug);	
 		}
 	}
 });

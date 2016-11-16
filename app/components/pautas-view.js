@@ -27,9 +27,9 @@ export default Ember.Component.extend({
 				console.log('editPauta', slug);
 				this.sendAction('on-edit', slug);
 			},
-			delPauta(pauta) {
-				console.log('delPauta', pauta.get('slug'));
-				this.sendAction('on-del', pauta);
+			delPauta(slug) {
+				console.log('delPauta', slug);
+				this.sendAction('on-del', slug);
 			}
 		}
 });
