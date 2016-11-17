@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	model(params) {
+	model() {
 		let _this = this;
-		let slug = Ember.get(this.modelFor('pauta'), 'slug');
-		console.log('excluir pauta ', slug);
-		this.store.query('pauta', {orderBy: 'slug', equalTo: slug }).then(function(pautas) {
-			let pauta = pautas.get('firstObject');
+		let id = Ember.get(this.modelFor('pauta'), 'slug');
+		console.log('excluir pauta ', id);
+		this.store.find('pauta', id).then(function(pauta) {
+			// let pauta = pautas.get('firstObject');
 			pauta.deleteRecord();
 		    if (pauta.get('isDeleted')) {
 		    	console.log('SAI DA STORE');

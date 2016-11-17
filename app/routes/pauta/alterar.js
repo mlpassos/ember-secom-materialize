@@ -20,7 +20,7 @@ export default Ember.Route.extend({
 				  id: 'pautalocal', 
 				  lat: pauta.get('lat'),
 				  lng: pauta.get('lng'),
-				  icon: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+				  icon: 'https://maps.google.com/mapfiles/ms/icons/red.png',
 				  label: '',
 				  opacity: 0.8,
 				  optimized: true,

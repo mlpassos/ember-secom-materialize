@@ -23,7 +23,7 @@ export default Ember.Route.extend({
 			console.log('addEquipe', equipe);
 			console.log('CRIADO POR', criadoPor);
 			
-			let get = Ember.RSVP.hash({
+			Ember.RSVP.hash({
 				criado_por: _this.store.findRecord('user', criadoPor).then(function(user){
 					pautaRecord.set('criado_por', user);
 					console.log('criado_por registrado com sucesso', user.get('displayName'));

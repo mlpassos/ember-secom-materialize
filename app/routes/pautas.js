@@ -17,7 +17,7 @@ export default Ember.Route.extend({
 				  id: 'pautalocal-'+item.get('slug'), 
 				  lat: item.get('lat'),
 				  lng: item.get('lng'),
-				  icon: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+				  icon: 'https://maps.google.com/mapfiles/ms/icons/red.png',
 				  label: '',
 				  opacity: 0.8,
 				  optimized: true,
@@ -39,7 +39,7 @@ export default Ember.Route.extend({
 			});
 		});
 	},
-	afterModel(model) {
+	afterModel() {
 		// this.set('model', model);
 		// console.log('this.model', model);
 		console.log('modelLen', this.get('modelLen'));
@@ -60,9 +60,9 @@ export default Ember.Route.extend({
 			console.log('ALTERAR PAUTA slug', slug);
 			this.router.transitionTo('pauta.alterar', slug);	
 		},
-		delPauta(slug) {
-			console.log('EXCLUIR PAUTA slug', slug);
-			this.router.transitionTo('pauta.excluir', slug);	
+		delPauta(id) {
+			console.log('EXCLUIR PAUTA id', id);
+			this.router.transitionTo('pauta.excluir', id);	
 		}
 	}
 });
