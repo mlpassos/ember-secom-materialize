@@ -33,7 +33,7 @@ Router.map(function() {
     this.route('excluir');
     this.route('loading');
   });
-  this.route('pautas');
+  this.route('pautas', function() {});
   this.route('cadastro');
   this.route('usuarios');
   this.route('usuario', {path: 'usuario/:uid'}, function() {

@@ -18,6 +18,14 @@ export default Ember.Component.extend({
 		      $grid.isotope('layout');
 		    });  
 		},
+		// didRender() {
+  //   		this._super(...arguments);
+		//   	alert('mudou');
+		// },
+		// uiSetup: function() {
+		//    // do magic here...
+		//    alert('mudou');
+		// }.on('didInsertElement').observes('model'),
 		actions: {
 			verPauta(slug) {
 				console.log('verPauta', slug);
@@ -29,6 +37,10 @@ export default Ember.Component.extend({
 			},
 			delPauta(id) {
 				console.log('delPauta', id);
+				// id.destroyRecord(); 
+        		// this.set('model',id);
+        		// this.rerender();
+				// console.log(this.get('modelLen'));
 				this.sendAction('on-del', id);
 			}
 		}

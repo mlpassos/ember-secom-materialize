@@ -5,13 +5,21 @@ export default Ember.Route.extend({
 	//     // deal with the change
 	//     console.log('MODEL MUDOU');
 	// }),
-	// model: '',
-	modelLen: Ember.computed('model', function() {
-		return this.modelFor(this.routeName).length;
-	}),
+	// model: null,
+	// model: null,
+	// modelLen: Ember.computed('model', function() {
+	// 	// return this.modelFor(this.routeName).length;
+	// 	console.log('modelLen UPDATED');
+	// 	// if (this.get('model')) {
+	// 	return this.get('model').length;
+	// 	// } else {
+	// 	// 	console.log('sem tamanho');
+	// 	// 	return null;
+	// 	// }
+	// }),
 	model() {
 		console.log('MODEL HAHA');
-		return this.store.findAll('pauta').then(function(pautas) {
+		return this.store.findAll('pauta', { reload:true }).then(function(pautas) {
 			return pautas.map(function(item) {
 				let marker = Ember.A([{
 				  id: 'pautalocal-'+item.get('slug'), 
@@ -42,10 +50,14 @@ export default Ember.Route.extend({
 	afterModel() {
 		// this.set('model', model);
 		// console.log('this.model', model);
-		console.log('modelLen', this.get('modelLen'));
+		// console.log('modelLen', this.get('modelLen'));
 		// model.addObserver(function() {
 		// 	console.log('MUDOU MUDOU');
 		// });
+	},
+	// setupController
+	deactivate() {
+		// this.set('modelLen', null);
 	},
 	actions: {
 		verPauta(slug) {
@@ -61,8 +73,29 @@ export default Ember.Route.extend({
 			this.router.transitionTo('pauta.alterar', slug);	
 		},
 		delPauta(id) {
+			let _this = this;
+			// let pauta = id;
 			console.log('EXCLUIR PAUTA id', id);
-			this.router.transitionTo('pauta.excluir', id);	
+			console.log('excluir pauta ', id);
+			// let localCopy = this.get('model');
+		    // id.destroyRecord(); 
+		    // this.set('model',id);
+			// console.log(this.get('modelLen'));
+			// id.deleteRecord();
+			// id.destroyRecord();
+			// this.store.findRecord('pauta', id, { reload: true }).then(function(pauta) {
+			// 	pauta.deleteRecord();
+			//     if (pauta.get('isDeleted')) {
+			//     	pauta.save().then(function() {
+			//     		console.log('EXCLUIR PRA SEMPRE');
+			//  //    		_this.set('model',)
+			//  //    		// _this.get('tam').reload();
+			//  //    		// console.log('modelLenUpdated', _this.get('modelLen'));
+			//     		// _this.router.transitionTo('pautas');	
+			//     	});
+			//     } 
+			// });
+			this.router.transitionTo('pauta.excluir', id);
 		}
 	}
 });
