@@ -12,9 +12,6 @@
             </div>
           </div>
         {{/if}}
-          {{!-- {{#each model as |item|}}
-            {{item.retranca}} <br>
-          {{/each}} --}}
           {{pautas-view model=model session=session on-ver="verPauta" on-edit="editPauta" on-del="delPauta"}}
       {{else}}
           <h1 class="header">Acesso negado</h1>

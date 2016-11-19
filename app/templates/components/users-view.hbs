@@ -2,7 +2,7 @@
 <div class="row isogrid">
   <div class="grid-sizer"></div>
 {{#each users as |user|}}
-  <div class="col l3 m4 s12 isoitem">
+  <div class="col l3 m4 s12 isoitem item-{{user.id}}">
     {{#md-card title=user.displayName
     image=user.photoURL
     activator=true}}
@@ -10,6 +10,9 @@
 	    {{md-btn text='Perfil' on-action="goPerfil" action="goPerfil" actionArg=user.uid
 			buttonType="flat" 
 			class='indigo white-text btn-ler-mais'}}
+      {{md-btn text='Excluir' on-del="delUser" action="delUser" actionArg=user
+      buttonType="flat" 
+      class='indigo white-text btn-ler-mais'}}
     {{/md-card-content}}
     {{#md-card-reveal}}
     	<small class="text-left">Resumo sobre o usuário...</small>

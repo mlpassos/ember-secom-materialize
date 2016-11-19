@@ -2,14 +2,14 @@
 <div class="row isogrid">
   <div class="grid-sizer"></div>
 {{#each model as |pauta|}}
-  <div class="col l3 m4 s12 isoitem">
+  <div class="col l4 m6 s12 isoitem item-{{pauta.id}}">
   {{!-- {{g-maps name="my-map" lat=lat lng=lng zoom=zoom  class="img-responsive"}}  --}}
     {{!-- {{#if pauta.lat}}
       {{log 'markers' pauta.marker}}
       {{g-maps name="my-map" lat=pauta.lat lng=pauta.lng markers=pauta.marker zoom=14 class="img-responsive"}}
     {{/if}} --}}
     {{#md-card title=pauta.retranca
-    image=(pauta-minimap pauta.lat pauta.lng)
+    image=(pauta-minimap pauta.lat pauta.lng "listar")
     activator=true}}
     {{#md-card-content}}
       <br>
@@ -39,7 +39,7 @@
   			class='indigo white-text btn-ler-mais'}}
       {{/if}}
       {{!-- {{link-to "excluir" "pauta.excluir" pauta.slug}} --}}
-      <a href="#" {{action "delPauta" pauta.id}}>excluir</a>
+      <a href="#" {{action "delPauta" pauta}}>excluir</a>
       {{!-- {{link-to "excluir" "pautas.del" pauta.id}} --}}
     {{/md-card-content}}
     {{#md-card-reveal}}

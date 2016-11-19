@@ -46,6 +46,7 @@ export default ToriiFirebaseAdapter.extend({
 		    	currentUser: user
 		    };
 		} else {
+			// return
 			return user.get('funcao').then(function(funcao) {
 				console.log('open isNew', user.isNew);
 				if (funcao) {

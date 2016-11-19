@@ -12,6 +12,11 @@ export default DS.Model.extend({
     	defaultValue() { 
     		return new Date(); 
     	}
+  	}),
+  	isOnline: attr('boolean', {
+    	defaultValue() { 
+    		return false;
+    	}
   	})
 	// pautas: DS.hasMany('pauta')
 	// producao: DS.hasMany('pauta')

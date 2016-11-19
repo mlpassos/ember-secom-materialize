@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 		routing: Ember.inject.service(),
-		// mason:
+		grid: null,
 		init() {
 			this._super(...arguments);
 			console.log('Iniciando componente PAUTAS-VIEW...');
@@ -14,18 +14,11 @@ export default Ember.Component.extend({
 		      layoutMode: 'fitRows',
 		      percentPosition: true
 		    });
+		    this.set('grid', $grid);
 		    $grid.imagesLoaded().progress( function() {
 		      $grid.isotope('layout');
 		    });  
 		},
-		// didRender() {
-  //   		this._super(...arguments);
-		//   	alert('mudou');
-		// },
-		// uiSetup: function() {
-		//    // do magic here...
-		//    alert('mudou');
-		// }.on('didInsertElement').observes('model'),
 		actions: {
 			verPauta(slug) {
 				console.log('verPauta', slug);
@@ -35,13 +28,25 @@ export default Ember.Component.extend({
 				console.log('editPauta', slug);
 				this.sendAction('on-edit', slug);
 			},
-			delPauta(id) {
-				console.log('delPauta', id);
-				// id.destroyRecord(); 
-        		// this.set('model',id);
-        		// this.rerender();
-				// console.log(this.get('modelLen'));
-				this.sendAction('on-del', id);
+			delPauta(pauta) {
+				console.log('delPauta', pauta.get('id'));
+				let _this = this;
+				let $grid = this.get('grid');
+				let item = this.$('.item-'+pauta.get('id'));
+				// pauta.destroyRecord();
+				pauta.deleteRecord();
+			    if (pauta.get('isDeleted')) {
+			    	pauta.save().then(function() {
+			    		console.log('EXCLUIDO PRA SEMPRE');
+			    		$grid.isotope( 'remove', item ).isotope('layout');
+			    		_this.sendAction('on-del', true);
+			    	}, function() {
+			    		console.log('DEU BUG AO EXCLUIR');
+			    		_this.sendAction('on-del', false);
+			    	});
+			    }
+				console.log('grid', $grid);
+				console.log('item', item);
 			}
 		}
 });

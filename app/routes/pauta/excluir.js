@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	model() {
+	beforeModel() {
 		let _this = this;
 		let id = Ember.get(this.modelFor('pauta'), 'slug');
 		console.log('excluir pauta ', id);

@@ -1,0 +1,92 @@
+<div class="container">
+	{{!-- LOCAL FORMADO POR LAT E LNG COM MAPA --}}
+	<div class="row">
+		{{log 'marker' pauta.marker}}
+		  <div class="col s12 m12 l12">
+		  	{{g-maps name="my-map" lat=pauta.lat lng=pauta.lng zoom=14 markers=pauta.marker  class="img-responsive"}}
+		  </div>
+	</div>
+	<div class="row">
+		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
+		
+		{{md-input-date label='Data' value=pauta.dataFormatada class="col s12 m12"}}
+
+		{{md-input value=pauta.local label='Local' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}
+	</div>
+	{{!-- CONTEÚDOS LONGOS --}}
+	<div class="row">
+	  {{md-textarea label='Encaminhamento'
+	    value=pauta.encaminhamento class="col s12"}}
+	</div>
+	<div class="row">
+	  {{md-textarea label='Informações'
+	    value=pauta.informacoes class="col s12"}}
+	</div>
+	<div class="row">
+	  {{md-textarea label='Sugestões'
+	    value=pauta.sugestoes class="col s12"}}
+	</div>
+
+	{{!-- EQUIPE --}}
+	<div class="row">
+		<div class="col s12 l12 m12">
+			<label>Equipe</label>
+		</div>
+		<div class="col s12 l12 m12">
+			<ul class="list-inline list-unstyled">
+				{{#each pauta.equipe as |user|}}
+				  <li>
+				  	<img src="{{user.photoURL}}" alt="imagem do usuário da equipe" class="card-user-image">
+				  </li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+
+	{{!-- ESCOLHER USUÁRIOS PARA EQUIPE --}}
+
+	{{!-- <div class="row">
+		{{md-select content=users  
+		  value=users.id  
+		  label="Usuários" 
+		  prompt="Escolher..." 
+		  optionLabelPath="content.displayName" 
+		  optionValuePath="content.id" class="col s12"}}
+	</div> --}}
+
+	{{!-- PRODUÇÃO --}}
+	<div class="row">
+		<div class="col s12 l12 m12">
+			<label>Produção</label>
+		</div>
+		<div class="col s12 l12 m12">
+			<ul class="list-inline list-unstyled">
+				{{#each pauta.producao as |user|}}
+				  <li>
+				  	<img src="{{user.photoURL}}" alt="imagem do usuário da equipe" class="card-user-image">
+				  </li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+
+	{{!-- ESCOLHER USUÁRIOS PARA PRODUÇÃO --}}
+
+	{{!-- <div class="row">
+		{{md-select content=users  
+		  value=users.id  
+		  label="Usuários" 
+		  prompt="Escolher..." 
+		  optionLabelPath="content.displayName" 
+		  optionValuePath="content.id" class="col s12"}}
+	</div>
+	<div class="row">
+		<div class="col s12 m12">
+			{{md-btn-submit icon='mdi-content-send'
+		    iconPosition='right' action="savePauta" on-action="savePauta" actionArg=pauta     
+		    text='Gravar'}}
+		</div>
+	</div> --}}
+</div>
