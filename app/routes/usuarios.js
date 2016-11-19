@@ -22,7 +22,7 @@ export default TransitionToListenerRoute.extend({
             this.router.transitionTo('usuario.perfil', uid);
         },
         delUser(user) {
-            console.log('deleted');
+            console.log('deleted ', user.get('displayName'));
         }
     }
 });

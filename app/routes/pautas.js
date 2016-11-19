@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 	model() {
 		console.log('MODEL HAHA');
-		return this.store.findAll('pauta');
+		return this.store.findAll('pauta', { reload:true } );
 	},
 	actions: {
 		verPauta(slug) {

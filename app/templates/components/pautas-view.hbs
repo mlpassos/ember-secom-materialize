@@ -2,66 +2,68 @@
 <div class="row isogrid">
   <div class="grid-sizer"></div>
 {{#each model as |pauta|}}
-  <div class="col l4 m6 s12 isoitem item-{{pauta.id}}">
-  {{!-- {{g-maps name="my-map" lat=lat lng=lng zoom=zoom  class="img-responsive"}}  --}}
-    {{!-- {{#if pauta.lat}}
-      {{log 'markers' pauta.marker}}
-      {{g-maps name="my-map" lat=pauta.lat lng=pauta.lng markers=pauta.marker zoom=14 class="img-responsive"}}
-    {{/if}} --}}
-    {{#md-card title=pauta.retranca
-    image=(pauta-minimap pauta.lat pauta.lng "listar")
-    activator=true}}
-    {{#md-card-content}}
-      <br>
-      <p>
-        {{substr pauta.encaminhamento size=12}}
-        {{!-- {{pauta.encaminhamento}} --}}
-      </p>
-      <br>
-      <p>
-        Envolvidos: {{pautas-total-users pauta.equipe}}
-      </p>
-      <ul class="list-inline list-unstyled">
-        {{#each pauta.equipe as |user|}}
-          <li>
-            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do usuário participante da equipe" title="{{user.displayName}}">
-          </li>
-        {{/each}}
-      </ul>
-      <br>
-      {{#if session.currentUser.isAdmin}}
-        {{md-btn text='Abrir pauta' on-edit="editPauta" action="editPauta" actionArg=pauta.slug 
-          buttonType="flat" 
-          class='indigo white-text btn-ler-mais'}}
-      {{else}}
-  	    {{md-btn text='Ver pauta' on-ver="verPauta" action="verPauta" actionArg=pauta.slug 
-  			buttonType="flat" 
-  			class='indigo white-text btn-ler-mais'}}
-      {{/if}}
-      {{!-- {{link-to "excluir" "pauta.excluir" pauta.slug}} --}}
-      <a href="#" {{action "delPauta" pauta}}>excluir</a>
-      {{!-- {{link-to "excluir" "pautas.del" pauta.id}} --}}
-    {{/md-card-content}}
-    {{#md-card-reveal}}
-      <p>
-        Data e Hora:
-        <hr>
-        {{pauta.dataHora}}
-      </p>
-      <p>
-        Local:
-        <hr>
-        {{pauta.local}}
-      </p>
-      <p>
-        Informações:
-        <hr>
-        <small class="text-left">
-          {{pauta.informacoes}}
-        </small>
-      </p>
-    {{/md-card-reveal}}
-{{/md-card}}
-  </div>
+  {{#unless pauta.isDeleted}}
+    <div class="col l4 m6 s12 isoitem item-{{pauta.id}}">
+    {{!-- {{g-maps name="my-map" lat=lat lng=lng zoom=zoom  class="img-responsive"}}  --}}
+      {{!-- {{#if pauta.lat}}
+        {{log 'markers' pauta.marker}}
+        {{g-maps name="my-map" lat=pauta.lat lng=pauta.lng markers=pauta.marker zoom=14 class="img-responsive"}}
+      {{/if}} --}}
+      {{#md-card title=pauta.retranca
+      image=(pauta-minimap pauta.lat pauta.lng "listar")
+      activator=true}}
+      {{#md-card-content}}
+        <br>
+        <p>
+          {{substr pauta.encaminhamento size=12}}
+          {{!-- {{pauta.encaminhamento}} --}}
+        </p>
+        <br>
+        <p>
+          Envolvidos: {{pautas-total-users pauta.equipe}}
+        </p>
+        <ul class="list-inline list-unstyled">
+          {{#each pauta.equipe as |user|}}
+            <li>
+              <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do usuário participante da equipe" title="{{user.displayName}}">
+            </li>
+          {{/each}}
+        </ul>
+        <br>
+        {{#if session.currentUser.isAdmin}}
+          {{md-btn text='Abrir pauta' on-edit="editPauta" action="editPauta" actionArg=pauta.slug 
+            buttonType="flat" 
+            class='indigo white-text btn-ler-mais'}}
+        {{else}}
+    	    {{md-btn text='Ver pauta' on-ver="verPauta" action="verPauta" actionArg=pauta.slug 
+    			buttonType="flat" 
+    			class='indigo white-text btn-ler-mais'}}
+        {{/if}}
+        {{!-- {{link-to "excluir" "pauta.excluir" pauta.slug}} --}}
+        <a href="#" {{action "delPauta" pauta}}>excluir</a>
+        {{!-- {{link-to "excluir" "pautas.del" pauta.id}} --}}
+      {{/md-card-content}}
+      {{#md-card-reveal}}
+        <p>
+          Data e Hora:
+          <hr>
+          {{pauta.dataHora}}
+        </p>
+        <p>
+          Local:
+          <hr>
+          {{pauta.local}}
+        </p>
+        <p>
+          Informações:
+          <hr>
+          <small class="text-left">
+            {{pauta.informacoes}}
+          </small>
+        </p>
+      {{/md-card-reveal}}
+  {{/md-card}}
+    </div>
+  {{/unless}}
 {{/each}}
 </div>
