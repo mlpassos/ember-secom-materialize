@@ -5,6 +5,11 @@ export default Ember.Route.extend({
 		console.log('MODEL HAHA');
 		return this.store.findAll('pauta', { reload:true } );
 	},
+	// setupController(controller, model) {
+	// 	this._super(...arguments);
+	// 	console.log('controller model', model.get('length'));
+	// 	controller.set('len', model.get('length'));
+	// },
 	actions: {
 		verPauta(slug) {
 			console.log('VER PAUTA slug', slug);

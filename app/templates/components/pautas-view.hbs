@@ -1,14 +1,13 @@
 {{yield}}
+{{!-- {{#each model as |item|}}
+    {{item.retranca}} <br>
+{{/each}} --}}
+{{!-- Tamanho (component): {{len}} --}}
 <div class="row isogrid">
   <div class="grid-sizer"></div>
 {{#each model as |pauta|}}
-  {{#unless pauta.isDeleted}}
+  {{!-- {{#unless pauta.isDeleted}} --}}
     <div class="col l4 m6 s12 isoitem item-{{pauta.id}}">
-    {{!-- {{g-maps name="my-map" lat=lat lng=lng zoom=zoom  class="img-responsive"}}  --}}
-      {{!-- {{#if pauta.lat}}
-        {{log 'markers' pauta.marker}}
-        {{g-maps name="my-map" lat=pauta.lat lng=pauta.lng markers=pauta.marker zoom=14 class="img-responsive"}}
-      {{/if}} --}}
       {{#md-card title=pauta.retranca
       image=(pauta-minimap pauta.lat pauta.lng "listar")
       activator=true}}
@@ -64,6 +63,6 @@
       {{/md-card-reveal}}
   {{/md-card}}
     </div>
-  {{/unless}}
+  {{!-- {{/unless}} --}}
 {{/each}}
 </div>
