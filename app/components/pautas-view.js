@@ -59,7 +59,7 @@ export default Ember.Component.extend({
 			    if (pauta.get('isDeleted')) {
 			    	pauta.save().then(function() {
 			    		console.log('EXCLUIDO PRA SEMPRE');
-			    		// $grid.isotope( 'remove', item ).isotope('layout');
+			    		$grid.isotope( 'remove', item ).isotope('layout');
 			    		_this.sendAction('on-del', true);
 			    	}, function() {
 			    		console.log('DEU BUG AO EXCLUIR');
