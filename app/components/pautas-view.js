@@ -31,6 +31,12 @@ export default Ember.Component.extend({
 			this._super(...arguments);
 			console.log('didUpdateAttrs no pautas');
 		},
+		// didUpdateAttrs(options){
+		// 	this._super(...arguments);
+		//     if( options.newAttrs.myAttr !== options.oldAttrs.myAttr ){
+		//     	console.log('didUpdateAttrs no pautas');
+		//     }
+		// },
 		actions: {
 			verPauta(slug) {
 				console.log('verPauta', slug);
