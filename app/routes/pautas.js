@@ -24,7 +24,13 @@ export default Ember.Route.extend({
 			this.router.transitionTo('pauta.alterar', slug);	
 		},
 		delPauta(result) {
-			console.log((result === true) ? 'excluído do backend' : 'deu algum problema');
+			// console.log((result === true) ? 'excluído do backend' : 'deu algum problema');
+			if (result === false) {
+				console.log('erro');
+			} else {
+				console.log('unload record', result.get('retranca'));
+				this.store.unloadRecord(result);	
+			}
 		}
 	}
 });
