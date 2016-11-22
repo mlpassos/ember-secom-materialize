@@ -33,9 +33,9 @@ export default Ember.Route.extend({
 					return _this.store.findRecord('user', user.id).then(function(user){
 						// console.log('len', user.get('displayName'));
 						pautaRecord.get('equipe').addObject(user);
-						return pautaRecord.save().then(function() {
-							console.log('pauta adicionada para equipe: ' + user.get('displayName'));
-						});
+						// return pautaRecord.save().then(function() {
+						// 	console.log('pauta adicionada para equipe: ' + user.get('displayName'));
+						// });
 					});
 				}),
 			    producao: producaoItems.map(function(user) {
@@ -43,14 +43,17 @@ export default Ember.Route.extend({
 					return _this.store.findRecord('user', user.id).then(function(user){
 						// console.log('len', user.get('displayName'));
 						pautaRecord.get('producao').addObject(user);
-						return pautaRecord.save().then(function() {
-							console.log('pauta adicionada para producao: ' + user.get('displayName'));
-						});
+						// return pautaRecord.save().then(function() {
+						// 	console.log('pauta adicionada para producao: ' + user.get('displayName'));
+						// });
 					});
 				})
 			}).then(function() {
-				// pauta adicionada, redireciona pra alterar agora...
-				_this.router.transitionTo('pauta.alterar', pautaRecord.get('slug'));
+				console.log('criou na store', pautaRecord.get('isNew'));
+				pautaRecord.save().then(function() {
+					console.log('e agora persistiu');
+					_this.router.transitionTo('pauta.alterar', pautaRecord.get('slug'));
+				});
 			});
 		},
 		addUserToEquipe(user) {

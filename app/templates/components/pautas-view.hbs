@@ -2,15 +2,17 @@
 {{!-- {{#each model as |item|}}
     {{item.retranca}} <br>
 {{/each}} --}}
+
 {{!-- Tamanho (component): {{len}} --}}
 <div class="row isogrid">
   <div class="grid-sizer"></div>
+
 {{#each model as |pauta|}}
   {{!-- {{#unless pauta.isDeleted}} --}}
     <div class={{pauta-class pauta.id}}>
       {{#md-card title=pauta.retranca
       image=(pauta-minimap pauta.lat pauta.lng "listar")
-      activator=true}}
+      activator=true on-entrou="entrouPauta" mlen=model.length id=pauta.id}}
         {{#md-card-content}}
           <br>
           <p>
