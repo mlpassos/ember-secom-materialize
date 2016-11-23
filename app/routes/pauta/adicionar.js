@@ -3,7 +3,11 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 	equipepauta: Ember.inject.service(),
 	model() {
-		return this.store.findAll('user');	
+		// return this.store.findAll('user');
+		return Ember.RSVP.hash({
+			pauta: this.store.createRecord('pauta'),
+			user: this.store.findAll('user')
+		});
 	},
 	deactivate() {
 		let equipe = this.get('equipepauta');
@@ -18,7 +22,7 @@ export default Ember.Route.extend({
 			let equipeItems = this.get('equipepauta.equipe');			
 			let producaoItems = this.get('equipepauta.producao');
 			let criadoPor = pauta.criado_por;
-			let pautaRecord = this.store.createRecord('pauta', pauta);
+			let pautaRecord = pauta; // this.store.createRecord('pauta', pauta);
 			
 			console.log('addEquipe', equipe);
 			console.log('CRIADO POR', criadoPor);

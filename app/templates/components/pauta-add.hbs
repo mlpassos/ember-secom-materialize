@@ -5,19 +5,19 @@
 		  </div>
 	</div>
 	<div class="row">
-		{{md-input value=retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
 
 		<div class="col s12 m12 l12">
 			<label for="local">Local</label>
-			{{g-autocomplete value=local on-select=(action 'didUpdatePlace')}}
+			{{g-autocomplete value=pauta.local on-select=(action 'didUpdatePlace')}}
 		</div>
 
-		{{md-input-date label='Data' value=dataHora class="col s12 m12"}}
+		{{md-input-date label='Data' value=pauta.dataHora class="col s12 m12"}}
 		
 		{{!-- {{md-input value=local label='Local' type="text" class="col s12 m12" validate=true}} --}}
 		
-		{{md-input value=entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=contato label='Contato' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}
 	</div>
 	{{!-- <div class="row">
 		<div class="col s12 m12 l12">
@@ -26,15 +26,15 @@
 	</div> --}}
 	<div class="row">
 	  {{md-textarea label='Encaminhamento'
-	    value=encaminhamento class="col s12"}}
+	    value=pauta.encaminhamento class="col s12"}}
 	</div>
 	<div class="row">
 	  {{md-textarea label='Informações'
-	    value=informacoes class="col s12"}}
+	    value=pauta.informacoes class="col s12"}}
 	</div>
 	<div class="row">
 	  {{md-textarea label='Sugestões'
-	    value=sugestoes class="col s12"}}
+	    value=pauta.sugestoes class="col s12"}}
 	</div>
 
 
@@ -99,8 +99,7 @@
 	<div class="row">
 		<div class="col s12 m12">
 			{{md-btn-submit icon='mdi-content-send'
-		    iconPosition='right' action="addPauta" on-action="addPauta"      
-		    text='Adicionar pauta'}}
+		    iconPosition='right' action="addPauta" on-action="addPauta" actionArg=pauta text='Adicionar pauta'}}
 		</div>
 	</div>
 </div>

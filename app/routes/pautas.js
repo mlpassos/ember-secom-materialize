@@ -29,7 +29,11 @@ export default Ember.Route.extend({
 				console.log('erro');
 			} else {
 				console.log('unload record', result.get('retranca'));
-				this.store.unloadRecord(result);	
+				// this.store.unloadRecord(result);
+				// result.destroyRecord();
+				// .then(function() {
+				// 	console.log('RECORD UNLOADED');
+				// });	
 			}
 		}
 	}

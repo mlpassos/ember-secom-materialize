@@ -108,30 +108,30 @@ export default Ember.Component.extend({
 			this.set('markers', markers);
 			console.log(markers);
 		},
-		addPauta() {
+		addPauta(pauta) {
 			// console.log(cleanURL(this.get('retranca')));
 			console.log('ID USER CRIADOR: ' + this.get('session.currentUser.id'));
-			let data = new Date(this.get('dataHora'));
+			let data = new Date(pauta.get('dataHora'));
 			// let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 			// let dataFormatada = data.toLocaleDateString('pt-BR', options);
 			// let dataFormatada = ("0" + data.getDate()).substr(-2) + "/" 
    //  			+ ("0" + (data.getMonth() + 1)).substr(-2) + "/" + data.getFullYear();
 			// console.log(dataFormatada);
-			let pauta = {
-				retranca: this.get('retranca'),
-				slug: cleanURL(this.get('retranca')),
-				dataHora: data,
-				local: this.get('place.name'),
-				lat: this.get('lat'),
-				lng: this.get('lng'),
-				entrevistado: this.get('entrevistado'),
-				contato: this.get('contato'),
-				encaminhamento: this.get('encaminhamento'),
-				informacoes: this.get('informacoes'),
-				criado_por: this.get('session.currentUser.id'),
-				sugestoes: this.get('sugestoes')
-			};
-			console.log('addPauta', pauta.retranca);
+			// let pauta = {
+			// 	retranca: this.get('retranca'),
+				pauta.set('slug', cleanURL(pauta.get('retranca')));
+				pauta.set('dataHora', data);
+				pauta.set('local', this.get('place.name'));
+				pauta.set('lat', this.get('lat'));
+				pauta.set('lng', this.get('lng'));
+				pauta.criado_por = this.get('session.currentUser.id');
+			// 	entrevistado: this.get('entrevistado'),
+			// 	contato: this.get('contato'),
+			// 	encaminhamento: this.get('encaminhamento'),
+			// 	informacoes: this.get('informacoes'),
+			// 	sugestoes: this.get('sugestoes')
+			// };
+			console.log('addPauta', pauta.slug);
 			this.sendAction('on-action', pauta);
 		},
 		addUserToEquipe(user) {
