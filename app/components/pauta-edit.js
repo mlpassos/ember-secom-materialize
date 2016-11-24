@@ -15,10 +15,10 @@ export default Ember.Component.extend({
 		}
 	},
 	pauta: '',
-	lat: -1.4524,
-	lng: -48.4887233,
+	// lat: -1.4524,
+	// lng: -48.4887233,
 	place: '',
-	zoom: 14,
+	// zoom: 14,
 	markers: Ember.A([
 	{
 	  id: 'pautalocal', 
@@ -42,6 +42,54 @@ export default Ember.Component.extend({
 	init() {
 		this._super(...arguments);
 		console.log('Iniciando componente PAUTA-EDIT...');
+	},
+	didRender() {
+		this._super(...arguments);
+		console.log('RENDER ALTERAR');
+		// let lat = this.get('pauta').get('lat');
+		// let lng = this.get('pauta').get('lng');
+		// let local = this.get('pauta').get('local');
+		// let marker = this.get('markers').map(function(marker) {
+		// 	console.log(marker.id);
+		// 	marker.lat = lat;
+		// 	marker.lng = lng;
+		// 	marker.infoWindow.content = local;
+		// 	return marker;
+		// });
+		// this.set('markers', marker);
+		// console.log(this.get('markers'));
+	},
+	didReceiveAttrs() {
+		this._super(...arguments);
+		console.log('RECEBEU ALTERAR');
+		let lat = this.get('pauta').get('lat');
+		let lng = this.get('pauta').get('lng');
+		let local = this.get('pauta').get('local');
+		let marker = this.get('markers').map(function(marker) {
+			console.log(marker.id);
+			marker.lat = lat;
+			marker.lng = lng;
+			marker.infoWindow.content = local;
+			return marker;
+		});
+		this.set('markers', marker);
+		console.log(this.get('markers'));
+	},
+	didUpdateAttrs(options) {
+		this._super(...arguments);
+		console.log('UPDATE ALTERAR', options);
+		// let lat = this.get('pauta').get('lat');
+		// let lng = this.get('pauta').get('lng');
+		// let local = this.get('pauta').get('local');
+		// let marker = this.get('markers').map(function(marker) {
+		// 	console.log(marker.id);
+		// 	marker.lat = lat;
+		// 	marker.lng = lng;
+		// 	marker.infoWindow.content = local;
+		// 	return marker;
+		// });
+		// this.set('markers', marker);
+		// console.log(this.get('markers'));
 	},
 	actions: {
 		editPauta(pauta) {
@@ -82,7 +130,7 @@ export default Ember.Component.extend({
 				// item.place = obj.place;
 				return item;
 			});
-			this.set('pauta.marker', markers);
+			this.set('markers', markers);
 			console.log(markers);
 		}
 	},

@@ -16,28 +16,28 @@ export default Ember.Route.extend({
 				console.log('dth', dth);
 				pauta.set('dataHora', dth);
 
-				let marker = Ember.A([{
-				  id: 'pautalocal', 
-				  lat: pauta.get('lat'),
-				  lng: pauta.get('lng'),
-				  icon: 'https://maps.google.com/mapfiles/ms/icons/red.png',
-				  label: '',
-				  opacity: 0.8,
-				  optimized: true,
-				  infoWindow: {
-					content: '<div>' + pauta.get('local') + '</div>',
-				    visible: false
-				  },
-				  animation: window.google.maps.Animation.DROP,
-				  clickable: true,
-				  crossOnDrag: true,
-				  cursor: 'pointer',
-				  draggable: false,
-				  title: 'string',
-				  visible: true,
-				  zIndex: 999
-				}]);
-				pauta.set('marker', marker);
+				// let marker = Ember.A([{
+				//   id: 'pautalocal', 
+				//   lat: pauta.get('lat'),
+				//   lng: pauta.get('lng'),
+				//   icon: 'https://maps.google.com/mapfiles/ms/icons/red.png',
+				//   label: '',
+				//   opacity: 0.8,
+				//   optimized: true,
+				//   infoWindow: {
+				// 	content: '<div>' + pauta.get('local') + '</div>',
+				//     visible: false
+				//   },
+				//   animation: window.google.maps.Animation.DROP,
+				//   clickable: true,
+				//   crossOnDrag: true,
+				//   cursor: 'pointer',
+				//   draggable: false,
+				//   title: 'string',
+				//   visible: true,
+				//   zIndex: 999
+				// }]);
+				// pauta.set('marker', marker);
 
 				return pauta;
 			}),

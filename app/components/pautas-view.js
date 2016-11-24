@@ -64,8 +64,7 @@ export default Ember.Component.extend({
 				if (this.get('entrou') === false) {
 					let $grid = this.get('grid');
 					let $item = this.$('.item'+obj.id);
-					// let $items = [];
-										
+
 					console.log('LIGA ISOTOPE');
 
 					switch(obj.status) {
@@ -85,6 +84,7 @@ export default Ember.Component.extend({
 						    //   $grid.isotope('layout');
 						    // });
 						    // this.set('grid', $grid);
+						    this.set('entrou', true);
 					        break;
 					    case 'atualizado':
 					        console.log('ATUALIZADO');
@@ -96,6 +96,16 @@ export default Ember.Component.extend({
 					    	console.log('REMOVIDO');
 					    	// $item.css('background-color', 'red');
 					    	$grid.isotope( 'remove', $item ).isotope('layout');
+					    	// debugger;
+					    	this.get('model').map((pauta) => {
+					    		if (pauta.get('id') === obj.id) {
+						    		console.log('get pauta', pauta);
+						    		console.log('isDeleted', pauta.get('isDeleted'));          // true
+						    		console.log('isSaving', pauta.get('isSaving'));           // false
+						    		console.log('hasDirtyAttributes', pauta.get('hasDirtyAttributes')); //
+						    	}
+					    	});
+					    	this.set('entrou', true);
 					    	break;
 					    default:
 					        alert('erro, sem status');
@@ -104,10 +114,10 @@ export default Ember.Component.extend({
 					// console.log('isoItem', item[0]);
 					// $grid.isotope( 'insert', $items[0] );
 					console.log('CHEGUEI AQUI');
-					this.set('entrou', true);
+					// this.set('entrou', true);
 				} else {
-					console.log('status', obj.status);
-					console.log('SEM ISOTOPE POIS JA ENTROU');
+					// console.log('status', obj.status);
+					// console.log('SEM ISOTOPE POIS JA ENTROU');
 				}
 			},
 			verPauta(slug) {
@@ -129,6 +139,10 @@ export default Ember.Component.extend({
 			    if (pauta.get('isDeleted')) {
 			    	pauta.save().then(function() {
 			    		console.log('EXCLUIDO PRA SEMPRE', item);
+			    		// console.log('pauta hasDirtyAttributes', pauta.get('hasDirtyAttributes'));
+			    		console.log('isDeleted', pauta.get('isDeleted'));          // true
+					    console.log('isSaving', pauta.get('isSaving'));           // false
+					    console.log('hasDirtyAttributes', pauta.get('hasDirtyAttributes')); // false
 			    		$grid.isotope( 'remove', item ).isotope('layout');
 			    		// _this.get('store').unloadRecord(pauta);
 			    		_this.sendAction('on-del', pauta);

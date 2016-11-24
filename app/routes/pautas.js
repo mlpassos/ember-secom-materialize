@@ -28,7 +28,7 @@ export default Ember.Route.extend({
 			if (result === false) {
 				console.log('erro');
 			} else {
-				console.log('unload record', result.get('retranca'));
+				console.log('unloaded record', result.get('retranca'));
 				// this.store.unloadRecord(result);
 				// result.destroyRecord();
 				// .then(function() {

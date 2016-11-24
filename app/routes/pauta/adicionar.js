@@ -13,6 +13,14 @@ export default Ember.Route.extend({
 		let equipe = this.get('equipepauta');
 		equipe.empty();
 		console.log('SERVICE CLEARED');
+		console.log('to clear');
+		let pauta = this.modelFor(this.routeName).pauta;
+		
+		console.log('isNew', pauta.get('isNew'));
+		console.log('isDeleted', pauta.get('isDeleted'));
+		console.log('isSaving', pauta.get('isSaving'));
+		console.log('hasDirtyAttributes', pauta.get('hasDirtyAttributes'));
+		pauta.destroyRecord();
 	},
 	actions: {
 		addPauta(pauta) {
