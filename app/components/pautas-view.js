@@ -56,7 +56,25 @@ export default Ember.Component.extend({
 		// },
 		didRender() {
 			this._super(...arguments);
-			console.log('RENDER PAUTA', this.get('entrou'));
+			let $grid = this.get('grid');
+			// let isDeleted = this.$('.isogrid').children('.isoitem').hasClass('pauta-deleted');
+			// console.log('RENDER PAUTA', this.get('entrou'));
+			// console.log('DELETADO AI GENTE?', isDeleted);
+			// if (isDeleted === true) {
+				this.$('.isogrid').children('.isoitem').each(function(item) {
+					let $el = $(this);
+					if ($el.hasClass('pauta-deleted')) {
+						console.log('TEM ALGUEM AQUI');
+						$grid.isotope( 'remove', $el ).isotope('layout');
+					}
+				});
+			// }
+			// console.log('isDeleted', isDeleted);
+			// if (isDeleted === true) {
+			// 	let $grid = this.get('grid');
+			// 	$grid.isotope();
+			// }
+
 			this.set('entrou', false);
 		},
 		actions: {

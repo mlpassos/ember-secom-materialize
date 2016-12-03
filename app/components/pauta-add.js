@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import cleanURL from '../utils/cleanurl';  
+import cleanURL from '../utils/cleanurl';
 
 export default Ember.Component.extend({
 	// equipe: [],
@@ -111,7 +111,11 @@ export default Ember.Component.extend({
 		addPauta(pauta) {
 			// console.log(cleanURL(this.get('retranca')));
 			console.log('ID USER CRIADOR: ' + this.get('session.currentUser.id'));
+			// let data = dateUtil(pauta.get('dataHora'));
 			let data = new Date(pauta.get('dataHora'));
+			// debugger;
+			console.log('data', data);
+			console.log('dataForm', pauta.get('dataHora'));
 			// let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 			// let dataFormatada = data.toLocaleDateString('pt-BR', options);
 			// let dataFormatada = ("0" + data.getDate()).substr(-2) + "/" 

@@ -13,14 +13,19 @@ export default Ember.Route.extend({
 		let equipe = this.get('equipepauta');
 		equipe.empty();
 		console.log('SERVICE CLEARED');
-		console.log('to clear');
+		// console.log('to clear');
 		let pauta = this.modelFor(this.routeName).pauta;
-		
-		console.log('isNew', pauta.get('isNew'));
-		console.log('isDeleted', pauta.get('isDeleted'));
-		console.log('isSaving', pauta.get('isSaving'));
-		console.log('hasDirtyAttributes', pauta.get('hasDirtyAttributes'));
-		pauta.destroyRecord();
+		if (pauta.get('isNew')) {
+			console.log('É NOVA');
+			console.log('isNew', pauta.get('isNew'));
+			console.log('isDeleted', pauta.get('isDeleted'));
+			console.log('isSaving', pauta.get('isSaving'));
+			console.log('hasDirtyAttributes', pauta.get('hasDirtyAttributes'));
+			pauta.destroyRecord();
+		} else {
+			console.log('JA SALVOU');
+			// faz nada, vai pro alterar
+		}
 	},
 	actions: {
 		addPauta(pauta) {
@@ -34,6 +39,7 @@ export default Ember.Route.extend({
 			
 			console.log('addEquipe', equipe);
 			console.log('CRIADO POR', criadoPor);
+			console.log('DATA PAUTA', pautaRecord.get('dataHora'));
 			
 			Ember.RSVP.hash({
 				criado_por: _this.store.findRecord('user', criadoPor).then(function(user){

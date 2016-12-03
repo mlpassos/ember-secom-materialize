@@ -53,16 +53,17 @@ export default Ember.Route.extend({
 	deactivate() {
 		console.log('LIMPANDO PAUTA');
 		let pauta = this.get('pauta');
+		let changed = Object.keys(pauta.changedAttributes()).length;
 		console.log('clean', pauta);
 		if (this.get('isSaved')) {
 			// se gravou, tem algo novo?
-			let changed = Object.keys(pauta.changedAttributes()).length;
-			console.log('changed', changed);
+			console.log('changed isSaved', changed);
 			if (changed) {
 				// se tem algo novo, limpa que nao ta salvo
 				pauta.rollbackAttributes();	
 			}
 		} else {
+			console.log('changed isNotSaved', changed);
 			pauta.rollbackAttributes();
 		}
 		this.set('isSaved', false);

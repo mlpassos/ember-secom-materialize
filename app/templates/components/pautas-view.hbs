@@ -9,7 +9,7 @@
 
 {{#each model as |pauta|}}
   {{!-- {{#unless pauta.isDeleted}} --}}
-    <div class={{pauta-class pauta.id}}>
+    <div class={{pauta-class pauta.id pauta.isDeleted}}>
       {{#md-card title=pauta.retranca
       image=(pauta-minimap pauta.lat pauta.lng "listar")
       activator=true on-entrou="entrouPauta" mlen=model.length id=pauta.id}}
