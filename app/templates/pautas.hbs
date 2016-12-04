@@ -5,17 +5,19 @@
         {{#if session.currentUser.isAdmin}}
           <div class="row">
             <div class="col l12 m12 s12">
-              {{md-btn text='Pauta'
+              <div class="pull-right">
+                {{md-btn text='Pauta'
                 icon='mdi-action-note-add'
                 action='addPauta'
-                class='deep-purple darken-3 pull-right'}}
+                class='deep-purple darken-3'}}
+              </div>
             </div>
           </div>
         {{/if}}
           {{!-- {{#each model as |item|}}
               {{item.retranca}} <br>
           {{/each}} --}}
-          {{pautas-view model=model session=session on-entrou="entrouPauta" on-ver="verPauta" on-edit="editPauta" on-del="delPauta"}}
+          {{pautas-view model=model session=session on-refresh="refresh" on-entrou="entrouPauta" on-ver="verPauta" on-edit="editPauta" on-del="delPauta"}}
       {{else}}
           <h1 class="header">Acesso negado</h1>
           Você não tem permissão para acessar essa área

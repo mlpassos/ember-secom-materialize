@@ -11,6 +11,9 @@ export default Ember.Route.extend({
 	// 	controller.set('len', model.get('length'));
 	// },
 	actions: {
+		refresh() {
+			console.log('refreshed', this.get('model'));
+		},
 		verPauta(slug) {
 			console.log('VER PAUTA slug', slug);
 			this.router.transitionTo('pauta', slug);

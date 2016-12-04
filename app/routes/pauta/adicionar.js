@@ -30,7 +30,7 @@ export default Ember.Route.extend({
 	actions: {
 		addPauta(pauta) {
 			let _this = this;
-	
+
 			let equipe = this.get('equipepauta'); //this.get('equipe');
 			let equipeItems = this.get('equipepauta.equipe');			
 			let producaoItems = this.get('equipepauta.producao');

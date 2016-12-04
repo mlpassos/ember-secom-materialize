@@ -1,13 +1,18 @@
 {{yield}}
-{{!-- {{#each model as |item|}}
-    {{item.retranca}} <br>
-{{/each}} --}}
-
-{{!-- Tamanho (component): {{len}} --}}
+ {{!-- <div class="row">
+  <div class="col l12 m12 s12">
+    <div class="pull-right">
+      {{md-btn text='Refresh'
+      icon='mdi-navigation-refresh'
+      action='refresh' 
+      on-refresh='refresh' 
+      class='esconde deep-purple darken-3'}}
+    </div>
+  </div>
+</div> --}}
 <div class="row isogrid">
-  <div class="grid-sizer"></div>
-
-{{#each model as |pauta|}}
+  {{!-- <div class="grid-sizer"></div> --}}
+  {{#each model as |pauta|}}
   {{!-- {{#unless pauta.isDeleted}} --}}
     <div class={{pauta-class pauta.id pauta.isDeleted}}>
       {{#md-card title=pauta.retranca
