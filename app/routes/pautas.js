@@ -4,6 +4,9 @@ export default Ember.Route.extend({
 	model() {
 		console.log('MODEL HAHA');
 		return this.store.findAll('pauta', { reload:true } );
+		// .then((arrModel)=>{
+  //           return arrModel.toArray().sortBy('retranca'); 
+  //       });
 	},
 	// setupController(controller, model) {
 	// 	this._super(...arguments);

@@ -18,10 +18,21 @@ export default Ember.Component.extend({
 		// },
 		didInsertElement() {
 			console.log('didInserElement no pautas');
+			let _this = this;
 		    let $grid = this.$('.isogrid').isotope({
 		      itemSelector: '.isoitem',
 		      layoutMode: 'fitRows',
-		      percentPosition: true
+		      percentPosition: true,
+		      getSortData: {
+			      title: function( itemElem ) {
+			      	console.log('itemElem', itemElem);
+	                var valor = _this.$( itemElem ).children('.card').children('.card-content').find('.card-title').text();
+	                console.log('card-title', valor.trim());
+	                return valor.trim();
+	              }
+          	  },
+          	  sortBy: 'title',
+          	  sortAscending: true
 		    });
 		    $grid.imagesLoaded().progress( function() {
 		      $grid.isotope('layout');
@@ -61,11 +72,11 @@ export default Ember.Component.extend({
 			let isDeleted = this.$('.isogrid').children('.isoitem').hasClass('pauta-deleted');
 			let entrou = this.get('entrou');
 			// console.log('RENDER PAUTA', this.get('entrou'));
-			console.log('PAUTAS-VIEW ENTRA');
+			console.log('PAUTAS-VIEW RENDER');
 			// $grid.isotope();
 			if (isDeleted === true) {
 				this.$('.isogrid').children('.isoitem').each(function(index,item) {
-					let $el = $(item);
+					let $el = _this.$(item);
 					if ($el.hasClass('pauta-deleted')) {
 						console.log('PAUTAS DELETADAS');
 						// _this.$('.esconde').fadeIn('slow');
@@ -79,16 +90,24 @@ export default Ember.Component.extend({
 			if (entrou === true) {
 				console.log('ENTROU');
 				// $grid.isotope();
-				//   .append( elem )
-				//   .isotope( 'appended', elem )
-				//   .isotope('layout');
+				$grid.isotope({
+			      itemSelector: '.isoitem',
+			      layoutMode: 'fitRows',
+			      percentPosition: true,
+			      getSortData: {
+				      title: function( itemElem ) {
+				      	console.log('itemElem', itemElem);
+		                var valor = _this.$( itemElem ).children('.card').children('.card-content').find('.card-title').text();
+		                console.log('card-title', valor.trim());
+		                return valor.trim();
+		              }
+	          	  },
+	          	  sortBy: 'title',
+	          	  sortAscending: true
+			    });
 			}
-			// console.log('isDeleted', isDeleted);
-			// if (isDeleted === true) {
-			// 	let $grid = this.get('grid');
-			// 	$grid.isotope();
-			// }
-
+			console.log('tamanho atual', Object.keys($grid.isotope('getItemElements')).length);
+			// console.log('tamanho items', this.get('items').get('length'));
 			this.set('entrou', false);
 		},
 		actions: {
@@ -97,68 +116,40 @@ export default Ember.Component.extend({
 				this.sendAction('on-refresh');
 			},
 			entrouPauta(obj) {
-				if (this.get('entrou') === false) {
-					let $grid = this.get('grid');
-					let $item = this.$('.item'+obj.id);
-
-					console.log('LIGA ISOTOPE');
-
-					switch(obj.status) {
-					    case 'adicionado':
-					        console.log('ADICIONADO');
-						    $grid.isotope( 'addItems', $item );
-						    // $grid.isotope( 'addItems', $item );
-						    let $newItems = $grid.isotope('getItemElements');
-						    console.log('elements', $newItems);
-						    $grid.isotope();
-							  // .append( $item )
-							  // .isotope( 'appended', $item ).isotope('layout');
-							 
-						    // $grid.isotope();
-						    // $grid.isotope({
-						    //   itemSelector: '.isoitem',
-						    //   layoutMode: 'fitRows',
-						    //   percentPosition: true
-						    // });
-						    // $grid.imagesLoaded().progress( function() {
-						    //   $grid.isotope('layout');
-						    // });
-						    // this.set('grid', $grid);
-						    this.set('entrou', true);
-					        break;
-					    case 'atualizado':
-					        console.log('ATUALIZADO');
-					        // OK
-					        $item.css('background-color', 'green');
-					        $grid.isotope('layout');
-					        break;
-					    // case 'removido':
-					    // 	console.log('REMOVIDO');
-					    // 	// $item.css('background-color', 'red');
-					    // 	$grid.isotope( 'remove', $item ).isotope('layout');
-					    // 	// debugger;
-					    // 	this.get('model').map((pauta) => {
-					    // 		if (pauta.get('id') === obj.id) {
-						   //  		console.log('get pauta', pauta);
-						   //  		console.log('isDeleted', pauta.get('isDeleted'));          // true
-						   //  		console.log('isSaving', pauta.get('isSaving'));           // false
-						   //  		console.log('hasDirtyAttributes', pauta.get('hasDirtyAttributes')); //
-						   //  	}
-					    // 	});
-					    // 	this.set('entrou', true);
-					    // 	break;
-					    default:
-					        console.log('Sem entrouPauta()');
-					        // alert('erro, sem status');
-					}
-					// $items.push(item[0]);
-					// console.log('isoItem', item[0]);
-					// $grid.isotope( 'insert', $items[0] );
-					console.log('CHEGUEI AQUI');
-					// this.set('entrou', true);
-				} else {
-					// console.log('status', obj.status);
-					console.log('SEM ISOTOPE POIS JA ENTROU');
+				let $grid = this.get('grid');
+				let $item = this.$('.item'+obj.id);
+				switch(obj.status) {
+				    case 'adicionado':
+				    	if (this.get('entrou') === false) {
+							$grid.isotope('destroy');
+							console.log('reset isotope');
+							this.set('entrou', true);
+						}
+				        // console.log('ADICIONANDO AO ISOTOPE', $item);
+				        break;
+				    case 'atualizado':
+				        console.log('ATUALIZADO');
+				        $item.css('background-color', 'green');
+				        $grid.isotope('layout');
+				        break;
+				    // case 'removido':
+				    // 	console.log('REMOVIDO');
+				    // 	// $item.css('background-color', 'red');
+				    // 	$grid.isotope( 'remove', $item ).isotope('layout');
+				    // 	// debugger;
+				    // 	this.get('model').map((pauta) => {
+				    // 		if (pauta.get('id') === obj.id) {
+					   //  		console.log('get pauta', pauta);
+					   //  		console.log('isDeleted', pauta.get('isDeleted'));          // true
+					   //  		console.log('isSaving', pauta.get('isSaving'));           // false
+					   //  		console.log('hasDirtyAttributes', pauta.get('hasDirtyAttributes')); //
+					   //  	}
+				    // 	});
+				    // 	this.set('entrou', true);
+				    // 	break;
+				    default:
+				        console.log('Sem entrouPauta()');
+				        // alert('erro, sem status');
 				}
 			},
 			verPauta(slug) {
@@ -172,7 +163,6 @@ export default Ember.Component.extend({
 			delPauta(pauta) {
 				console.log('delPauta', pauta.get('id'));
 				let _this = this;
-				let $grid = this.get('grid');
 				let item = this.$('.item'+pauta.get('id'));
 				
 				// _this.sendAction('on-del', pauta);
