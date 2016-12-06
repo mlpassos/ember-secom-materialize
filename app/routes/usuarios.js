@@ -14,7 +14,7 @@ export default TransitionToListenerRoute.extend({
  //    	controller.set('basicTabsSelection', this.get('basicTabsSelection'));
  //    }
     model() {
-        return this.store.findAll('user');
+        return this.store.findAll('user', { reload:true });
     },
     actions: {
         goPerfil(uid) {

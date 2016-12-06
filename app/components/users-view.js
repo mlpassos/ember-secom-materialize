@@ -8,17 +8,26 @@ export default Ember.Component.extend({
 			console.log('Iniciando componente USERS-VIEW...');
 		},
 		didInsertElement() {
-			console.log('render');
+			this._super(...arguments);
+			console.log('InsertElement');
 		    let $grid = this.$('.isogrid').isotope({
 		      // options
 		      itemSelector: '.isoitem',
 		      layoutMode: 'fitRows',
 		      percentPosition: true
 		    });
-		    this.set('grid', $grid);
 		    $grid.imagesLoaded().progress( function() {
 		      $grid.isotope('layout');
-		    });  
+		    });
+		    // this.set('grid', $grid);
+		},
+		didRender() {
+			this._super(...arguments);
+			console.log('RENDER USERS-VIEW');
+			let $grid = $('.isogrid').data('isotope');
+			// access Isotope properties
+			this.set('grid', $grid);
+			console.log( $grid.filteredItems.length + ' filtered items'  )
 		},
 		actions: {
 			goPerfil(uid) {
