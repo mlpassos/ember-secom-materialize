@@ -24,10 +24,17 @@ export default Ember.Component.extend({
 		didRender() {
 			this._super(...arguments);
 			console.log('RENDER USERS-VIEW');
-			let $grid = $('.isogrid').data('isotope');
-			// access Isotope properties
+			let $grid = this.$('.isogrid');//.data('isotope');
+			// // access Isotope properties
 			this.set('grid', $grid);
-			console.log( $grid.filteredItems.length + ' filtered items'  )
+			console.log( Object.keys($grid.isotope('getItemElements')).length + ' filtered items'  );
+			// console.log('tamanho atual', Object.keys($grid.isotope('getItemElements')).length)
+		},
+		willDestroyElement() {
+		  this._super(...arguments);
+		  // this.$().off('animationend');
+		  this.$('.isogrid').isotope('destroy');
+		  console.log('ISOTOPE OFF');
 		},
 		actions: {
 			goPerfil(uid) {

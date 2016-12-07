@@ -17,6 +17,17 @@ export default TransitionToListenerRoute.extend({
 	            console.log(data);
 	            let user = data.currentUser;
 	            let uid = user.get('uid');
+	            // console.log('Tá ONLINE AI?', user.get('isOnline'));
+	            // user.set('isOnline', true);
+	         //    let userId = user.get('id');
+	         //    _this.store.findRecord('user', userId).then(function(usr) {
+		        // 	console.log('login', user.get('displayName'));
+		        // 	usr.set('isOnline', true);
+		        // 	usr.save().then(function() {
+		        //     	console.log('Online');
+		        //     	console.log('Tá ONLINE AI?', user.get('isOnline'));
+		        //     });
+		        // });
 	            let isAdmin = user.isAdmin;
 	            let isNew = user.isNew;
 	            let userName = user.get('displayName');
@@ -40,6 +51,17 @@ export default TransitionToListenerRoute.extend({
 	        });
 	    },
 	    logout(){
+	        // let userId = this.get('session.currentUser.id');
+	        // this.store.findRecord('user', userId).then(function(user) {
+	        // 	console.log('logout', user.get('displayName'));
+	        // 	user.set('isOnline', false);
+	        // 	user.save().then(function() {
+	        //     	console.log('Offline');
+	        //     	console.log('Tá ONLINE AI?', user.get('isOnline'));
+	        //     });
+	        // });
+	        // console.log('TCHAUZINHO, INDO OFFLINE', user.get('isOnline'));
+	        // user.set('isOnline', false);
 	        get(this,'session').close();
 	        this.router.transitionTo('home');
 	    }
