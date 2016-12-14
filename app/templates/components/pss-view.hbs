@@ -1,0 +1,23 @@
+{{yield}}
+<div class="row">
+  {{!-- {{#each model as |user|}} --}}
+    {{#md-table content=model class='striped' as |row|}}
+      {{md-table-col row=row valueBindingPath='id'}}
+      {{md-table-col row=row valueBindingPath='Submitted'}}
+      {{md-table-col row=row valueBindingPath='your-name'}}
+      {{md-table-col row=row valueBindingPath='your-email'}}
+      {{md-table-col row=row valueBindingPath='your-ticket'}}
+      {{md-table-col row=row valueBindingPath='your-escolaridade'}}
+      {{!-- {{md-table-col row=row valueBindingPath='your-cpf'}} --}}
+      {{#md-table-col row=row key='your-rg' header='Identidade'}}
+        <img src='http://www.secom.pa.gov.br/site/wp-admin/admin-ajax.php?action=cfdb-file&s={{row.id}}&form=I+Processo+Seletivo+Simplificado&field=your-arquivo-rg' alt="Imagem do documento de identidade" width="35px" height="35px">
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-cpf' header='CPF'}}
+        <img src='http://www.secom.pa.gov.br/site/wp-admin/admin-ajax.php?action=cfdb-file&s={{row.id}}&form=I+Processo+Seletivo+Simplificado&field=your-arquivo-cpf' alt="Imagem do documento de identidade" width="35px" height="35px">
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-comprovante-residencia' header='Comprovante residência'}}
+        <img src='http://www.secom.pa.gov.br/site/wp-admin/admin-ajax.php?action=cfdb-file&s={{row.id}}&form=I+Processo+Seletivo+Simplificado&field=your-comprovante-residencia' alt="Imagem do documento de identidade" width="35px" height="35px">
+      {{/md-table-col}}
+    {{/md-table}}
+  {{!-- {{/each}} --}}
+</div>
