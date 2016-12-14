@@ -2,22 +2,105 @@
 <div class="row">
   {{!-- {{#each model as |user|}} --}}
     {{#md-table content=model class='striped' as |row|}}
-      {{md-table-col row=row valueBindingPath='id'}}
-      {{md-table-col row=row valueBindingPath='Submitted'}}
-      {{md-table-col row=row valueBindingPath='your-name'}}
-      {{md-table-col row=row valueBindingPath='your-email'}}
-      {{md-table-col row=row valueBindingPath='your-ticket'}}
-      {{md-table-col row=row valueBindingPath='your-escolaridade'}}
-      {{!-- {{md-table-col row=row valueBindingPath='your-cpf'}} --}}
-      {{#md-table-col row=row key='your-rg' header='Identidade'}}
-        <img src='http://www.secom.pa.gov.br/site/wp-admin/admin-ajax.php?action=cfdb-file&s={{row.id}}&form=I+Processo+Seletivo+Simplificado&field=your-arquivo-rg' alt="Imagem do documento de identidade" width="35px" height="35px">
+      {{#md-table-col row=row key='your-name' header='Nome'}}
+        {{row.your-name}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-email' header='E-mail'}}
+        {{row.your-email}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-celular' header='Celular'}}
+        {{row.your-celular}}
       {{/md-table-col}}
       {{#md-table-col row=row key='your-cpf' header='CPF'}}
-        <img src='http://www.secom.pa.gov.br/site/wp-admin/admin-ajax.php?action=cfdb-file&s={{row.id}}&form=I+Processo+Seletivo+Simplificado&field=your-arquivo-cpf' alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{row.your-cpf}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-ticket' header='Inscrição'}}
+        {{row.your-ticket}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-escolaridade' header='Escolaridade'}}
+        {{row.your-escolaridade}}
+      {{/md-table-col}}
+      {{!-- {{#md-table-col row=row key='your-arquivo-rg' header='Identidade'}}
+        {{#light-box  
+                href=(lightboxUrl row.id 'your-arquivo-rg')
+                data-lightbox='your-arquivo-rg'
+                data-title=row.your-name
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-arquivo-rg'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-arquivo-cpf' header='CPF'}}
+        {{#light-box  
+                href=(lightboxUrl row.id 'your-arquivo-cpf')
+                data-lightbox='your-arquivo-cpf'
+                data-title=row.your-cpf
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-arquivo-cpf'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
       {{/md-table-col}}
       {{#md-table-col row=row key='your-comprovante-residencia' header='Comprovante residência'}}
-        <img src='http://www.secom.pa.gov.br/site/wp-admin/admin-ajax.php?action=cfdb-file&s={{row.id}}&form=I+Processo+Seletivo+Simplificado&field=your-comprovante-residencia' alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{#light-box 
+                href=(lightboxUrl row.id 'your-comprovante-residencia')
+                data-lightbox='your-comprovante-residencia'
+                data-title=row.your-logradouro
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-comprovante-residencia'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
       {{/md-table-col}}
+      {{#md-table-col row=row key='your-comprovante-trabalho' header='Comprovante de trabalho'}}
+        {{#light-box 
+                href=(lightboxUrl row.id 'your-comprovante-trabalho')
+                data-lightbox='your-comprovante-trabalho'
+                data-title=row.your-name
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-comprovante-trabalho'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-arquivo-certidoes' header='Certidões'}}
+        {{#light-box 
+                href=(lightboxUrl row.id 'your-arquivo-certidoes')
+                data-lightbox='your-arquivo-certidoes'
+                data-title=row.your-name
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-arquivo-certidoes'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-arquivo-eleitoral' header='Comprovante Eleitoral'}}
+        {{#light-box 
+                href=(lightboxUrl row.id 'your-arquivo-eleitoral')
+                data-lightbox='your-arquivo-eleitoral'
+                data-title=row.your-name
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-arquivo-eleitoral'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-certificado-fundamental' header='Ensino Fundamental'}}
+        {{#light-box 
+                href=(lightboxUrl row.id 'your-certificado-fundamental')
+                data-lightbox='your-certificado-fundamental'
+                data-title=row.your-name
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-certificado-fundamental'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-historico-fundamental' header='Histórico Fundamental'}}
+        {{#light-box 
+                href=(lightboxUrl row.id 'your-historico-fundamental')
+                data-lightbox='your-historico-fundamental'
+                data-title=row.your-name
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-historico-fundamental'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
+      {{/md-table-col}}
+      {{#md-table-col row=row key='your-certidoes-detran' header='DETRAN/SEMOB'}}
+        {{#light-box 
+                href=(lightboxUrl row.id 'your-certidoes-detran')
+                data-lightbox='your-certidoes-detran'
+                data-title=row.your-name
+                inlineImage=false}}
+          <img src={{lightboxUrl row.id 'your-certidoes-detran'}} alt="Imagem do documento de identidade" width="35px" height="35px">
+        {{/light-box}}
+      {{/md-table-col}} --}}
     {{/md-table}}
   {{!-- {{/each}} --}}
 </div>

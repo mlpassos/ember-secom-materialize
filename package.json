@@ -53,5 +53,8 @@
     "emberfire": "2.0.4",
     "loader.js": "^4.0.1",
     "torii": "0.8.0"
+  },
+  "dependencies": {
+    "ember-cli-lightbox": "^1.0.2"
   }
 }

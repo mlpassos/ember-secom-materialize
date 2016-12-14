@@ -9,6 +9,7 @@
     "imagesloaded": "^4.1.1",
     "gmaps-for-apps": "^0.5.14",
     "font-awesome": "~4.5.0",
-    "firebase": "^3.0.0"
+    "firebase": "^3.0.0",
+    "lightbox2": "^2.9.0"
   }
 }

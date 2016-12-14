@@ -22,6 +22,20 @@ module.exports = function(environment) {
         }
       }
     },
+    'ember-cli-lightbox': {
+      lightboxOptions: {
+        alwaysShowNavOnTouchDevices:  false,
+        albumLabel:           "Imagem %1 de %2",
+        disableScrolling:       false,
+        fadeDuration:         500,
+        fitImagesInViewport:      true,
+        maxWidth:           1000,
+        maxHeight:            1000,
+        positionFromTop:        50,
+        resizeDuration:         700,
+        showImageNumberLabel:     true
+      }
+    },
     EmberENV: {
 
       FEATURES: {
