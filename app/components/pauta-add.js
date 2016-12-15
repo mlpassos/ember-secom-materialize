@@ -22,8 +22,7 @@ export default Ember.Component.extend({
 	lng: -48.4887233,
 	place: '',
 	zoom: 14,
-	markers: Ember.A([
-	{
+	markers: Ember.A([{
 	  id: 'pautalocal',  // Recommended
 	  // lat: -1.4255971, // Required
 	  // lng: -48.4570937, // Required
@@ -66,8 +65,7 @@ export default Ember.Component.extend({
 	  title: 'string',
 	  visible: true,
 	  zIndex: 999
-	}
-	]),
+	}]),
 	init() {
 		this._super(...arguments);
 		console.log('Iniciando componente PAUTA-ADD...');
