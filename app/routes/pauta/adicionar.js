@@ -30,14 +30,14 @@ export default Ember.Route.extend({
 	actions: {
 		addPauta(pauta) {
 			let _this = this;
-
-			let equipe = this.get('equipepauta'); //this.get('equipe');
-			let equipeItems = this.get('equipepauta.equipe');			
+			let motoristaItems = this.get('equipepauta.motorista');		
+			let reporterItems = this.get('equipepauta.reporter');
+			let fotografoItems = this.get('equipepauta.fotografo');
 			let producaoItems = this.get('equipepauta.producao');
 			let criadoPor = pauta.criado_por;
 			let pautaRecord = pauta; // this.store.createRecord('pauta', pauta);
 			
-			console.log('addEquipe', equipe);
+			console.log(motoristaItems,reporterItems,fotografoItems,producaoItems);
 			console.log('CRIADO POR', criadoPor);
 			console.log('HORARIO PAUTA', pautaRecord.get('horario'));
 			
@@ -46,11 +46,31 @@ export default Ember.Route.extend({
 					pautaRecord.set('criado_por', user);
 					console.log('criado_por registrado com sucesso', user.get('displayName'));
 				}),
-		        equipe: equipeItems.map(function(user) {
-					console.log('equipe: ' + user.id);
+		        motorista: motoristaItems.map(function(user) {
+					console.log('motorista: ' + user.id);
 					return _this.store.findRecord('user', user.id).then(function(user){
 						// console.log('len', user.get('displayName'));
-						pautaRecord.get('equipe').addObject(user);
+						pautaRecord.get('motorista').addObject(user);
+						// return pautaRecord.save().then(function() {
+						// 	console.log('pauta adicionada para equipe: ' + user.get('displayName'));
+						// });
+					});
+				}),
+				reporter: reporterItems.map(function(user) {
+					console.log('reporter: ' + user.id);
+					return _this.store.findRecord('user', user.id).then(function(user){
+						// console.log('len', user.get('displayName'));
+						pautaRecord.get('reporter').addObject(user);
+						// return pautaRecord.save().then(function() {
+						// 	console.log('pauta adicionada para equipe: ' + user.get('displayName'));
+						// });
+					});
+				}),
+				fotografo: fotografoItems.map(function(user) {
+					console.log('fotografo: ' + user.id);
+					return _this.store.findRecord('user', user.id).then(function(user){
+						// console.log('len', user.get('displayName'));
+						pautaRecord.get('fotografo').addObject(user);
 						// return pautaRecord.save().then(function() {
 						// 	console.log('pauta adicionada para equipe: ' + user.get('displayName'));
 						// });
@@ -74,20 +94,50 @@ export default Ember.Route.extend({
 				});
 			});
 		},
-		addUserToEquipe(user) {
-			console.log('adding user to equipe: ', user);
+		addUserToMotorista(user) {
+			console.log('adding user to motorista: ', user);
 			let obj = {
 				id: user
 			};
 			let equipepauta = this.get('equipepauta');
-			equipepauta.add(obj, 'equipe');
-			console.log('items na equipe', equipepauta.equipe);
+			equipepauta.add(obj, 'motorista');
+			console.log('items na motorista', equipepauta.motorista);
 		},
-		removeUserFromEquipe(user) {
-			console.log('removing user from equipe: ', user);
+		removeUserFromMotorista(user) {
+			console.log('removing user from motorista: ', user);
 			let equipepauta = this.get('equipepauta');
-			equipepauta.remove(user, 'equipe');
-			console.log('items na equipe', equipepauta.equipe);
+			equipepauta.remove(user, 'motorista');
+			console.log('items na motorista', equipepauta.motorista);
+		},
+		addUserToReporter(user) {
+			console.log('adding user to reporter: ', user);
+			let obj = {
+				id: user
+			};
+			let equipepauta = this.get('equipepauta');
+			equipepauta.add(obj, 'reporter');
+			console.log('items na reporter', equipepauta.reporter);
+		},
+		removeUserFromReporter(user) {
+			console.log('removing user from reporter: ', user);
+			let equipepauta = this.get('equipepauta');
+			equipepauta.remove(user, 'reporter');
+			console.log('items na reporter', equipepauta.reporter);
+		},
+		addUserToFotografo(user) {
+			console.log('adding user to fotografo: ', user);
+			let obj = {
+				id: user
+			};
+			let equipepauta = this.get('equipepauta');
+			equipepauta.add(obj, 'fotografo');
+			console.log('items na fotografo', equipepauta.fotografo);
+		},
+		removeUserFromFotografo(user) {
+			console.log('removing user from fotografo: ', user);
+			let equipepauta = this.get('equipepauta');
+			equipepauta.remove(user, 'fotografo');
+			console.log('items na fotografo', equipepauta.fotografo);
 		},
 		addUserToProducao(user) {
 			console.log('adding user to producao: ', user);
@@ -108,7 +158,9 @@ export default Ember.Route.extend({
 	},
 	setupController(controller) {
 		this._super(...arguments);
-		controller.set('equipepauta', this.get('equipepauta.equipe'));
-		controller.set('producaopauta', this.get('equipepauta.producao'));
+		controller.set('motorista', this.get('equipepauta.motorista'));
+		controller.set('reporter', this.get('equipepauta.reporter'));
+		controller.set('fotografo', this.get('equipepauta.fotografo'));
+		controller.set('producao', this.get('equipepauta.producao'));
 	}
 });

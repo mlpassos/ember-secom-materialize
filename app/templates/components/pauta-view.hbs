@@ -13,18 +13,78 @@
 			        {{!-- {{pauta.encaminhamento}} --}}
 			      </p>
 			      <br>
-			      <p>
-			        Equipe: {{pautas-total-users pauta.equipe}}
+			      <div class="row">
+			      	<div class="col s6 m3 l3">
+				      <p>
+				        Motorista:
+				      </p>
+				      <ul class="list-inline list-unstyled">
+				        {{#each pauta.motorista as |user|}}
+				          <li>
+				            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do motorista" title="{{user.displayName}}">
+				          </li>
+				        {{/each}}
+				      </ul>
+				    </div>
+				    <div class="col s6 m3 l3">
+				      <p>
+				        Repórter:
+				      </p>
+				      <ul class="list-inline list-unstyled">
+				        {{#each pauta.reporter as |user|}}
+				          <li>
+				            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do repórter" title="{{user.displayName}}">
+				          </li>
+				        {{/each}}
+				      </ul>
+				    </div>
+				    <div class="col s6 m3 l3">
+				      <p>
+				        Fotógrafo:
+				      </p>
+				      <ul class="list-inline list-unstyled">
+				        {{#each pauta.fotografo as |user|}}
+				          <li>
+				            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do fotógrafo" title="{{user.displayName}}">
+				          </li>
+				        {{/each}}
+				      </ul>
+				    </div>
+				    <div class="col s6 m3 l3">
+				      <p>
+				        Produção:
+				      </p>
+				      <ul class="list-inline list-unstyled">
+				        {{#each pauta.producao as |user|}}
+				          <li>
+				            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do produtor" title="{{user.displayName}}">
+				          </li>
+				        {{/each}}
+				      </ul>
+				    </div>
+				  </div>
+			       {{!-- <p>
+			        Repórter:
 			      </p>
 			      <ul class="list-inline list-unstyled">
-			        {{#each pauta.equipe as |user|}}
+			        {{#each pauta.reporter as |user|}}
+			          <li>
+			            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do usuário participante da equipe" title="{{user.displayName}}">
+			          </li>
+			        {{/each}}
+			      </ul>
+			       <p>
+			        Fotógrafo:
+			      </p>
+			      <ul class="list-inline list-unstyled">
+			        {{#each pauta.fotografo as |user|}}
 			          <li>
 			            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do usuário participante da equipe" title="{{user.displayName}}">
 			          </li>
 			        {{/each}}
 			      </ul>
 			      <p>
-			        Producao: {{pautas-total-users pauta.producao}}
+			        Producao:
 			      </p>
 			      <ul class="list-inline list-unstyled">
 			        {{#each pauta.producao as |user|}}
@@ -32,7 +92,7 @@
 			            <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do usuário participante da equipe" title="{{user.displayName}}">
 			          </li>
 			        {{/each}}
-			      </ul>
+			      </ul> --}}
 			    {{/md-card-content}}
 			    {{#md-card-reveal}}
 			      <p>

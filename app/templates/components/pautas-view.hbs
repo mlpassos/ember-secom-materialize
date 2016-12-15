@@ -25,13 +25,25 @@
             {{!-- {{pauta.encaminhamento}} --}}
           </p>
           <br>
-          <p>
-            Envolvidos: {{pautas-total-users pauta.equipe}}
-          </p>
           <ul class="list-inline list-unstyled">
-            {{#each pauta.equipe as |user|}}
+            {{#each pauta.motorista as |user|}}
               <li>
-                <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do usuário participante da equipe" title="{{user.displayName}}">
+                <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do motorista" title="{{user.displayName}}">
+              </li>
+            {{/each}}
+            {{#each pauta.reporter as |user|}}
+              <li>
+                <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do reporter" title="{{user.displayName}}">
+              </li>
+            {{/each}}
+            {{#each pauta.fotografo as |user|}}
+              <li>
+                <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do fotografo" title="{{user.displayName}}">
+              </li>
+            {{/each}}
+            {{#each pauta.producao as |user|}}
+              <li>
+                <img src="{{user.photoURL}}" class="card-user-image" alt="imagem do producao" title="{{user.displayName}}">
               </li>
             {{/each}}
           </ul>

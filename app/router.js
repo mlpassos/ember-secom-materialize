@@ -40,7 +40,6 @@ Router.map(function() {
     this.route('perfil');    
   });
   this.route('admin');
-  this.route('pss');
 });
 
 export default Router;

@@ -2,7 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
 	store: Ember.inject.service(),
-	equipe: [],
+	motorista: [],
+	reporter: [],
+	fotografo: [],
 	producao: [],
 	log(where) {
 		console.log(
@@ -41,7 +43,9 @@ export default Ember.Service.extend({
 		this.log(where);
 	},
 	empty() {
-		this.get('equipe').clear();
+		this.get('motorista').clear();
+		this.get('reporter').clear();
+		this.get('fotografo').clear();
 		this.get('producao').clear();
 	}
 });

@@ -16,7 +16,7 @@
 		  </div>
 	</div>
 	<div class="row">
-		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12" validate=true}}
+		{{md-input value=pauta.retranca label='Retranca' type="text" class="col s12 m12 l12" validate=true}}
 		
 		<div class="col s12 m12 l12">
 			<label for="local">Local</label>
@@ -24,83 +24,114 @@
 		</div>
 		
 		{{md-input-date label='Data' value=pauta.dataHora class="col s12 m12"}}
-
-		<div class="col s12 m12 l12">
-			<label for="horario">Horário</label>
-			{{md-input label='' type="time" value=pauta.horario class="col s12 m12"}}
-		</div>
-
-		{{!-- {{md-input value=pauta.local label='Local' type="text" class="col s12 m12" validate=true}} --}}
-		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m12" validate=true}}
-		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m12" validate=true}}
+		
+		{{md-input label='Horário' type="time" value=pauta.horario class="col s12 m4 l4"}}
+		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m4 l4" validate=true}}
+		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m4 l4" validate=true}}
 	</div>
 	{{!-- CONTEÚDOS LONGOS --}}
 	<div class="row">
 	  {{md-textarea label='Encaminhamento'
-	    value=pauta.encaminhamento class="col s12"}}
+	    value=pauta.encaminhamento class="col s12 m12 l12"}}
 	</div>
 	<div class="row">
 	  {{md-textarea label='Informações'
-	    value=pauta.informacoes class="col s12"}}
+	    value=pauta.informacoes class="col s12 m12 l12"}}
 	</div>
 	<div class="row">
 	  {{md-textarea label='Sugestões'
-	    value=pauta.sugestoes class="col s12"}}
+	    value=pauta.sugestoes class="col s12 m12 l12"}}
 	</div>
 
-	{{!-- EQUIPE --}}
+	{{!-- motorista --}}
 	<div class="row">
-		<div class="col s12 l12 m12">
-			<label>Equipe</label>
-		</div>
-		<div class="col s12 l12 m12">
+		<div class="col s12 l6 m6">
+			<label>Motorista</label>
+			<br>
 			<ul class="list-inline list-unstyled">
-				{{#each pauta.equipe as |user|}}
-				  <li>
-				  	<img src="{{user.photoURL}}" alt="imagem do usuário da equipe" class="card-user-image">
+				{{#each pauta.motorista as |user|}}
+				  <li class="equipe-item">
+				  	<img src="{{user.photoURL}}" alt="imagem do motorista" class="card-user-image">
+				  	<i class="mdi-content-remove-circle equipe-close" {{action "removeUserFromMotorista" user}}></i>
 				  </li>
 				{{/each}}
 			</ul>
+			{{md-select content=users  
+			  value=usuarioEscolhidoMotorista
+			  label="" 
+			  prompt="Escolher..." 
+			  optionLabelPath="content.displayName" 
+			  optionValuePath="content.id" class=""}}
+			{{md-btn icon='mdi-content-add'
+				action="addUserToMotorista" buttonType='floating'
+				class='' actionArg=usuarioEscolhidoMotorista}}
 		</div>
-	</div>
-
-	{{!-- ESCOLHER USUÁRIOS PARA EQUIPE --}}
-
-	<div class="row">
-		{{md-select content=users  
-		  value=users.id  
-		  label="Usuários" 
-		  prompt="Escolher..." 
-		  optionLabelPath="content.displayName" 
-		  optionValuePath="content.id" class="col s12"}}
-	</div>
-
-	{{!-- PRODUÇÃO --}}
-	<div class="row">
-		<div class="col s12 l12 m12">
-			<label>Produção</label>
+		<div class="col s12 l6 m6">
+			<label>Reporter</label>
+			<br>
+			<ul class="list-inline list-unstyled">
+				{{#each pauta.reporter as |user|}}
+				  <li class="equipe-item">
+				  	<img src="{{user.photoURL}}" alt="imagem do reporter" class="card-user-image">
+				  	<i class="mdi-content-remove-circle equipe-close" {{action "removeUserFromReporter" user}}></i>
+				  </li>
+				{{/each}}
+			</ul>
+			{{md-select content=users  
+			  value=usuarioEscolhidoReporter
+			  label="" 
+			  prompt="Escolher..." 
+			  optionLabelPath="content.displayName" 
+			  optionValuePath="content.id" class=""}}
+			{{md-btn icon='mdi-content-add'
+				action="addUserToReporter" buttonType='floating'
+				class='' actionArg=usuarioEscolhidoReporter}}
 		</div>
-		<div class="col s12 l12 m12">
+		<br>
+		<div class="col s12 l6 m6 user-add-funcao">
+			<label>Fotografo</label>
+			<br>
+			<ul class="list-inline list-unstyled">
+				{{#each pauta.fotografo as |user|}}
+				  <li class="equipe-item">
+				  	<img src="{{user.photoURL}}" alt="imagem do fotografo" class="card-user-image">
+				  	<i class="mdi-content-remove-circle equipe-close" {{action "removeUserFromFotografo" user}}></i>
+				  </li>
+				{{/each}}
+			</ul>
+			{{md-select content=users  
+			  value=usuarioEscolhidoFotografo
+			  label="" 
+			  prompt="Escolher..." 
+			  optionLabelPath="content.displayName" 
+			  optionValuePath="content.id" class=""}}
+			{{md-btn icon='mdi-content-add'
+				action="addUserToFotografo" buttonType='floating'
+				class='' actionArg=usuarioEscolhidoFotografo}}
+		</div>
+		<div class="col s12 l6 m6 user-add-funcao">
+			<label>Producao</label>
+			<br>
 			<ul class="list-inline list-unstyled">
 				{{#each pauta.producao as |user|}}
-				  <li>
-				  	<img src="{{user.photoURL}}" alt="imagem do usuário da equipe" class="card-user-image">
+				  <li class="equipe-item">
+				  	<img src="{{user.photoURL}}" alt="imagem do producao" class="card-user-image">
+				  	<i class="mdi-content-remove-circle equipe-close" {{action "removeUserFromProducao" user}}></i>
 				  </li>
 				{{/each}}
 			</ul>
+			{{md-select content=users  
+			  value=usuarioEscolhidoProducao
+			  label="" 
+			  prompt="Escolher..." 
+			  optionLabelPath="content.displayName" 
+			  optionValuePath="content.id" class=""}}
+			{{md-btn icon='mdi-content-add'
+				action="addUserToProducao" buttonType='floating'
+				class='' actionArg=usuarioEscolhidoProducao}}
 		</div>
 	</div>
 
-	{{!-- ESCOLHER USUÁRIOS PARA PRODUÇÃO --}}
-
-	<div class="row">
-		{{md-select content=users  
-		  value=users.id  
-		  label="Usuários" 
-		  prompt="Escolher..." 
-		  optionLabelPath="content.displayName" 
-		  optionValuePath="content.id" class="col s12"}}
-	</div>
 	<div class="row">
 		<div class="col s12 m12">
 			{{md-btn-submit icon='mdi-content-send'

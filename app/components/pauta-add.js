@@ -130,13 +130,29 @@ export default Ember.Component.extend({
 			console.log('addPauta', pauta.slug);
 			this.sendAction('on-action', pauta);
 		},
-		addUserToEquipe(user) {
-			console.log('addUserToEquipe', user);
-			this.sendAction('on-user-to-equipe', user);
+		addUserToMotorista(user) {
+			console.log('addUserToMotorista', user);
+			this.sendAction('on-user-to-motorista', user);
 		},
-		removeUserFromEquipe(user) {
-			console.log('removeUserFromEquipe', user);
-			this.sendAction('on-user-out-equipe', user);
+		removeUserFromMotorista(user) {
+			console.log('removeUserFromMotorista', user);
+			this.sendAction('on-user-out-motorista', user);
+		},
+		addUserToReporter(user) {
+			console.log('addUserToReporter', user);
+			this.sendAction('on-user-to-reporter', user);
+		},
+		removeUserFromReporter(user) {
+			console.log('removeUserFromReporter', user);
+			this.sendAction('on-user-out-reporter', user);
+		},
+		addUserToFotografo(user) {
+			console.log('addUserToFotografo', user);
+			this.sendAction('on-user-to-fotografo', user);
+		},
+		removeUserFromFotografo(user) {
+			console.log('removeUserFromFotografo', user);
+			this.sendAction('on-user-out-fotografo', user);
 		},
 		addUserToProducao(user) {
 			console.log('addUserToProducao', user);

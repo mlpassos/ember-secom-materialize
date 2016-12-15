@@ -132,6 +132,38 @@ export default Ember.Component.extend({
 			});
 			this.set('markers', markers);
 			console.log(markers);
+		},
+		addUserToMotorista(user) {
+			console.log('addUserToMotorista', user);
+			this.sendAction('on-user-to-motorista', user);
+		},
+		removeUserFromMotorista(user) {
+			console.log('removeUserFromMotorista', user);
+			this.sendAction('on-user-out-motorista', user);
+		},
+		addUserToReporter(user) {
+			console.log('addUserToReporter', user);
+			this.sendAction('on-user-to-reporter', user);
+		},
+		removeUserFromReporter(user) {
+			console.log('removeUserFromReporter', user);
+			this.sendAction('on-user-out-reporter', user);
+		},
+		addUserToFotografo(user) {
+			console.log('addUserToFotografo', user);
+			this.sendAction('on-user-to-fotografo', user);
+		},
+		removeUserFromFotografo(user) {
+			console.log('removeUserFromFotografo', user);
+			this.sendAction('on-user-out-fotografo', user);
+		},
+		addUserToProducao(user) {
+			console.log('addUserToProducao', user);
+			this.sendAction('on-user-to-producao', user);
+		},
+		removeUserFromProducao(user) {
+			console.log('removeUserFromProducao', user);
+			this.sendAction('on-user-out-producao', user);
 		}
 	},
 	setupController(controller) {

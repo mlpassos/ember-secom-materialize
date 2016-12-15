@@ -3,6 +3,7 @@ import dateUtil from '../../utils/format-date';
 import cleanURL from '../../utils/cleanurl';
 
 export default Ember.Route.extend({
+	// equipepauta: Ember.inject.service(),
 	model() {
 		let slug = Ember.get(this.modelFor('pauta'), 'slug');
 		console.log('alterar esta pauta ', slug);
@@ -10,40 +11,41 @@ export default Ember.Route.extend({
 		return Ember.RSVP.hash({
 	        pauta: this.store.query('pauta', {orderBy: 'slug', equalTo: slug }).then(function(pautas) {
 	        	console.log('len pautas', pautas.get('length'));
-	        	// console.log('dataPauta', pautas.get('firstObject').get('dataHora'));
 				let pauta = pautas.get('firstObject');
 				let dth = dateUtil(pauta.get('dataHora'));
 				console.log('dth', dth);
 				pauta.set('dataHora', dth);
-
-				// let marker = Ember.A([{
-				//   id: 'pautalocal', 
-				//   lat: pauta.get('lat'),
-				//   lng: pauta.get('lng'),
-				//   icon: 'https://maps.google.com/mapfiles/ms/icons/red.png',
-				//   label: '',
-				//   opacity: 0.8,
-				//   optimized: true,
-				//   infoWindow: {
-				// 	content: '<div>' + pauta.get('local') + '</div>',
-				//     visible: false
-				//   },
-				//   animation: window.google.maps.Animation.DROP,
-				//   clickable: true,
-				//   crossOnDrag: true,
-				//   cursor: 'pointer',
-				//   draggable: false,
-				//   title: 'string',
-				//   visible: true,
-				//   zIndex: 999
-				// }]);
-				// pauta.set('marker', marker);
-
+				// equipepauta.add(obj, 'motorista');
+				// console.log('items na motorista', equipepauta.motorista);
+				
 				return pauta;
 			}),
 		    user: this.store.findAll('user')
 		});
 	},
+	// afterModel(model) {
+	// 	let equipepauta = this.get('equipepauta');
+	// 	let motorista = model.pauta.get('motorista').map(function(user) {
+	// 		equipepauta.add({id: user.get('id')}, 'motorista');
+	// 		return {id: user.get('id')};
+	// 	});
+	// 	let reporter = model.pauta.get('reporter').map(function(user) {
+	// 		equipepauta.add({id: user.get('id')}, 'reporter');
+	// 		return {id: user.get('id')};
+	// 	});
+	// 	let fotografo = model.pauta.get('fotografo').map(function(user) {
+	// 		equipepauta.add({id: user.get('id')}, 'fotografo');
+	// 		return {id: user.get('id')};
+	// 	});
+	// 	let producao = model.pauta.get('producao').map(function(user) {
+	// 		equipepauta.add({id: user.get('id')}, 'producao');
+	// 		return {id: user.get('id')};
+	// 	});
+	// 	console.log('motorista', equipepauta.motorista);
+	// 	console.log('reporter', equipepauta.reporter);
+	// 	console.log('fotografo', equipepauta.fotografo);
+	// 	console.log('producao', equipepauta.producao);
+	// },
 	isSaved: false,
 	pauta: '',
 	setupController(controller) {
@@ -99,64 +101,94 @@ export default Ember.Route.extend({
 		},
 		addPauta() {
 			this.router.transitionTo('pauta.adicionar', 'novo');		
+		},
+		addUserToMotorista(user) {
+			console.log('adding user to motorista: ', user);
+			let pauta = this.get('pauta');
+			this.store.findRecord('user', user).then(function(user) {
+				pauta.get('motorista').addObject(user);
+				pauta.save().then(function() {
+					console.log('sucesso ao adicionar motorista');
+				}, function() {
+					console.log('erro ao adicionar motorista');
+				});
+			});
+		},
+		removeUserFromMotorista(user) {
+			console.log('removendo user de motorista: ', user);
+			let pauta = this.get('pauta');
+			pauta.get('motorista').removeObject(user);
+			pauta.save().then(function() {
+				console.log('sucesso ao remover motorista');
+			}, function() {
+				console.log('erro ao remover motorista');
+			});
+		},
+		addUserToReporter(user) {
+			console.log('adding user to reporter: ', user);
+			let pauta = this.get('pauta');
+			this.store.findRecord('user', user).then(function(user) {
+				pauta.get('reporter').addObject(user);
+				pauta.save().then(function() {
+					console.log('sucesso ao adicionar reporter');
+				}, function() {
+					console.log('erro ao adicionar reporter');
+				});
+			});
+		},
+		removeUserFromReporter(user) {
+			console.log('removendo user de reporter: ', user);
+			let pauta = this.get('pauta');
+			pauta.get('reporter').removeObject(user);
+			pauta.save().then(function() {
+				console.log('sucesso ao remover reporter');
+			}, function() {
+				console.log('erro ao remover reporter');
+			});
+		},
+		addUserToFotografo(user) {
+			console.log('adding user to fotografo: ', user);
+			let pauta = this.get('pauta');
+			this.store.findRecord('user', user).then(function(user) {
+				pauta.get('fotografo').addObject(user);
+				pauta.save().then(function() {
+					console.log('sucesso ao adicionar fotografo');
+				}, function() {
+					console.log('erro ao adicionar fotografo');
+				});
+			});
+		},
+		removeUserFromFotografo(user) {
+			console.log('removendo user de fotografo: ', user);
+			let pauta = this.get('pauta');
+			pauta.get('fotografo').removeObject(user);
+			pauta.save().then(function() {
+				console.log('sucesso ao remover fotografo');
+			}, function() {
+				console.log('erro ao remover fotografo');
+			});
+		},
+		addUserToProducao(user) {
+			console.log('adding user to producao: ', user);
+			let pauta = this.get('pauta');
+			this.store.findRecord('user', user).then(function(user) {
+				pauta.get('producao').addObject(user);
+				pauta.save().then(function() {
+					console.log('sucesso ao adicionar producao');
+				}, function() {
+					console.log('erro ao adicionar producao');
+				});
+			});
+		},
+		removeUserFromProducao(user) {
+			console.log('removendo user de producao: ', user);
+			let pauta = this.get('pauta');
+			pauta.get('producao').removeObject(user);
+			pauta.save().then(function() {
+				console.log('sucesso ao remover producao');
+			}, function() {
+				console.log('erro ao remover producao');
+			});
 		}
-		// ,
-		// addPauta(pauta) {
-		// 	console.log('adding pauta', pauta);
-		// 	// pauta.equipe = this.get('equipe');
-		// 	let _this = this;
-		// 	let equipe = this.get('equipe');
-		// 	let producao = this.get('producao');
-		// 	let pautaRecord = this.store.createRecord('pauta', pauta);
-		// 	console.log('addEquipe', equipe);
-		// 	equipe.map(function(user) {
-		// 		console.log('equipe: ' + user.id);
-		// 		return _this.store.findRecord('user', user.id).then(function(user){
-		// 			// console.log('len', user.get('displayName'));
-		// 			pautaRecord.get('equipe').addObject(user);
-		// 			return pautaRecord.save().then(function() {
-		// 				console.log('pauta adicionada para equipe: ' + user.get('displayName'));
-		// 			});
-		// 		});
-		// 	});
-		// 	producao.map(function(user) {
-		// 		console.log('producao: ' + user.id);
-		// 		return _this.store.findRecord('user', user.id).then(function(user){
-		// 			// console.log('len', user.get('displayName'));
-		// 			pautaRecord.get('producao').addObject(user);
-		// 			return pautaRecord.save().then(function() {
-		// 				console.log('pauta adicionada para producao: ' + user.get('displayName'));
-		// 			});
-		// 		});
-		// 	});
-		// 	// console.log(equipe.join());
-		// 	// this.store.query('user', {id: equipe.join()}).then(function(user){
-		// 	// 	console.log('len', user.get('length'));
-		// 	// 	// pautaRecord.get('equipe').addObject(user);
-		// 	// 	// pautaRecord.save().then(function() {
-		// 	// 	// 	console.log('pauta adicionada para ' + user.get('displayName'));
-		// 	// 	// });
-		// 	// });
-		// },
-		// addUserToEquipe(user) {
-		// 	console.log('adding user to equipe: ', user);
-		// 	let obj = {
-		// 		id: user
-		// 	};
-		// 	// console.log('obj', typeof obj);
-		// 	let equipe = this.get('equipe');
-		// 	equipe.push(obj);
-		// 	console.log(equipe);
-		// },
-		// addUserToProducao(user) {
-		// 	console.log('adding user to producao: ', user);
-		// 	let obj = {
-		// 		id: user
-		// 	};
-		// 	// console.log('obj', typeof obj);
-		// 	let producao = this.get('producao');
-		// 	producao.push(obj);
-		// 	console.log(producao);
-		// }
 	}
 });

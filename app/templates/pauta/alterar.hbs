@@ -1,1 +1,14 @@
-{{pauta-edit pauta=model.pauta users=model.user session=session on-edit="editPauta" on-add="addPauta"}}
+{{pauta-edit 
+	pauta=model.pauta 
+	users=model.user 
+	session=session
+	on-user-to-motorista="addUserToMotorista" 
+	on-user-out-motorista="removeUserFromMotorista" 
+	on-user-to-reporter="addUserToReporter" 
+	on-user-out-reporter="removeUserFromReporter" 
+	on-user-to-fotografo="addUserToFotografo" 
+	on-user-out-fotografo="removeUserFromFotografo" 
+	on-user-to-producao="addUserToProducao" 
+	on-user-out-producao="removeUserFromProducao"  
+	on-edit="editPauta" 
+	on-add="addPauta"}}
