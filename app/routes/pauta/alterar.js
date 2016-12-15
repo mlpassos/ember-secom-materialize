@@ -3,7 +3,6 @@ import dateUtil from '../../utils/format-date';
 import cleanURL from '../../utils/cleanurl';
 
 export default Ember.Route.extend({
-	// equipepauta: Ember.inject.service(),
 	model() {
 		let slug = Ember.get(this.modelFor('pauta'), 'slug');
 		console.log('alterar esta pauta ', slug);
@@ -23,29 +22,6 @@ export default Ember.Route.extend({
 		    user: this.store.findAll('user')
 		});
 	},
-	// afterModel(model) {
-	// 	let equipepauta = this.get('equipepauta');
-	// 	let motorista = model.pauta.get('motorista').map(function(user) {
-	// 		equipepauta.add({id: user.get('id')}, 'motorista');
-	// 		return {id: user.get('id')};
-	// 	});
-	// 	let reporter = model.pauta.get('reporter').map(function(user) {
-	// 		equipepauta.add({id: user.get('id')}, 'reporter');
-	// 		return {id: user.get('id')};
-	// 	});
-	// 	let fotografo = model.pauta.get('fotografo').map(function(user) {
-	// 		equipepauta.add({id: user.get('id')}, 'fotografo');
-	// 		return {id: user.get('id')};
-	// 	});
-	// 	let producao = model.pauta.get('producao').map(function(user) {
-	// 		equipepauta.add({id: user.get('id')}, 'producao');
-	// 		return {id: user.get('id')};
-	// 	});
-	// 	console.log('motorista', equipepauta.motorista);
-	// 	console.log('reporter', equipepauta.reporter);
-	// 	console.log('fotografo', equipepauta.fotografo);
-	// 	console.log('producao', equipepauta.producao);
-	// },
 	isSaved: false,
 	pauta: '',
 	setupController(controller) {
