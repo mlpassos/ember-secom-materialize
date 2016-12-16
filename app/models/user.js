@@ -18,7 +18,7 @@ export default DS.Model.extend({
     		return false;
     	}
   	})
-	// pautas: DS.hasMany('pauta')
+	// pauta: DS.hasMany('pauta')
 	// producao: DS.hasMany('pauta')
 	// tags: DS.hasMany('tag')
 });

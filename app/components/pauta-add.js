@@ -106,6 +106,9 @@ export default Ember.Component.extend({
 			this.set('markers', markers);
 			console.log(markers);
 		},
+		checkUsers(dt) {
+			this.sendAction('on-check-users', dt);
+		},
 		addPauta(pauta) {
 			// console.log(cleanURL(this.get('retranca')));
 			console.log('ID USER CRIADOR: ' + this.get('session.currentUser.id'));

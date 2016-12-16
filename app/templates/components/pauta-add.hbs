@@ -12,7 +12,7 @@
 			{{g-autocomplete value=pauta.local on-select=(action 'didUpdatePlace')}}
 		</div>
 		
-		{{md-input-date label='Data' value=pauta.dataHora class="col s12 m12"}}
+		{{md-input-date check-users="checkUsers" label='Data' value=pauta.dataHora class="col s12 m12"}}
 		
 		{{md-input label='Horário' type="time" value=pauta.horario class="col s12 m4 l4"}}
 		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m4 l4" validate=true}}
