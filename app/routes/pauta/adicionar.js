@@ -28,51 +28,51 @@ export default Ember.Route.extend({
 		}
 	},
 	actions: {
-		checkUsers(dt) {
-			let _this = this;
-			let dtp = new Date(dt);
-			// console.log('dtp', dtp);
-			this.store.findAll('pauta').then((rs)=>{
-				console.log(rs.get('length'));
-				rs.map((res) => {
-					// console.log('entrou aqui');
-					if (!res.get('isNew')) {
-						let dtc = res.get('dataHora');
-						// console.log('dtc', dtc);
-						if (dtc.getTime() === dtp.getTime()) {
-							// tem pauta nesta data, verificar os usuários
-							console.log('igual');
-							// let result = [];
-							res.get('motorista').then((user) => {
-								// result.addObject(user);
-								console.log('removendo motorista', user.get('displayName'));
-								_this.get('currentModel.user').removeObject(user);
-							});
-							res.get('reporter').then((user) => {
-								// result.addObject(user);
-								_this.get('currentModel.user').removeObject(user);
-							});
-							res.get('fotografo').then((user) => {
-								// result.addObject(user);
-								_this.get('currentModel.user').removeObject(user);
-							});
-							res.get('producao').then((user) => {
-								// result.addObject(user);
-								_this.get('currentModel.user').removeObject(user);
-							});
-						} else {
-							// não tem pauta nesta data, fim
-							return false;
-						}
-					}
-				});
+		// checkUsers(dt) {
+		// 	let _this = this;
+		// 	let dtp = new Date(dt);
+		// 	// console.log('dtp', dtp);
+		// 	this.store.findAll('pauta').then((rs)=>{
+		// 		console.log(rs.get('length'));
+		// 		rs.map((res) => {
+		// 			// console.log('entrou aqui');
+		// 			if (!res.get('isNew')) {
+		// 				let dtc = res.get('dataHora');
+		// 				// console.log('dtc', dtc);
+		// 				if (dtc.getTime() === dtp.getTime()) {
+		// 					// tem pauta nesta data, verificar os usuários
+		// 					console.log('igual');
+		// 					// let result = [];
+		// 					res.get('motorista').then((user) => {
+		// 						// result.addObject(user);
+		// 						console.log('removendo motorista', user.get('displayName'));
+		// 						_this.get('currentModel.user').removeObject(user);
+		// 					});
+		// 					res.get('reporter').then((user) => {
+		// 						// result.addObject(user);
+		// 						_this.get('currentModel.user').removeObject(user);
+		// 					});
+		// 					res.get('fotografo').then((user) => {
+		// 						// result.addObject(user);
+		// 						_this.get('currentModel.user').removeObject(user);
+		// 					});
+		// 					res.get('producao').then((user) => {
+		// 						// result.addObject(user);
+		// 						_this.get('currentModel.user').removeObject(user);
+		// 					});
+		// 				} else {
+		// 					// não tem pauta nesta data, fim
+		// 					return false;
+		// 				}
+		// 			}
+		// 		});
 				
-			}, (error) => {
-				console.log(error);
-				return false;
-			});
-			// alert(dt);
-		},
+		// 	}, (error) => {
+		// 		console.log(error);
+		// 		return false;
+		// 	});
+		// 	// alert(dt);
+		// },
 		addPauta(pauta) {
 			let _this = this;
 			let motoristaItems = this.get('equipepauta.motorista');		

@@ -14,6 +14,27 @@ export default Ember.Component.extend({
 			return "http://placehold.it/100x100";
 		}
 	},
+	options: {
+	    selector: 'textarea',
+	    invalid_elements: "table,tr,td,tbody,img",
+	    height: 300,
+	    plugins: [
+	      'advlist autolink lists link charmap print preview anchor',
+	      'searchreplace visualblocks code fullscreen',
+	      'insertdatetime media paste code textcolor colorpicker wordcount'
+	    ],
+	    plugin_insertdate_dateFormat : "%d/%m/%Y",
+	    plugin_insertdate_timeFormat : "%H:%M:%S",
+	    language: 'pt_BR',
+	    language_url: 'http://secom.pa.gov.br/demandou/assets/js/tinymce/langs/pt_BR.js',
+	    browser_spellcheck: true,
+	    contextmenu: false,
+	    toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
+	    content_css: [
+	      '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+	      '//www.tinymce.com/css/codepen.min.css'
+	    ]
+	},
 	pauta: '',
 	// lat: -1.4524,
 	// lng: -48.4887233,

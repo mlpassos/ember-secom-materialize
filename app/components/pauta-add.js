@@ -18,6 +18,35 @@ export default Ember.Component.extend({
 			return "http://placehold.it/100x100";
 		}
 	},
+	// _getLanguageFile : function() {
+	// 	if (app.env === 'development') {
+	// 		return "secom.pa.gov.br/demandou/assets/js/tinymce/langs/pt_BR.js";
+	// 	}
+	// 	if (app.env === 'production') {
+	// 		return '/assets/tinymce_pt_BR.js';
+	// 	}
+	// },
+	options: {
+	    selector: 'textarea',
+	    invalid_elements: "table,tr,td,tbody,img",
+	    height: 300,
+	    plugins: [
+	      'advlist autolink lists link charmap print preview anchor',
+	      'searchreplace visualblocks code fullscreen',
+	      'insertdatetime media paste code textcolor colorpicker wordcount'
+	    ],
+	    plugin_insertdate_dateFormat : "%d/%m/%Y",
+	    plugin_insertdate_timeFormat : "%H:%M:%S",
+	    language: 'pt_BR',
+	    language_url: "http://secom.pa.gov.br/demandou/assets/js/tinymce/langs/pt_BR.js",
+	    browser_spellcheck: true,
+	    contextmenu: false,
+	    toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
+	    content_css: [
+	      '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+	      '//www.tinymce.com/css/codepen.min.css'
+	    ]
+	},
 	lat: -1.4524,
 	lng: -48.4887233,
 	place: '',
@@ -164,6 +193,11 @@ export default Ember.Component.extend({
 			this.sendAction('on-user-out-producao', user);
 		}
 	},
+	// willDestroyElement() {
+	//   this._super(...arguments);
+	//   this.$().off('animationend');
+	//   this.$('input.date').myDatepickerLib().destroy();
+	// },
 	setupController(controller) {
 		this._super(...arguments);
 		controller.set('lat', this.get('lat'));
@@ -171,6 +205,7 @@ export default Ember.Component.extend({
 		controller.set('zoom', this.get('zoom'));
 		controller.set('place', this.get('place'));
 		controller.set('markers', this.get('markers'));
+		controller.set('options', this.get('options'));
 		// controller.set('producao', this.get('producao'));
 	}
 });

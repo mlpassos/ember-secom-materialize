@@ -25,6 +25,11 @@ module.exports = function(defaults) {
 
   app.import('bower_components/imagesloaded/imagesloaded.pkgd.min.js');
   app.import('bower_components/isotope/dist/isotope.pkgd.min.js');
-
+  if (app.env === 'production') {
+    app.import('vendor/tinymce_pt_BR.js', {
+      destDir: 'assets',
+      type: 'vendor'
+    });
+  }
   return app.toTree();
 };

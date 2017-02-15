@@ -25,21 +25,30 @@
 		
 		{{md-input-date label='Data' value=pauta.dataHora class="col s12 m12"}}
 		
-		{{md-input label='Horário' type="time" value=pauta.horario class="col s12 m4 l4"}}
-		{{md-input value=pauta.entrevistado label='Entrevistado' type="text" class="col s12 m4 l4" validate=true}}
-		{{md-input value=pauta.contato label='Contato' type="text" class="col s12 m4 l4" validate=true}}
+		<div class="col s12 m4 l4">
+			<label for="local">Horário</label>
+			{{md-input label='' type="time" value=pauta.horario}}
+		</div>
+		<div class="col s12 m4 l4">
+			<label for="local">Entrevistado</label>
+			{{md-input label='' type="text" value=pauta.entrevistado}}
+		</div>
+		<div class="col s12 m4 l4">
+			<label for="local">Contato</label>
+			{{md-input label='' type="text" value=pauta.contato}}
+		</div>
 	</div>
 	{{!-- CONTEÚDOS LONGOS --}}
 	<div class="row">
-	  {{md-textarea label='Encaminhamento'
+	    {{md-textarea label='Encaminhamento'
 	    value=pauta.encaminhamento class="col s12 m12 l12"}}
 	</div>
 	<div class="row">
-	  {{md-textarea label='Informações'
+	  	{{md-textarea label='Informações'
 	    value=pauta.informacoes class="col s12 m12 l12"}}
 	</div>
 	<div class="row">
-	  {{md-textarea label='Sugestões'
+	    {{md-textarea label='Sugestões'
 	    value=pauta.sugestoes class="col s12 m12 l12"}}
 	</div>
 
